@@ -1,0 +1,337 @@
+cluster	GO.ID	Term	weightedFisher	Annotated	Significant	Expected	richFactor	log10_pval	Genes
+Cluster_1	GO:0046656	folic acid biosynthetic process	0.0062	7	2	0.12	0.286	2.208	AN2493,AN8188
+Cluster_1	GO:0033212	iron assimilation	0.0082	8	2	0.14	0.25	2.086	AN0607,AN6293
+Cluster_1	GO:1900551	N',N'',N'''-triacetylfusarinine C biosynthetic process	0.0104	9	2	0.16	0.222	1.983	AN0608,AN6236
+Cluster_1	GO:0016095	polyprenol catabolic process	0.0178	1	1	0.02	1	1.75	AN4071
+Cluster_1	GO:0006990	positive regulation of transcription from RNA polymerase II promoter involved in unfolded protein response	0.0178	1	1	0.02	1	1.75	AN9397
+Cluster_1	GO:0006386	termination of RNA polymerase III transcription	0.0178	1	1	0.02	1	1.75	AN4219
+Cluster_1	GO:0006971	hypotonic response	0.0178	1	1	0.02	1	1.75	AN5776
+Cluster_1	GO:0018106	peptidyl-histidine phosphorylation	0.0178	1	1	0.02	1	1.75	AN1800
+Cluster_1	GO:0001113	transcriptional open complex formation at RNA polymerase II promoter	0.0178	1	1	0.02	1	1.75	AN5752
+Cluster_1	GO:0052059	evasion or tolerance by symbiont of host-produced reactive oxygen species	0.0178	1	1	0.02	1	1.75	AN1131
+Cluster_1	GO:0043200	response to amino acid	0.0178	1	1	0.02	1	1.75	AN11921
+Cluster_1	GO:0006880	intracellular sequestering of iron ion	0.0178	1	1	0.02	1	1.75	AN0607
+Cluster_1	GO:0009408	response to heat	0.0315	73	5	1.3	0.068	1.502	AN0858,AN1015,AN6293,AN7388,AN9450
+Cluster_1	GO:1900781	fumiquinazoline C biosynthetic process	0.0321	16	2	0.28	0.125	1.493	AN0147,AN7269
+Cluster_1	GO:0019521	D-gluconate metabolic process	0.0321	16	2	0.28	0.125	1.493	AN2493,AN7388
+Cluster_1	GO:0008204	ergosterol metabolic process	0.035	36	3	0.64	0.083	1.456	AN0608,AN4208,AN6236
+Cluster_1	GO:0031669	cellular response to nutrient levels	0.0351	169	5	3.01	0.03	1.455	AN0607,AN5200,AN6293,AN7388,AN8262
+Cluster_1	GO:0042779	tRNA 3'-trailer cleavage	0.0353	2	1	0.04	0.5	1.452	AN4219
+Cluster_1	GO:0015684	ferrous iron transport	0.0353	2	1	0.04	0.5	1.452	AN4990
+Cluster_1	GO:0061414	positive regulation of transcription from RNA polymerase II promoter by a nonfermentable carbon source	0.0353	2	1	0.04	0.5	1.452	AN6293
+Cluster_1	GO:0061415	negative regulation of transcription from RNA polymerase II promoter by a nonfermentable carbon source	0.0353	2	1	0.04	0.5	1.452	AN6293
+Cluster_1	GO:0006799	polyphosphate biosynthetic process	0.0353	2	1	0.04	0.5	1.452	AN1334
+Cluster_1	GO:1900778	fumiquinazoline A biosynthetic process	0.0353	2	1	0.04	0.5	1.452	AN0147
+Cluster_1	GO:0035948	positive regulation of gluconeogenesis by positive regulation of transcription from RNA polymerase II promoter	0.0353	2	1	0.04	0.5	1.452	AN6293
+Cluster_1	GO:0019533	cellobiose transport	0.0353	2	1	0.04	0.5	1.452	AN8347
+Cluster_1	GO:0043335	protein unfolding	0.0353	2	1	0.04	0.5	1.452	AN0858
+Cluster_1	GO:0030643	cellular phosphate ion homeostasis	0.0353	2	1	0.04	0.5	1.452	AN5156
+Cluster_1	GO:0006853	carnitine shuttle	0.0353	2	1	0.04	0.5	1.452	AN6279
+Cluster_1	GO:0019953	sexual reproduction	0.0354	272	5	4.84	0.018	1.451	AN5156,AN6566,AN7388,AN8262,AN9450
+Cluster_1	GO:0006334	nucleosome assembly	0.0359	17	2	0.3	0.118	1.445	AN3468,AN3469
+Cluster_1	GO:0006879	cellular iron ion homeostasis	0.0393	26	4	0.46	0.154	1.406	AN0607,AN3681,AN4990,AN6293
+Cluster_3	GO:0000768	syncytium formation by plasma membrane fusion	0.00017	29	5	0.54	0.172	3.77	AN2701,AN4264,AN4702,AN5169,AN5458
+Cluster_3	GO:0006043	glucosamine catabolic process	0.00034	2	2	0.04	1	3.469	AN1418,AN1428
+Cluster_3	GO:0006046	N-acetylglucosamine catabolic process	0.00101	3	2	0.06	0.667	2.996	AN1418,AN1428
+Cluster_3	GO:0015813	L-glutamate transmembrane transport	0.00101	3	2	0.06	0.667	2.996	AN6118,AN8785
+Cluster_3	GO:0043943	regulation of asexual sporulation resulting in formation of a cellular spore	0.00197	25	4	0.46	0.16	2.706	AN0186,AN2059,AN5028,AN8741
+Cluster_3	GO:0030007	cellular potassium ion homeostasis	0.002	4	2	0.07	0.5	2.699	AN8029,AN8830
+Cluster_3	GO:0005982	starch metabolic process	0.01128	9	2	0.17	0.222	1.948	AN2016,AN2017
+Cluster_3	GO:0005975	carbohydrate metabolic process	0.01516	498	18	9.23	0.036	1.819	AN0367,AN0933,AN10533,AN1418,AN1551,AN2016,AN2017,AN2395,AN2815,AN4255,AN4691,AN4825,AN4871,AN5604,AN5975,AN6985,AN7588,AN9339
+Cluster_3	GO:0075308	negative regulation of conidium formation	0.01683	11	2	0.2	0.182	1.774	AN8129,AN9121
+Cluster_3	GO:0006168	adenine salvage	0.01853	1	1	0.02	1	1.732	AN9083
+Cluster_3	GO:0040010	positive regulation of growth rate	0.01853	1	1	0.02	1	1.732	AN4419
+Cluster_3	GO:0035865	cellular response to potassium ion	0.01853	1	1	0.02	1	1.732	AN2919
+Cluster_3	GO:2000786	positive regulation of autophagosome assembly	0.01853	1	1	0.02	1	1.732	AN4419
+Cluster_3	GO:0070778	L-aspartate transmembrane transport	0.01853	1	1	0.02	1	1.732	AN6118
+Cluster_3	GO:0006532	aspartate biosynthetic process	0.01853	1	1	0.02	1	1.732	AN6048
+Cluster_3	GO:0015686	ferric triacetylfusarinine C transport	0.01853	1	1	0.02	1	1.732	AN8540
+Cluster_3	GO:0015764	N-acetylglucosamine transport	0.01853	1	1	0.02	1	1.732	AN1427
+Cluster_3	GO:1900695	regulation of N',N'',N'''-triacetylfusarinine C biosynthetic process	0.01853	1	1	0.02	1	1.732	AN2855
+Cluster_3	GO:1990573	potassium ion import across plasma membrane	0.01853	1	1	0.02	1	1.732	AN8029
+Cluster_3	GO:0044209	AMP salvage	0.01853	1	1	0.02	1	1.732	AN9083
+Cluster_3	GO:0019593	mannitol biosynthetic process	0.01853	1	1	0.02	1	1.732	AN5975
+Cluster_3	GO:0016119	carotene metabolic process	0.01853	1	1	0.02	1	1.732	AN9339
+Cluster_3	GO:0019295	coenzyme M biosynthetic process	0.01853	1	1	0.02	1	1.732	AN10197
+Cluster_3	GO:0019571	D-arabinose catabolic process	0.01853	1	1	0.02	1	1.732	AN4691
+Cluster_3	GO:0019528	D-arabitol catabolic process to xylulose 5-phosphate	0.01853	1	1	0.02	1	1.732	AN4691
+Cluster_3	GO:1900854	positive regulation of terrequinone A biosynthetic process	0.01853	1	1	0.02	1	1.732	AN8741
+Cluster_3	GO:0043941	positive regulation of sexual sporulation resulting in formation of a cellular spore	0.02684	14	2	0.26	0.143	1.571	AN5028,AN9121
+Cluster_3	GO:0030435	sporulation resulting in formation of a cellular spore	0.03558	210	11	3.89	0.052	1.449	AN0186,AN2059,AN2919,AN4419,AN4871,AN4897,AN5028,AN5170,AN6731,AN8741,AN9121
+Cluster_3	GO:0019988	charged-tRNA amino acid modification	0.03671	2	1	0.04	0.5	1.435	AN7709
+Cluster_3	GO:0045046	protein import into peroxisome membrane	0.03671	2	1	0.04	0.5	1.435	AN4899
+Cluster_3	GO:0071578	zinc ion import across plasma membrane	0.03671	2	1	0.04	0.5	1.435	AN3799
+Cluster_3	GO:0071242	cellular response to ammonium ion	0.03671	2	1	0.04	0.5	1.435	AN6730
+Cluster_3	GO:0006543	glutamine catabolic process	0.03671	2	1	0.04	0.5	1.435	AN0565
+Cluster_3	GO:0019413	acetate biosynthetic process	0.03671	2	1	0.04	0.5	1.435	AN0554
+Cluster_3	GO:0018158	protein oxidation	0.03671	2	1	0.04	0.5	1.435	AN9339
+Cluster_3	GO:0070409	carbamoyl phosphate biosynthetic process	0.03671	2	1	0.04	0.5	1.435	AN0565
+Cluster_3	GO:0001516	prostaglandin biosynthetic process	0.03671	2	1	0.04	0.5	1.435	AN5028
+Cluster_3	GO:0000025	maltose catabolic process	0.03671	2	1	0.04	0.5	1.435	AN2017
+Cluster_3	GO:0015810	aspartate transmembrane transport	0.03671	2	1	0.04	0.5	1.435	AN8785
+Cluster_3	GO:0031388	organic acid phosphorylation	0.03671	2	1	0.04	0.5	1.435	AN2311
+Cluster_3	GO:0070301	cellular response to hydrogen peroxide	0.04301	18	2	0.33	0.111	1.366	AN6849,AN9339
+Cluster_4	GO:0048315	conidium formation	4.6e-06	132	14	2.26	0.106	5.337	AN1052,AN1536,AN1848,AN2421,AN2523,AN2740,AN2911,AN4935,AN5755,AN5836,AN5893,AN6317,AN6318,AN7657
+Cluster_4	GO:0016584	nucleosome positioning	1e-05	18	5	0.31	0.278	5	AN0098,AN2911,AN4034,AN6195,AN7545
+Cluster_4	GO:0030448	hyphal growth	9.3e-05	188	12	3.22	0.064	4.032	AN12408,AN1536,AN1848,AN2523,AN4935,AN5457,AN5836,AN6195,AN6317,AN6318,AN7572,AN8831
+Cluster_4	GO:1900699	negative regulation of o-orsellinic acid biosynthetic process	0.00029	2	2	0.03	1	3.538	AN1052,AN8797
+Cluster_4	GO:0071998	ascospore release from ascus	0.00087	3	2	0.05	0.667	3.06	AN0098,AN1536
+Cluster_4	GO:0006357	regulation of transcription by RNA polymerase II	0.00091	226	14	3.88	0.062	3.041	AN0098,AN1060,AN2290,AN2421,AN2911,AN2944,AN4741,AN4935,AN5836,AN5893,AN6195,AN7468,AN7572,AN8168
+Cluster_4	GO:0009932	cell tip growth	0.00172	4	2	0.07	0.5	2.764	AN6317,AN6318
+Cluster_4	GO:0038032	termination of G-protein coupled receptor signaling pathway	0.00172	4	2	0.07	0.5	2.764	AN5755,AN5893
+Cluster_4	GO:0043945	positive regulation of asexual sporulation resulting in formation of a cellular spore	0.00194	15	3	0.26	0.2	2.712	AN1052,AN5836,AN8945
+Cluster_4	GO:0010914	positive regulation of sterigmatocystin biosynthetic process	0.00236	16	3	0.27	0.188	2.627	AN0807,AN1052,AN5893
+Cluster_4	GO:0006072	glycerol-3-phosphate metabolic process	0.00283	5	2	0.09	0.4	2.548	AN1396,AN5589
+Cluster_4	GO:0006109	regulation of carbohydrate metabolic process	0.00409	37	5	0.63	0.135	2.388	AN2421,AN4034,AN7468,AN7545,AN8667
+Cluster_4	GO:0006808	regulation of nitrogen utilization	0.00411	11	4	0.19	0.364	2.386	AN0098,AN2944,AN8168,AN8667
+Cluster_4	GO:1900691	positive regulation of gliotoxin biosynthetic process	0.00419	6	2	0.1	0.333	2.378	AN0807,AN1052
+Cluster_4	GO:0015976	carbon utilization	0.0045	24	4	0.41	0.167	2.347	AN1918,AN5626,AN6195,AN7468
+Cluster_4	GO:0006031	chitin biosynthetic process	0.00575	17	3	0.29	0.176	2.24	AN2523,AN6317,AN6318
+Cluster_4	GO:1904359	regulation of spore germination	0.00581	7	2	0.12	0.286	2.236	AN0129,AN4544
+Cluster_4	GO:0070787	conidiophore development	0.00792	83	7	1.42	0.084	2.101	AN0098,AN1052,AN1536,AN1848,AN4935,AN5836,AN7572
+Cluster_4	GO:0043936	asexual sporulation resulting in formation of a cellular spore	0.00863	73	7	1.25	0.096	2.064	AN1037,AN1052,AN2505,AN5836,AN5893,AN6318,AN8945
+Cluster_4	GO:0009847	spore germination	0.0094	56	6	0.96	0.107	2.027	AN0129,AN1052,AN2421,AN2911,AN4544,AN5836
+Cluster_4	GO:0000909	sporocarp development involved in sexual reproduction	0.01254	110	8	1.89	0.073	1.902	AN0098,AN1536,AN1848,AN2290,AN2505,AN4935,AN5457,AN5836
+Cluster_4	GO:0000768	syncytium formation by plasma membrane fusion	0.01307	29	3	0.5	0.103	1.884	AN1848,AN5457,AN8831
+Cluster_4	GO:0045881	positive regulation of sporulation resulting in formation of a cellular spore	0.01683	29	5	0.5	0.172	1.774	AN0807,AN1052,AN5836,AN5893,AN8945
+Cluster_4	GO:0075306	regulation of conidium formation	0.01697	36	4	0.62	0.111	1.77	AN1052,AN2421,AN5836,AN5893
+Cluster_4	GO:0060240	negative regulation of signal transduction involved in conjugation with cellular fusion	0.01706	4	2	0.07	0.5	1.768	AN4935,AN5893
+Cluster_4	GO:0071108	protein K48-linked deubiquitination	0.01715	1	1	0.02	1	1.766	AN3587
+Cluster_4	GO:0000080	mitotic G1 phase	0.01715	1	1	0.02	1	1.766	AN4991
+Cluster_4	GO:1900408	negative regulation of cellular response to oxidative stress	0.01715	1	1	0.02	1	1.766	AN0273
+Cluster_4	GO:0034477	U6 snRNA 3'-end processing	0.01715	1	1	0.02	1	1.766	AN1508
+Cluster_4	GO:0000012	single strand break repair	0.01715	1	1	0.02	1	1.766	AN5751
+Cluster_4	GO:0019427	acetyl-CoA biosynthetic process from acetate	0.01715	1	1	0.02	1	1.766	AN5626
+Cluster_4	GO:0034412	ascospore wall beta-glucan biosynthetic process	0.01715	1	1	0.02	1	1.766	AN7657
+Cluster_4	GO:0090352	regulation of nitrate assimilation	0.01715	1	1	0.02	1	1.766	AN8168
+Cluster_4	GO:1905287	positive regulation of G2/M transition of mitotic cell cycle involved in cellular response to nitrogen starvation	0.01715	1	1	0.02	1	1.766	AN7572
+Cluster_4	GO:0071398	cellular response to fatty acid	0.01715	1	1	0.02	1	1.766	AN1037
+Cluster_4	GO:0071361	cellular response to ethanol	0.01715	1	1	0.02	1	1.766	AN9340
+Cluster_4	GO:0042308	negative regulation of protein import into nucleus	0.01715	1	1	0.02	1	1.766	AN4935
+Cluster_4	GO:0045848	positive regulation of nitrogen utilization	0.01715	1	1	0.02	1	1.766	AN2944
+Cluster_4	GO:0009750	response to fructose	0.01715	1	1	0.02	1	1.766	AN6195
+Cluster_4	GO:1905342	positive regulation of protein localization to kinetochore	0.01715	1	1	0.02	1	1.766	AN6508
+Cluster_4	GO:0072489	methylammonium transmembrane transport	0.01715	1	1	0.02	1	1.766	AN7463
+Cluster_4	GO:0045574	sterigmatocystin catabolic process	0.01715	1	1	0.02	1	1.766	AN5893
+Cluster_4	GO:0051725	protein de-ADP-ribosylation	0.01715	1	1	0.02	1	1.766	AN3153
+Cluster_4	GO:1904765	positive regulation of transcription from RNA polymerase II promoter in response to maltose	0.01715	1	1	0.02	1	1.766	AN2911
+Cluster_4	GO:1901714	positive regulation of urea catabolic process	0.01715	1	1	0.02	1	1.766	AN2944
+Cluster_4	GO:1901717	positive regulation of gamma-aminobutyric acid catabolic process	0.01715	1	1	0.02	1	1.766	AN2944
+Cluster_4	GO:0098504	DNA 3' dephosphorylation involved in DNA repair	0.01715	1	1	0.02	1	1.766	AN5751
+Cluster_4	GO:0052067	negative regulation by symbiont of entry into host cell via phagocytosis	0.01715	1	1	0.02	1	1.766	AN0807
+Cluster_4	GO:1903452	positive regulation of G1 to G0 transition	0.01715	1	1	0.02	1	1.766	AN7572
+Cluster_4	GO:0002092	positive regulation of receptor internalization	0.01715	1	1	0.02	1	1.766	AN0056
+Cluster_4	GO:2000397	positive regulation of ubiquitin-dependent endocytosis	0.01715	1	1	0.02	1	1.766	AN1089
+Cluster_4	GO:0052036	negative regulation by symbiont of host inflammatory response	0.01715	1	1	0.02	1	1.766	AN5003
+Cluster_4	GO:0001081	nitrogen catabolite repression of transcription from RNA polymerase II promoter	0.01715	1	1	0.02	1	1.766	AN8168
+Cluster_4	GO:0070873	regulation of glycogen metabolic process	0.01724	12	2	0.21	0.167	1.763	AN2421,AN8667
+Cluster_4	GO:0006338	chromatin remodeling	0.01938	60	4	1.03	0.067	1.713	AN0098,AN2911,AN6195,AN8667
+Cluster_4	GO:0000079	regulation of cyclin-dependent protein serine/threonine kinase activity	0.02015	13	2	0.22	0.154	1.696	AN1096,AN4984
+Cluster_4	GO:0006470	protein dephosphorylation	0.02173	35	3	0.6	0.086	1.663	AN0129,AN3793,AN4544
+Cluster_4	GO:0045013	carbon catabolite repression of transcription	0.03368	14	3	0.24	0.214	1.473	AN3587,AN6195,AN7468
+Cluster_4	GO:0070086	ubiquitin-dependent endocytosis	0.03383	3	2	0.05	0.667	1.471	AN0056,AN1089
+Cluster_4	GO:0042594	response to starvation	0.03394	155	4	2.66	0.026	1.469	AN1414,AN3642,AN7468,AN7572
+Cluster_4	GO:0035871	protein K11-linked deubiquitination	0.03401	2	1	0.03	0.5	1.468	AN3587
+Cluster_4	GO:0018343	protein farnesylation	0.03401	2	1	0.03	0.5	1.468	AN2002
+Cluster_4	GO:0061414	positive regulation of transcription from RNA polymerase II promoter by a nonfermentable carbon source	0.03401	2	1	0.03	0.5	1.468	AN7468
+Cluster_4	GO:0061415	negative regulation of transcription from RNA polymerase II promoter by a nonfermentable carbon source	0.03401	2	1	0.03	0.5	1.468	AN7468
+Cluster_4	GO:0061417	negative regulation of transcription from RNA polymerase II promoter in response to oxidative stress	0.03401	2	1	0.03	0.5	1.468	AN2911
+Cluster_4	GO:0035948	positive regulation of gluconeogenesis by positive regulation of transcription from RNA polymerase II promoter	0.03401	2	1	0.03	0.5	1.468	AN7468
+Cluster_4	GO:0019563	glycerol catabolic process	0.03401	2	1	0.03	0.5	1.468	AN0034
+Cluster_4	GO:0071491	cellular response to red light	0.03401	2	1	0.03	0.5	1.468	AN1052
+Cluster_4	GO:0016577	histone demethylation	0.03401	2	1	0.03	0.5	1.468	AN1060
+Cluster_4	GO:0071497	cellular response to freezing	0.03401	2	1	0.03	0.5	1.468	AN9340
+Cluster_4	GO:0010846	activation of reciprocal meiotic recombination	0.03401	2	1	0.03	0.5	1.468	AN2911
+Cluster_4	GO:0071465	cellular response to desiccation	0.03401	2	1	0.03	0.5	1.468	AN9340
+Cluster_4	GO:0046177	D-gluconate catabolic process	0.03401	2	1	0.03	0.5	1.468	AN3641
+Cluster_4	GO:0010995	free ubiquitin chain depolymerization	0.03401	2	1	0.03	0.5	1.468	AN3587
+Cluster_4	GO:0061688	glycolytic process via Entner-Doudoroff Pathway	0.03401	2	1	0.03	0.5	1.468	AN3641
+Cluster_4	GO:0015793	glycerol transport	0.03401	2	1	0.03	0.5	1.468	AN9168
+Cluster_4	GO:0051039	positive regulation of transcription involved in meiotic cell cycle	0.03401	2	1	0.03	0.5	1.468	AN7572
+Cluster_4	GO:0001080	nitrogen catabolite activation of transcription from RNA polymerase II promoter	0.03401	2	1	0.03	0.5	1.468	AN2944
+Cluster_4	GO:0070791	cleistothecium development	0.03708	28	3	0.48	0.107	1.431	AN1848,AN2505,AN5457
+Cluster_4	GO:1903475	mitotic actomyosin contractile ring assembly	0.04132	19	2	0.33	0.105	1.384	AN0135,AN8831
+Cluster_4	GO:0006355	regulation of transcription, DNA-templated	0.04358	687	28	11.78	0.041	1.361	AN0098,AN0585,AN1060,AN1217,AN1414,AN1536,AN1848,AN2001,AN2290,AN2421,AN2911,AN2944,AN3075,AN3587,AN4034,AN4324,AN4741,AN4900,AN4935,AN5775,AN5836,AN5893,AN6195,AN7468,AN7545,AN7572,AN8168,AN8667
+Cluster_4	GO:0042147	retrograde transport, endosome to Golgi	0.0454	20	2	0.34	0.1	1.343	AN1297,AN3642
+Cluster_4	GO:0006071	glycerol metabolic process	0.04917	23	3	0.39	0.13	1.308	AN0034,AN1396,AN5589
+Cluster_5	GO:0120009	intermembrane lipid transfer	0.012	1	1	0.01	1	1.921	AN3147
+Cluster_5	GO:0046836	glycolipid transport	0.012	1	1	0.01	1	1.921	AN3147
+Cluster_5	GO:0033619	membrane protein proteolysis	0.012	1	1	0.01	1	1.921	AN5588
+Cluster_5	GO:0015723	bilirubin transport	0.012	1	1	0.01	1	1.921	AN7729
+Cluster_5	GO:0001195	maintenance of transcriptional fidelity during DNA-templated transcription elongation from RNA polymerase III promoter	0.012	1	1	0.01	1	1.921	AN2885
+Cluster_5	GO:0010230	alternative respiration	0.012	1	1	0.01	1	1.921	AN2099
+Cluster_5	GO:1903574	negative regulation of cellular response to amino acid starvation	0.012	1	1	0.01	1	1.921	AN0978
+Cluster_5	GO:0010961	cellular magnesium ion homeostasis	0.012	1	1	0.01	1	1.921	AN5856
+Cluster_5	GO:0003333	amino acid transmembrane transport	0.015	36	3	0.42	0.083	1.824	AN1659,AN4478,AN8279
+Cluster_5	GO:0070301	cellular response to hydrogen peroxide	0.019	18	2	0.21	0.111	1.721	AN0609,AN3688
+Cluster_5	GO:1900177	regulation of aflatoxin biosynthetic process	0.023	2	1	0.02	0.5	1.638	AN7819
+Cluster_5	GO:0044208	'de novo' AMP biosynthetic process	0.023	2	1	0.02	0.5	1.638	AN6209
+Cluster_5	GO:0006853	carnitine shuttle	0.023	2	1	0.02	0.5	1.638	AN1059
+Cluster_5	GO:0071996	glutathione transmembrane import into vacuole	0.023	2	1	0.02	0.5	1.638	AN7729
+Cluster_5	GO:1903830	magnesium ion transmembrane transport	0.023	2	1	0.02	0.5	1.638	AN5856
+Cluster_5	GO:0036246	phytochelatin 2 import into vacuole	0.023	2	1	0.02	0.5	1.638	AN7729
+Cluster_5	GO:0007618	mating	0.023	2	1	0.02	0.5	1.638	AN3152
+Cluster_5	GO:0070898	RNA polymerase III transcriptional preinitiation complex assembly	0.023	2	1	0.02	0.5	1.638	AN2885
+Cluster_5	GO:0070899	mitochondrial tRNA wobble uridine modification	0.023	2	1	0.02	0.5	1.638	AN6577
+Cluster_5	GO:0015809	arginine transport	0.035	11	2	0.13	0.182	1.456	AN4478,AN8279
+Cluster_5	GO:0006642	triglyceride mobilization	0.035	3	1	0.04	0.333	1.456	AN1713
+Cluster_5	GO:0036091	positive regulation of transcription from RNA polymerase II promoter in response to oxidative stress	0.035	3	1	0.04	0.333	1.456	AN3688
+Cluster_5	GO:0000304	response to singlet oxygen	0.035	3	1	0.04	0.333	1.456	AN3688
+Cluster_5	GO:0006629	lipid metabolic process	0.04	407	5	4.78	0.012	1.398	AN0609,AN0963,AN10747,AN1713,AN1798
+Cluster_5	GO:0070791	cleistothecium development	0.042	28	2	0.33	0.071	1.377	AN0279,AN4783
+Cluster_5	GO:0045122	aflatoxin biosynthetic process	0.046	6	2	0.07	0.333	1.337	AN0148,AN7819
+Cluster_5	GO:0031591	wybutosine biosynthetic process	0.046	4	1	0.05	0.25	1.337	AN0128
+Cluster_5	GO:0006106	fumarate metabolic process	0.046	4	1	0.05	0.25	1.337	AN6209
+Cluster_5	GO:1904788	positive regulation of induction of conjugation with cellular fusion by regulation of transcription from RNA polymerase II promoter	0.046	4	1	0.05	0.25	1.337	AN3688
+Cluster_5	GO:0031171	ferricrocin biosynthetic process	0.046	4	1	0.05	0.25	1.337	AN0609
+Cluster_5	GO:0090052	regulation of chromatin silencing at centromere	0.046	4	1	0.05	0.25	1.337	AN4783
+Cluster_5	GO:0071260	cellular response to mechanical stimulus	0.046	4	1	0.05	0.25	1.337	AN1555
+Cluster_5	GO:0007049	cell cycle	0.047	467	4	5.48	0.009	1.328	AN10595,AN1555,AN3152,AN8187
+Cluster_6	GO:0030448	hyphal growth	6.8e-08	188	46	20.34	0.245	7.167	AN0163,AN0182,AN0410,AN0651,AN0863,AN1025,AN10515,AN10709,AN1171,AN1324,AN1539,AN1628,AN2009,AN2067,AN3113,AN3416,AN3683,AN3719,AN3730,AN3735,AN3787,AN4189,AN4238,AN4566,AN4667,AN4685,AN4716,AN4743,AN4987,AN5296,AN5660,AN5740,AN5802,AN5832,AN6243,AN6330,AN6685,AN6688,AN6697,AN6920,AN7030,AN7032,AN7104,AN7576,AN7698,AN8009
+Cluster_6	GO:0009405	pathogenesis	6.8e-06	143	34	15.48	0.238	5.167	AN0121,AN0182,AN1016,AN1017,AN1069,AN1242,AN1502,AN2067,AN2996,AN3583,AN3719,AN3729,AN3730,AN3735,AN3765,AN4238,AN4361,AN4390,AN4479,AN4501,AN4515,AN4685,AN4915,AN4987,AN5218,AN5296,AN5634,AN5823,AN5832,AN6892,AN7032,AN7250,AN8251,AN8269
+Cluster_6	GO:0007124	pseudohyphal growth	5.9e-05	23	9	2.49	0.391	4.229	AN0182,AN1016,AN10171,AN1025,AN10516,AN1324,AN4439,AN4501,AN4896
+Cluster_6	GO:0070787	conidiophore development	6.2e-05	83	24	8.98	0.289	4.208	AN0363,AN0689,AN0863,AN0928,AN0988,AN10515,AN1171,AN1189,AN1539,AN2009,AN3113,AN3719,AN4238,AN4479,AN4563,AN4667,AN4716,AN4878,AN5660,AN6243,AN6688,AN7030,AN7104,AN7698
+Cluster_6	GO:0097308	cellular response to farnesol	0.00024	46	14	4.98	0.304	3.62	AN0182,AN10518,AN2435,AN4159,AN4376,AN4479,AN4667,AN4695,AN5129,AN5564,AN5746,AN5999,AN7590,AN7594
+Cluster_6	GO:0048315	conidium formation	0.00046	132	29	14.28	0.22	3.337	AN0182,AN0363,AN0410,AN0651,AN0863,AN0931,AN1016,AN1017,AN10515,AN1171,AN1189,AN1324,AN1539,AN2009,AN3416,AN3719,AN4189,AN4563,AN4566,AN4695,AN4716,AN4987,AN5296,AN5757,AN6243,AN7030,AN7032,AN7104,AN7757
+Cluster_6	GO:0034221	fungal-type cell wall chitin biosynthetic process	0.00062	6	5	0.65	0.833	3.208	AN1069,AN10709,AN1554,AN4501,AN4566
+Cluster_6	GO:0031505	fungal-type cell wall organization	0.00112	108	27	11.69	0.25	2.951	AN0106,AN0472,AN0931,AN1017,AN11152,AN1189,AN1242,AN1573,AN2067,AN3113,AN3148,AN3583,AN3719,AN3729,AN3730,AN3914,AN4189,AN4390,AN4515,AN4566,AN5740,AN6733,AN7032,AN7511,AN7533,AN7698,AN9380
+Cluster_6	GO:0019676	ammonia assimilation cycle	0.00126	3	3	0.32	1	2.9	AN4159,AN4376,AN5134
+Cluster_6	GO:0006973	intracellular accumulation of glycerol	0.00126	3	3	0.32	1	2.9	AN0351,AN1017,AN5563
+Cluster_6	GO:0097271	protein localization to bud neck	0.00126	3	3	0.32	1	2.9	AN0182,AN4667,AN4987
+Cluster_6	GO:0043936	asexual sporulation resulting in formation of a cellular spore	0.00132	73	19	7.9	0.26	2.879	AN0082,AN0182,AN10030,AN1017,AN1632,AN2067,AN2936,AN3113,AN3470,AN4238,AN4501,AN4987,AN5131,AN5635,AN5660,AN5740,AN6578,AN6920,AN7032
+Cluster_6	GO:0032005	signal transduction involved in positive regulation of conjugation with cellular fusion	0.00169	24	9	2.6	0.375	2.772	AN0182,AN0651,AN10227,AN1025,AN3719,AN4998,AN6892,AN7030,AN7252
+Cluster_6	GO:0034605	cellular response to heat	0.00185	57	18	6.17	0.316	2.733	AN0182,AN0931,AN1017,AN2731,AN3583,AN4189,AN4310,AN4501,AN4716,AN4987,AN5129,AN5523,AN5635,AN6892,AN7104,AN7698,AN8269,AN8643
+Cluster_6	GO:0007015	actin filament organization	0.00219	48	12	5.19	0.25	2.66	AN0163,AN0931,AN1025,AN10515,AN1324,AN2995,AN3735,AN4218,AN4743,AN4998,AN5981,AN6685
+Cluster_6	GO:0035690	cellular response to drug	0.00277	204	37	22.08	0.181	2.558	AN0363,AN0595,AN0651,AN0927,AN1017,AN10351,AN10709,AN10949,AN1189,AN1242,AN1518,AN2300,AN2997,AN3113,AN3368,AN3506,AN3719,AN3729,AN4189,AN4390,AN4758,AN4770,AN4923,AN5296,AN5493,AN5523,AN5632,AN5660,AN5740,AN5908,AN6207,AN6330,AN7513,AN8269,AN8414,AN8489,AN8643
+Cluster_6	GO:0071852	fungal-type cell wall organization or biogenesis	0.00344	145	37	15.69	0.255	2.463	AN0106,AN0472,AN0931,AN1017,AN1069,AN10709,AN11152,AN1189,AN1242,AN1554,AN1573,AN1950,AN2067,AN3113,AN3148,AN3583,AN3719,AN3729,AN3730,AN3914,AN4169,AN4189,AN4390,AN4501,AN4515,AN4566,AN5660,AN5740,AN5746,AN6733,AN7032,AN7511,AN7533,AN7576,AN7698,AN8117,AN9380
+Cluster_6	GO:2000769	regulation of establishment or maintenance of cell polarity regulating cell shape	0.00364	15	6	1.62	0.4	2.439	AN0106,AN0182,AN2067,AN5740,AN6685,AN7030
+Cluster_6	GO:0015976	carbon utilization	0.00371	24	8	2.6	0.333	2.431	AN0689,AN1017,AN3597,AN4462,AN5634,AN5746,AN6653,AN7610
+Cluster_6	GO:0061709	reticulophagy	0.00465	4	3	0.43	0.75	2.333	AN1632,AN4915,AN5131
+Cluster_6	GO:0009847	spore germination	0.00499	56	14	6.06	0.25	2.302	AN0182,AN0363,AN10077,AN1016,AN1017,AN1242,AN3719,AN4238,AN4501,AN4896,AN6010,AN6125,AN7030,AN7619
+Cluster_6	GO:0006099	tricarboxylic acid cycle	0.00506	21	7	2.27	0.333	2.296	AN2435,AN2436,AN2999,AN3894,AN5525,AN6650,AN8707
+Cluster_6	GO:0044416	induction by symbiont of host defense response	0.00607	12	5	1.3	0.417	2.217	AN2875,AN4443,AN5210,AN5525,AN5746
+Cluster_6	GO:0051056	regulation of small GTPase mediated signal transduction	0.00659	35	11	3.79	0.314	2.181	AN0112,AN0113,AN0449,AN10171,AN2130,AN3438,AN3735,AN4369,AN4501,AN4987,AN4998
+Cluster_6	GO:0070588	calcium ion transmembrane transport	0.00667	17	5	1.84	0.294	2.176	AN1189,AN1628,AN1950,AN4814,AN4920
+Cluster_6	GO:0001402	signal transduction involved in filamentous growth	0.00668	8	4	0.87	0.5	2.175	AN1016,AN1573,AN4501,AN7698
+Cluster_6	GO:0009651	response to salt stress	0.00676	25	10	2.71	0.4	2.17	AN10019,AN1017,AN1624,AN3730,AN4238,AN4479,AN4716,AN5563,AN5564,AN7250
+Cluster_6	GO:0071470	cellular response to osmotic stress	0.00692	58	18	6.28	0.31	2.16	AN0351,AN0931,AN1017,AN1624,AN2005,AN2997,AN3583,AN4479,AN4483,AN5129,AN5563,AN5746,AN6010,AN6892,AN6982,AN7698,AN8690,AN8692
+Cluster_6	GO:0043935	sexual sporulation resulting in formation of a cellular spore	0.00893	146	31	15.8	0.212	2.049	AN0078,AN0182,AN0363,AN0410,AN0472,AN0651,AN0733,AN0931,AN0988,AN1016,AN1017,AN10306,AN10516,AN1171,AN11891,AN2426,AN3148,AN3719,AN4169,AN4390,AN4501,AN4566,AN4601,AN5523,AN5635,AN5759,AN6243,AN6578,AN7104,AN7513,AN9380
+Cluster_6	GO:0006355	regulation of transcription, DNA-templated	0.00904	687	97	74.35	0.141	2.044	AN0162,AN0176,AN0182,AN0410,AN0440,AN0533,AN0689,AN0742,AN0817,AN0835,AN0863,AN0891,AN0928,AN0988,AN10019,AN10128,AN1016,AN1017,AN10191,AN10761,AN11112,AN11165,AN11753,AN11891,AN11961,AN1339,AN1416,AN1518,AN1812,AN1893,AN1924,AN1984,AN2009,AN2020,AN2025,AN2036,AN2426,AN2500,AN2902,AN2905,AN2984,AN2996,AN3071,AN3102,AN3214,AN3369,AN3433,AN3506,AN3675,AN3683,AN3684,AN3730,AN3769,AN3835,AN3911,AN3919,AN4210,AN4238,AN4247,AN4361,AN4479,AN4501,AN4558,AN4818,AN4976,AN4987,AN5218,AN5296,AN5849,AN5924,AN5955,AN6392,AN6733,AN6837,AN6982,AN7103,AN7104,AN7190,AN7297,AN7513,AN7592,AN7610,AN7872,AN7896,AN7951,AN8211,AN8251,AN8414,AN8590,AN8636,AN8643,AN8694,AN8825,AN8885,AN9008,AN9096,AN9141
+Cluster_6	GO:1900445	positive regulation of filamentous growth of a population of unicellular organisms in response to biotic stimulus	0.00935	18	6	1.95	0.333	2.029	AN0182,AN1016,AN3719,AN4479,AN4501,AN8414
+Cluster_6	GO:0036267	invasive filamentous growth	0.01062	28	8	3.03	0.286	1.974	AN1016,AN10191,AN1025,AN3735,AN4376,AN4439,AN4896,AN5134
+Cluster_6	GO:0070793	regulation of conidiophore development	0.01168	10	4	1.08	0.4	1.933	AN0363,AN0988,AN4563,AN7698
+Cluster_6	GO:0071257	cellular response to electrical stimulus	0.0117	2	2	0.22	1	1.932	AN3735,AN4685
+Cluster_6	GO:0034757	negative regulation of iron ion transport	0.0117	2	2	0.22	1	1.932	AN0176,AN8251
+Cluster_6	GO:0097623	potassium ion export across plasma membrane	0.0117	2	2	0.22	1	1.932	AN1628,AN7250
+Cluster_6	GO:0045762	positive regulation of adenylate cyclase activity	0.0117	2	2	0.22	1	1.932	AN0182,AN4987
+Cluster_6	GO:0045883	positive regulation of sulfur utilization	0.0117	2	2	0.22	1	1.932	AN4361,AN5218
+Cluster_6	GO:1900035	negative regulation of cellular response to heat	0.0117	2	2	0.22	1	1.932	AN2731,AN5129
+Cluster_6	GO:0009652	thigmotropism	0.0117	2	2	0.22	1	1.932	AN3735,AN4685
+Cluster_6	GO:0060963	positive regulation of ribosomal protein gene transcription by RNA polymerase II	0.0117	2	2	0.22	1	1.932	AN0817,AN4238
+Cluster_6	GO:0032873	negative regulation of stress-activated MAPK cascade	0.0117	2	2	0.22	1	1.932	AN6892,AN6982
+Cluster_6	GO:0035146	tube fusion	0.0117	2	2	0.22	1	1.932	AN3719,AN7030
+Cluster_6	GO:1900432	negative regulation of filamentous growth of a population of unicellular organisms in response to heat	0.0117	2	2	0.22	1	1.932	AN1017,AN4310
+Cluster_6	GO:1900433	positive regulation of filamentous growth of a population of unicellular organisms in response to heat	0.0117	2	2	0.22	1	1.932	AN0182,AN1016
+Cluster_6	GO:0036278	positive regulation of transcription from RNA polymerase II promoter in response to nitrogen starvation	0.0117	2	2	0.22	1	1.932	AN3675,AN4987
+Cluster_6	GO:0009442	allantoin assimilation pathway	0.0117	2	2	0.22	1	1.932	AN0660,AN4603
+Cluster_6	GO:0006071	glycerol metabolic process	0.01241	23	7	2.49	0.304	1.906	AN0351,AN0567,AN3741,AN3916,AN4310,AN5563,AN7193
+Cluster_6	GO:0016973	poly(A)+ mRNA export from nucleus	0.01244	19	6	2.06	0.316	1.905	AN1339,AN1379,AN3919,AN4293,AN6651,AN7659
+Cluster_6	GO:0034599	cellular response to oxidative stress	0.01303	121	26	13.09	0.215	1.885	AN0182,AN0363,AN0931,AN0988,AN1017,AN10220,AN10949,AN1632,AN3102,AN3973,AN4238,AN4483,AN4758,AN4987,AN5131,AN5447,AN5523,AN5823,AN7513,AN7567,AN7698,AN8251,AN8414,AN8643,AN8692,AN9090
+Cluster_6	GO:0000909	sporocarp development involved in sexual reproduction	0.01342	110	21	11.9	0.191	1.872	AN0082,AN0410,AN0651,AN0931,AN0988,AN1016,AN1017,AN10306,AN10515,AN1171,AN1539,AN3416,AN3719,AN4189,AN4483,AN5759,AN5798,AN6243,AN7104,AN7252,AN9008
+Cluster_6	GO:0030437	ascospore formation	0.01362	103	21	11.15	0.204	1.866	AN0182,AN0410,AN0651,AN0931,AN0988,AN1016,AN1017,AN10516,AN1171,AN3148,AN3719,AN4169,AN4390,AN4501,AN4566,AN4601,AN5523,AN5635,AN5759,AN7104,AN9380
+Cluster_6	GO:0000902	cell morphogenesis	0.01642	63	17	6.82	0.27	1.785	AN0106,AN0182,AN0410,AN0651,AN1171,AN1339,AN2067,AN4214,AN4390,AN4743,AN5740,AN5757,AN6685,AN7030,AN7250,AN7576,AN7698
+Cluster_6	GO:0032511	late endosome to vacuole transport via multivesicular body sorting pathway	0.0168	24	5	2.6	0.208	1.775	AN1339,AN4915,AN5632,AN6920,AN8117
+Cluster_6	GO:0000160	phosphorelay signal transduction system	0.01739	20	7	2.16	0.35	1.76	AN2005,AN3102,AN3214,AN4479,AN4818,AN5296,AN9008
+Cluster_6	GO:0006006	glucose metabolic process	0.0195	48	11	5.19	0.229	1.71	AN10844,AN1761,AN2875,AN3432,AN4462,AN4743,AN4987,AN5210,AN5746,AN7610,AN8689
+Cluster_6	GO:0043619	regulation of transcription from RNA polymerase II promoter in response to oxidative stress	0.01963	9	4	0.97	0.444	1.707	AN1017,AN4238,AN7513,AN8251
+Cluster_6	GO:0006646	phosphatidylethanolamine biosynthetic process	0.01966	6	3	0.65	0.5	1.706	AN0929,AN3188,AN4778
+Cluster_6	GO:1900436	positive regulation of filamentous growth of a population of unicellular organisms in response to starvation	0.02321	16	5	1.73	0.312	1.634	AN1016,AN2067,AN3719,AN4238,AN4479
+Cluster_6	GO:0010515	negative regulation of induction of conjugation with cellular fusion	0.02414	11	4	1.19	0.364	1.617	AN1016,AN1017,AN4483,AN4501
+Cluster_6	GO:0001410	chlamydospore formation	0.02414	11	4	1.19	0.364	1.617	AN1017,AN2067,AN4238,AN4501
+Cluster_6	GO:0007163	establishment or maintenance of cell polarity	0.02902	128	27	13.85	0.211	1.537	AN0078,AN0106,AN0182,AN0410,AN0988,AN1017,AN1025,AN10709,AN1171,AN1324,AN2067,AN2130,AN2936,AN3675,AN3735,AN3787,AN4685,AN4743,AN4923,AN4987,AN5129,AN5677,AN5740,AN6685,AN7030,AN7576,AN7698
+Cluster_6	GO:0042752	regulation of circadian rhythm	0.03	24	6	2.6	0.25	1.523	AN0410,AN1539,AN3933,AN4563,AN4987,AN5593
+Cluster_6	GO:0009306	protein secretion	0.03002	17	5	1.84	0.294	1.523	AN1632,AN2076,AN3470,AN4987,AN5131
+Cluster_6	GO:0035556	intracellular signal transduction	0.03007	189	45	20.45	0.238	1.522	AN0106,AN0112,AN0113,AN0163,AN0182,AN0449,AN0651,AN0931,AN1016,AN1017,AN10171,AN1025,AN10999,AN12017,AN2005,AN2067,AN2130,AN3102,AN3214,AN3438,AN3719,AN3735,AN3934,AN3941,AN4189,AN4238,AN4369,AN4479,AN4501,AN4685,AN4743,AN4795,AN4818,AN4915,AN4987,AN4998,AN5296,AN5660,AN5677,AN5740,AN5832,AN6249,AN6892,AN6982,AN9008
+Cluster_6	GO:0000045	autophagosome assembly	0.03156	11	5	1.19	0.455	1.501	AN10171,AN1632,AN1760,AN3470,AN5131
+Cluster_6	GO:0000768	syncytium formation by plasma membrane fusion	0.03162	29	7	3.14	0.241	1.5	AN10261,AN3719,AN4189,AN4743,AN5131,AN6125,AN7297
+Cluster_6	GO:0008361	regulation of cell size	0.03167	7	3	0.76	0.429	1.499	AN0817,AN3729,AN5740
+Cluster_6	GO:0046835	carbohydrate phosphorylation	0.03167	7	3	0.76	0.429	1.499	AN4957,AN5144,AN8689
+Cluster_6	GO:0044805	late nucleophagy	0.03167	7	3	0.76	0.429	1.499	AN1632,AN3470,AN5131
+Cluster_6	GO:0036164	cell-abiotic substrate adhesion	0.03167	7	3	0.76	0.429	1.499	AN0182,AN1199,AN4295
+Cluster_6	GO:0032956	regulation of actin cytoskeleton organization	0.03239	54	11	5.84	0.204	1.49	AN0113,AN0410,AN1324,AN1339,AN2067,AN2995,AN4501,AN4743,AN5740,AN5981,AN7698
+Cluster_6	GO:0019933	cAMP-mediated signaling	0.03243	14	6	1.52	0.429	1.489	AN0182,AN0651,AN1016,AN2130,AN4238,AN4987
+Cluster_6	GO:0045807	positive regulation of endocytosis	0.03254	5	3	0.54	0.6	1.488	AN1339,AN3729,AN5740
+Cluster_6	GO:0019344	cysteine biosynthetic process	0.03255	8	3	0.87	0.375	1.487	AN3675,AN4770,AN8277
+Cluster_6	GO:0051865	protein autoubiquitination	0.03258	3	2	0.32	0.667	1.487	AN0226,AN1339
+Cluster_6	GO:0070940	dephosphorylation of RNA polymerase II C-terminal domain	0.03258	3	2	0.32	0.667	1.487	AN0410,AN2902
+Cluster_6	GO:0007121	bipolar cellular bud site selection	0.03258	3	2	0.32	0.667	1.487	AN1324,AN3735
+Cluster_6	GO:0000304	response to singlet oxygen	0.03258	3	2	0.32	0.667	1.487	AN0394,AN7513
+Cluster_6	GO:0042538	hyperosmotic salinity response	0.03258	3	2	0.32	0.667	1.487	AN1017,AN4479
+Cluster_6	GO:0000199	activation of MAPK activity involved in cell wall organization or biogenesis	0.03258	3	2	0.32	0.667	1.487	AN4189,AN5660
+Cluster_6	GO:0000188	inactivation of MAPK activity	0.03258	3	2	0.32	0.667	1.487	AN6892,AN6982
+Cluster_6	GO:0061406	positive regulation of transcription from RNA polymerase II promoter in response to glucose starvation	0.03258	3	2	0.32	0.667	1.487	AN4987,AN7104
+Cluster_6	GO:0061161	positive regulation of establishment of bipolar cell polarity regulating cell shape	0.03258	3	2	0.32	0.667	1.487	AN2067,AN6685
+Cluster_6	GO:0006003	fructose 2,6-bisphosphate metabolic process	0.03258	3	2	0.32	0.667	1.487	AN10844,AN5144
+Cluster_6	GO:0060992	response to fungicide	0.03258	3	2	0.32	0.667	1.487	AN4479,AN4716
+Cluster_6	GO:1990277	parasexual conjugation with cellular fusion	0.03258	3	2	0.32	0.667	1.487	AN2067,AN3719
+Cluster_6	GO:0071970	fungal-type cell wall (1->3)-beta-D-glucan biosynthetic process	0.03258	3	2	0.32	0.667	1.487	AN3729,AN3730
+Cluster_6	GO:1900444	negative regulation of filamentous growth of a population of unicellular organisms in response to biotic stimulus	0.03258	3	2	0.32	0.667	1.487	AN1017,AN4987
+Cluster_6	GO:0045945	positive regulation of transcription by RNA polymerase III	0.03258	3	2	0.32	0.667	1.487	AN3919,AN4238
+Cluster_6	GO:0032065	cortical protein anchoring	0.03258	3	2	0.32	0.667	1.487	AN5829,AN7757
+Cluster_6	GO:0006798	polyphosphate catabolic process	0.03258	3	2	0.32	0.667	1.487	AN1148,AN6251
+Cluster_6	GO:0010971	positive regulation of G2/M transition of mitotic cell cycle	0.03318	12	4	1.3	0.333	1.479	AN0931,AN1017,AN3941,AN4896
+Cluster_6	GO:0000750	pheromone-dependent signal transduction involved in conjugation with cellular fusion	0.03797	18	5	1.95	0.278	1.421	AN0182,AN0651,AN1025,AN3719,AN6892
+Cluster_6	GO:0006508	proteolysis	0.03901	277	35	29.98	0.126	1.409	AN0122,AN0226,AN0927,AN10030,AN10351,AN10513,AN11932,AN1339,AN1426,AN1539,AN1573,AN1761,AN2157,AN2302,AN2731,AN2903,AN2946,AN2965,AN3470,AN3583,AN3787,AN4422,AN4439,AN4925,AN5129,AN5133,AN5517,AN5558,AN6250,AN6543,AN6741,AN6920,AN7962,AN8074,AN8102
+Cluster_6	GO:0006468	protein phosphorylation	0.03945	182	37	19.7	0.203	1.404	AN0106,AN0182,AN0931,AN0988,AN10019,AN1017,AN10515,AN1171,AN11961,AN1632,AN2067,AN2265,AN2373,AN2927,AN3001,AN3102,AN3719,AN3941,AN4189,AN4196,AN4238,AN4483,AN4563,AN4667,AN4987,AN5660,AN5740,AN5757,AN5759,AN6243,AN6347,AN6892,AN6982,AN7030,AN7104,AN7537,AN9500
+Cluster_6	GO:0007264	small GTPase mediated signal transduction	0.04552	86	22	9.31	0.256	1.342	AN0112,AN0113,AN0163,AN0182,AN0449,AN10171,AN1025,AN2067,AN2130,AN3438,AN3735,AN3934,AN4369,AN4501,AN4685,AN4743,AN4795,AN4915,AN4987,AN4998,AN5740,AN5832
+Cluster_6	GO:0006913	nucleocytoplasmic transport	0.04584	107	23	11.58	0.215	1.339	AN0182,AN0285,AN0651,AN0931,AN1017,AN1245,AN1339,AN1379,AN2731,AN3919,AN4218,AN4293,AN4501,AN4743,AN4915,AN4987,AN5129,AN5715,AN5740,AN5832,AN6126,AN6651,AN7659
+Cluster_6	GO:0032880	regulation of protein localization	0.04601	50	14	5.41	0.28	1.337	AN0182,AN0410,AN0651,AN0931,AN1017,AN1324,AN1339,AN4238,AN4483,AN4501,AN4987,AN5631,AN5740,AN6982
+Cluster_6	GO:0005992	trehalose biosynthetic process	0.04657	9	4	0.97	0.444	1.332	AN0363,AN5523,AN8639,AN9148
+Cluster_6	GO:0006537	glutamate biosynthetic process	0.04657	9	4	0.97	0.444	1.332	AN1731,AN2999,AN4376,AN5134
+Cluster_6	GO:0045733	acetate catabolic process	0.04666	8	3	0.87	0.375	1.331	AN0689,AN5634,AN6653
+Cluster_6	GO:0032889	regulation of vacuole fusion, non-autophagic	0.04666	8	3	0.87	0.375	1.331	AN0163,AN5740,AN5746
+Cluster_7	GO:0006355	regulation of transcription, DNA-templated	0.00044	687	109	89.97	0.159	3.357	AN0096,AN0202,AN0253,AN0568,AN0680,AN0748,AN0902,AN10059,AN10120,AN10192,AN10378,AN10541,AN10548,AN10550,AN10606,AN10610,AN10763,AN10789,AN10854,AN10911,AN10912,AN11098,AN11099,AN1170,AN1183,AN1226,AN1227,AN1232,AN1265,AN1303,AN1406,AN1485,AN1546,AN1639,AN1678,AN1720,AN1927,AN2046,AN2136,AN2375,AN2489,AN2761,AN3048,AN3067,AN3120,AN3216,AN3224,AN3250,AN3356,AN3422,AN3423,AN3449,AN3607,AN3637,AN3785,AN3868,AN4113,AN4134,AN4175,AN4335,AN4570,AN4744,AN4933,AN4972,AN4985,AN5279,AN5349,AN5651,AN5691,AN5747,AN5870,AN5898,AN6062,AN6091,AN6129,AN6218,AN6359,AN6684,AN6820,AN6828,AN6832,AN7012,AN7050,AN7118,AN7303,AN7332,AN7507,AN7661,AN7921,AN7942,AN8039,AN8079,AN8111,AN8164,AN8186,AN8282,AN8298,AN8426,AN8431,AN8473,AN8645,AN8655,AN8666,AN8671,AN8724,AN8753,AN9116,AN9221,AN9458
+Cluster_7	GO:0000103	sulfate assimilation	0.00131	9	5	1.18	0.556	2.883	AN0170,AN1680,AN1752,AN1769,AN7600
+Cluster_7	GO:0006313	transposition, DNA-mediated	0.00152	8	5	1.05	0.625	2.818	AN10066,AN10127,AN3048,AN4335,AN8186
+Cluster_7	GO:0006572	tyrosine catabolic process	0.00224	3	3	0.39	1	2.65	AN1897,AN1898,AN1899
+Cluster_7	GO:0046656	folic acid biosynthetic process	0.00738	7	4	0.92	0.571	2.132	AN10991,AN2998,AN4384,AN6032
+Cluster_7	GO:0042744	hydrogen peroxide catabolic process	0.00809	4	3	0.52	0.75	2.092	AN0170,AN2846,AN5918
+Cluster_7	GO:0070481	nuclear-transcribed mRNA catabolic process, non-stop decay	0.00809	4	3	0.52	0.75	2.092	AN11250,AN2489,AN8039
+Cluster_7	GO:0015074	DNA integration	0.0117	25	8	3.27	0.32	1.932	AN10066,AN10127,AN10649,AN2670,AN3048,AN4289,AN4335,AN8186
+Cluster_7	GO:1903097	regulation of CENP-A containing nucleosome assembly	0.01712	3	3	0.39	1	1.766	AN3067,AN8039,AN8282
+Cluster_7	GO:0006275	regulation of DNA replication	0.01713	38	7	4.98	0.184	1.766	AN10336,AN1546,AN2072,AN4279,AN5676,AN6359,AN7007
+Cluster_7	GO:0008535	respiratory chain complex IV assembly	0.01714	17	4	2.23	0.235	1.766	AN1066,AN1778,AN3068,AN5724
+Cluster_7	GO:0000196	MAPK cascade involved in cell wall organization or biogenesis	0.01714	2	2	0.26	1	1.766	AN2269,AN3422
+Cluster_7	GO:0019697	L-xylitol catabolic process to xylulose 5-phosphate	0.01714	2	2	0.26	1	1.766	AN0942,AN9064
+Cluster_7	GO:0015812	gamma-aminobutyric acid transport	0.01714	2	2	0.26	1	1.766	AN10905,AN2962
+Cluster_7	GO:0061692	cellular detoxification of hydrogen peroxide	0.01714	2	2	0.26	1	1.766	AN2846,AN5918
+Cluster_7	GO:1902846	positive regulation of mitotic spindle elongation	0.01714	2	2	0.26	1	1.766	AN5057,AN8751
+Cluster_7	GO:0007155	cell adhesion	0.01824	32	7	4.19	0.219	1.739	AN0797,AN10763,AN2489,AN3725,AN6129,AN6230,AN9116
+Cluster_7	GO:0016560	protein import into peroxisome matrix, docking	0.01825	5	3	0.65	0.6	1.739	AN10215,AN10610,AN6258
+Cluster_7	GO:1902626	assembly of large subunit precursor of preribosome	0.01825	5	3	0.65	0.6	1.739	AN3176,AN5865,AN8824
+Cluster_7	GO:0010525	regulation of transposition, RNA-mediated	0.01825	5	3	0.65	0.6	1.739	AN0081,AN2269,AN3422
+Cluster_7	GO:0009088	threonine biosynthetic process	0.01825	5	3	0.65	0.6	1.739	AN3031,AN8843,AN8859
+Cluster_7	GO:0044878	mitotic cytokinesis checkpoint	0.01825	5	3	0.65	0.6	1.739	AN5057,AN5822,AN8751
+Cluster_7	GO:0000750	pheromone-dependent signal transduction involved in conjugation with cellular fusion	0.01977	18	7	2.36	0.389	1.704	AN0081,AN2269,AN2430,AN3090,AN3422,AN7487,AN7743
+Cluster_7	GO:0006635	fatty acid beta-oxidation	0.02127	14	7	1.83	0.5	1.672	AN10215,AN10512,AN10610,AN10841,AN6752,AN7008,AN7111
+Cluster_7	GO:0006351	transcription, DNA-templated	0.03209	784	128	102.67	0.163	1.494	AN0065,AN0096,AN0202,AN0253,AN0321,AN0333,AN0486,AN0568,AN0680,AN0748,AN0902,AN10059,AN10120,AN10192,AN10378,AN10541,AN10548,AN10550,AN10606,AN10610,AN10763,AN10789,AN10854,AN10906,AN10911,AN10912,AN11098,AN11099,AN11125,AN11183,AN1123,AN11406,AN1170,AN1183,AN11962,AN1226,AN1227,AN1232,AN12489,AN1265,AN1303,AN1406,AN1485,AN1538,AN1546,AN1639,AN1678,AN1720,AN1927,AN2046,AN2136,AN2270,AN2375,AN2489,AN2761,AN3048,AN3067,AN3120,AN3216,AN3224,AN3250,AN3356,AN3422,AN3423,AN3448,AN3449,AN3607,AN3637,AN3785,AN3868,AN4013,AN4113,AN4134,AN4175,AN4335,AN4570,AN4744,AN4933,AN4949,AN4972,AN4985,AN5279,AN5349,AN5651,AN5691,AN5747,AN5870,AN5898,AN6062,AN6091,AN6129,AN6218,AN6359,AN6558,AN6684,AN6820,AN6828,AN6832,AN7012,AN7050,AN7118,AN7303,AN7332,AN7507,AN7661,AN7921,AN7942,AN7971,AN8039,AN8079,AN8111,AN8164,AN8186,AN8282,AN8298,AN8426,AN8431,AN8473,AN8645,AN8655,AN8666,AN8671,AN8724,AN8753,AN9102,AN9116,AN9221,AN9458
+Cluster_7	GO:0120113	protein localization by the NVT pathway	0.03298	6	3	0.79	0.5	1.482	AN1638,AN2071,AN5812
+Cluster_7	GO:0033347	tetrose metabolic process	0.03298	6	3	0.79	0.5	1.482	AN0423,AN4829,AN5986
+Cluster_7	GO:0006750	glutathione biosynthetic process	0.03298	6	3	0.79	0.5	1.482	AN12476,AN2846,AN3150
+Cluster_7	GO:0009116	nucleoside metabolic process	0.04525	63	13	8.25	0.206	1.344	AN0067,AN3169,AN3881,AN5237,AN5566,AN5909,AN6384,AN7115,AN8388,AN8457,AN8524,AN8545,AN9426
+Cluster_7	GO:0044255	cellular lipid metabolic process	0.04593	334	61	43.74	0.183	1.338	AN0432,AN0640,AN0649,AN0716,AN0802,AN0913,AN10215,AN10396,AN10512,AN10610,AN10673,AN1068,AN10841,AN11072,AN11126,AN1165,AN11859,AN12429,AN1303,AN1357,AN1409,AN1547,AN1671,AN1769,AN1921,AN1989,AN2240,AN2303,AN2877,AN3132,AN3177,AN3380,AN3869,AN4042,AN4056,AN4278,AN4332,AN5159,AN5217,AN5309,AN5356,AN5644,AN5725,AN5812,AN5888,AN5905,AN5990,AN5991,AN6555,AN6610,AN6712,AN6752,AN6973,AN7008,AN7050,AN7111,AN7123,AN7146,AN7661,AN8288,AN9408
+Cluster_7	GO:0006631	fatty acid metabolic process	0.04682	105	22	13.75	0.21	1.33	AN0640,AN0649,AN10215,AN10512,AN10610,AN10841,AN1303,AN1409,AN1547,AN1921,AN3380,AN4056,AN5356,AN5990,AN5991,AN6555,AN6752,AN6973,AN7008,AN7050,AN7111,AN9408
+Cluster_7	GO:0006820	anion transport	0.04684	152	23	19.91	0.151	1.329	AN0066,AN0218,AN0275,AN0568,AN1014,AN10676,AN10905,AN12476,AN2072,AN2468,AN2962,AN2977,AN3150,AN3341,AN3663,AN3665,AN4287,AN4402,AN4904,AN5302,AN5378,AN7304,AN8762
+Cluster_7	GO:0007004	telomere maintenance via telomerase	0.04685	8	4	1.05	0.5	1.329	AN0582,AN2141,AN3753,AN6921
+Cluster_7	GO:0070509	calcium ion import	0.04687	10	4	1.31	0.4	1.329	AN1168,AN3036,AN5341,AN7464
+Cluster_7	GO:0006276	plasmid maintenance	0.04688	4	3	0.52	0.75	1.329	AN0802,AN2303,AN2862
+Cluster_7	GO:0042758	long-chain fatty acid catabolic process	0.04694	3	2	0.39	0.667	1.328	AN6752,AN7050
+Cluster_7	GO:0070941	eisosome assembly	0.04694	3	2	0.39	0.667	1.328	AN4171,AN5217
+Cluster_7	GO:0042843	D-xylose catabolic process	0.04694	3	2	0.39	0.667	1.328	AN0423,AN1274
+Cluster_7	GO:1900566	chanoclavine-I biosynthetic process	0.04694	3	2	0.39	0.667	1.328	AN5918,AN8553
+Cluster_7	GO:0046215	siderophore catabolic process	0.04694	3	2	0.39	0.667	1.328	AN4948,AN6239
+Cluster_7	GO:0019432	triglyceride biosynthetic process	0.04694	3	2	0.39	0.667	1.328	AN0802,AN11072
+Cluster_7	GO:0042268	regulation of cytolysis	0.04694	3	2	0.39	0.667	1.328	AN10610,AN6258
+Cluster_7	GO:0042256	mature ribosome assembly	0.04694	3	2	0.39	0.667	1.328	AN6067,AN8824
+Cluster_7	GO:0006741	NADP biosynthetic process	0.04694	3	2	0.39	0.667	1.328	AN7666,AN8837
+Cluster_7	GO:0000183	chromatin silencing at rDNA	0.04823	21	6	2.75	0.286	1.317	AN0253,AN10763,AN1170,AN1546,AN3423,AN9116

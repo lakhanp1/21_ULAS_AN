@@ -1,0 +1,354 @@
+
+##############################################
+#########	Aspergillus nidulans		######
+##############################################
+
+#bowtie2 mapping
+bowtie2 -p 6 --local  -x <bt2-idx> -1 <> -2 <> | samtools view -bS - | samtools sort  -O bam -o <>.bam
+
+
+#Index and alignment stats
+{
+for i in `cat sample_ANidulans.list`
+do
+cd $i
+printf "\nsamtools index %s_bt2.bam\n" $i >> generalJob.sh
+printf "samtools flagstat %s_bt2.bam > alignment.stats\n\n" $i >> generalJob.sh
+cd ..
+done
+}
+
+
+test.1:{
+mappedReads=`grep -P ' 0 mapped \(' alignment.stats | grep -P -o '^\d+'`
+scale=`perl -e "printf('%.3f', 1000000/$mappedReads)"`
+
+##macs2 pileup with 200bp extension
+macs2 pileup --extsize 200 -i SAMPLE_ID_bt2.bam -o SAMPLE_ID_pileup.bdg
+error_exit $?
+
+##normalize
+printf "Normalizing SAMPLE_ID_pileup.bdg with factor %s\n" $scale
+macs2 bdgopt -i SAMPLE_ID_pileup.bdg -m multiply -p $scale -o temp_normalized.bdg
+error_exit $?
+
+##Remove the first line
+sed -n '2,$p' temp_normalized.bdg > SAMPLE_ID_normalized.bdg
+error_exit $?
+rm temp_normalized.bdg
+
+}
+
+
+##Replace SAMPLE_ID with $i
+for i in `cat sample_ANidulans.list`; do cd $i; sed "s/SAMPLE_ID/$i/g" ../test.1 >> generalJob.sh; cd ..; done
+
+
+#sort the bdg file by bedSort
+{
+for i in `cat sample_ANidulans.list`
+do
+cd $i
+printf "##bedSort and bedGraph to bigWig conversion
+bedSort %s_normalized.bdg %s_normalized.bdg\n" $i $i >> generalJob.sh
+printf "bedGraphToBigWig %s_normalized.bdg /home/lakhanp/database/A_nidulans_FGSC_A4/reference/genome.size %s_normalized.bw
+error_exit \$? \n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+##Pol-II expression value
+{
+for i in `cat sample_ANidulans.list`
+do
+cd $i
+printf "##Pol-II expression value
+perl /home/lakhanp/scripts/miaoScripts/zqWinSGR-v2.pl -feature_file /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_Unique.bed -socre_file %s_normalized.bdg -chrom_column 1 -start_column 2 -end_column 3  -direction_column 6 -bin_count 1 -output_folder $PWD -outout_name %s_polii_expr.tab
+error_exit \$? \n\n" $i $i >> generalJob.sh
+printf "gzip *.bdg\n\n" >> generalJob.sh
+cd ..
+done
+}
+
+
+## Calculate GC bias
+{
+for i in `cat sample_ANidulans.list`
+do
+cd $i
+printf "##Compute GC bias
+computeGCBias -b %s_bt2.bam --effectiveGenomeSize 29850950 -g /home/lakhanp/database/A_nidulans_FGSC_A4/reference/A_nidulans_FGSC_A4_version_s10-m04-r03_chromosomes.2bit -l 60 --GCbiasFrequenciesFile %s_GCbiasFreq.txt --biasPlot %s_GCbias.png 
+error_exit \$? \n\n" $i $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+## Generate profile matrix
+{
+for i in `cat sample_ANidulans.list`
+do
+cd $i
+printf "##generate profile matris (-2kb == normalized(geneBody) to 2kb == +1kb)
+computeMatrix scale-regions -S %s_normalized.bw  -R /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_Unique.bed -m 2000 -b 2000 -a 1000 --numberOfProcessors 2  --outFileName %s_normalized_profile.tab.gz
+error_exit \$? \n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+## Print control information and bindingtype information to generalJob.sh
+{
+## IMP
+## use the printf information from the excel file
+}
+
+
+## MACS2 peak calling
+{
+for i in `cat tf_AN.list`
+do
+cd $i
+printf "##macs2 broad peak calling: with control
+macs2 callpeak -t %s_bt2.bam -c \$control --name %s_broad --outdir macs2_broad -g 30e6 --nomodel --extsize 200 --broad
+error_exit \$? \n\n" $i $i >> generalJob.sh
+printf "##macs2 normal peak calling: with control
+macs2 callpeak -t %s_bt2.bam -c \$control --name %s_narrow --outdir macs2_narrow -g 30e6 --nomodel --extsize 200
+error_exit \$? \n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+## Find the nearest gene for each narrowPeak
+{
+for i in `cat tf_AN.list`
+do
+cd $i
+printf "##Find the nearest CDS start for each narrowPeak
+bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_narrow/%s_narrow_peaks.narrowPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat narrowPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_narrow/%s.narrowPeak.nearestCDS.tab
+error_exit \$?\n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+## Find the nearest gene for each broadPeak
+{
+for i in `cat tf_AN.list`
+do
+cd $i
+printf "##Find the nearest CDS start for each broadPeak
+bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_broad/%s_broad_peaks.broadPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat broadPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_broad/%s.broadPeak.nearestCDS.tab
+error_exit \$?\n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+
+##TF peak region or promoter region expression value
+{
+for i in `cat tf_AN.list`
+do
+cd $i
+printf "##TF peak region or promoter region expression value for each gene
+perl /home/lakhanp/scripts/miaoScripts/zqWinSGR-v2.pl -feature_file macs2_narrow/%s_peakRegions.bed -socre_file %s_normalized.bdg -chrom_column 1 -start_column 2 -end_column 3  -direction_column 6 -bin_count 1 -output_folder $PWD -outout_name %s_narrowpeakExp_peakBed
+error_exit \$? \n\n" $i $i $i >> generalJob.sh
+printf "##500bp upstream region expression value for each gene CDS
+perl /home/lakhanp/scripts/miaoScripts/zqWinSGR-v2.pl -feature_file /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_upstream700.bed -socre_file %s_normalized.bdg -chrom_column 1 -start_column 2 -end_column 3  -direction_column 6 -bin_count 1 -output_folder $PWD -outout_name %s_peakExp_cds_up700
+error_exit \$? \n\n" $i $i >> generalJob.sh
+cd ..
+done
+}
+
+
+
+
+
+## copy data to local
+for i in `cat sample_ANidulans.list`
+do 
+cd $i
+cp ${i}_normalized.bw ${i}_normalized_profile.tab.gz ${i}_polii_expr.tab.rel.mat ../localCopy/
+cd ..
+done
+
+for i in `cat tf_AN.list`; do cd $i; 
+cp macs2_*/${i}*{.narrowPeak,.broadPeak,.tab} ../localCopy/
+cd ..
+done
+
+
+
+
+
+
+
+####*******************************************************
+for i in `cat tf_AN.list`; do cd $i; cp generalJob.sh temp.sh; perl -pe 's/^(\w)/#$1/' temp.sh > generalJob.sh; cd ..; done
+for i in `cat tf_AN.list`; do cd $i; cp generalJob.sh temp.sh ; perl -ne 'if(!(/^##TF / .. EOF)){print}' temp.sh > generalJob.sh ; cd ..; done
+
+for i in `cat tf_AN.list`; do cd $i; sbatch -J $i generalJob.sh; cd ..; done
+rm local_copy/*
+for i in `cat tf_AN.list`; do cp $i/macs2_withCtrl/*_peaks_nearest_TSS.tab local_copy/; done
+for i in `cat sample_ANidulans.list`; do cd $i; sbatch -J $i generalJob.sh ; cd ..; done
+for i in `cat tf_AN.list`; do cd $i; rm job.* ; cd ..; done
+
+for i in `cat sample_ANidulans.list`; do cd $i; cp generalJob.sh temp.sh ; perl -pe 's/^(\w)/#$1/' temp.sh > generalJob.sh ; cd ..; done
+
+for i in `cat sample_ANidulans.list`; do cd $i; mv job.* logs/; cd ..; done
+for i in `cat sample_ANidulans.list`; do cd $i; rm job.*; cd ..; done
+for i in `cat sample.list`; do cd $i; cp temp.sh generalJob.sh ; cd ..; done
+####*******************************************************
+
+##run R scripts
+TF_polII_integrationPlot.R
+
+multiProfilePlots.R
+
+
+###################################################
+##### bigwig correlation using deeptools     ######
+###################################################
+###############
+## generate the counts using deeptools multiBigwigSummary: gene body
+multiBigwigSummary BED-file \
+--bwfiles /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_An/mapping/An_*/*_normalized.bw \
+--BED /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_Unique.bed \
+-out An_bigwig_summary_gene.npz --outRawCounts An_bigwig_summary_gene.tab -p 6
+
+
+## plotCorrelation for all samples
+plotCorrelation --corData An_bigwig_summary_gene.npz --corMethod pearson --skipZeros --plotTitle "pearson Correlation at gene body" --whatToPlot heatmap --colorMap RdYlBu --plotNumbers -o An_bigwig_pearson_gene.png --outFileCorMatrix An_bigwig_pearson_gene.tab
+
+###############
+## generate the counts using deeptools multiBigwigSummary: promoter
+multiBigwigSummary BED-file \
+--bwfiles /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_An/mapping/An_*/*_normalized.bw \
+--BED /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_upstream500.bed \
+-out An_bigwig_summary_promoter.npz --outRawCounts An_bigwig_summary_promoter.tab -p 6
+
+
+## plotCorrelation for all samples
+plotCorrelation --corData An_bigwig_summary_promoter.npz --corMethod pearson --skipZeros --plotTitle "pearson Correlation at promoter region" --whatToPlot heatmap --colorMap RdYlBu --plotNumbers -o An_bigwig_pearson_promoter.png --outFileCorMatrix An_bigwig_pearson_promoter.tab
+
+
+################
+## generate the counts using deeptools multiBigwigSummary: 1kb bins
+multiBigwigSummary bins \
+--bwfiles /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_An/mapping/An_*/*_normalized.bw \
+--binSize 1000 -out An_bigwig_summary_bin.npz --outRawCounts An_bigwig_summary_bin.tab -p 6
+
+## plotCorrelation for all samples
+plotCorrelation --corData An_bigwig_summary_bin.npz --corMethod pearson --skipZeros --plotTitle "pearson Correlation at 1kb bin regions" --whatToPlot heatmap --colorMap RdYlBu --plotNumbers -o An_bigwig_pearson_bin.png --outFileCorMatrix An_bigwig_pearson_bin.tab
+
+
+
+###########################################
+###					QC-QC				###
+###########################################
+for i in `cat An_48h_HA.list`; do ls /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX*/$i/${i}_bt2.bam; done
+
+## QA-QC fingerplot: An_20h_HA
+plotFingerprint -plot An_20h_HA.png --plotTitle  An_20h_HA --outRawCounts An_20h_HA.rawCounts.tab --binSize 200 -p 12 \
+-b /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_cclA_20h_HA/An_cclA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_cclA_kdmA_del_20h_HA/An_cclA_kdmA_del_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX2/An_ecmB_20h_HA/An_ecmB_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_ecmB_kdmA_del_20h_HA/An_ecmB_kdmA_del_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_ecoA_20h_HA/An_ecoA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_hepA_20h_HA/An_hepA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_kdmA_20h_HA/An_kdmA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_kdmB_20h_HA/An_kdmB_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_laeA_20h_HA/An_laeA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_rpdA_20h_HA/An_rpdA_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX2/An_rstB_20h_HA/An_rstB_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_rstB_kdmA_del_20h_HA/An_rstB_kdmA_del_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_sntB_20h_HA/An_sntB_20h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_untagged_20h_HA/An_untagged_20h_HA_bt2.bam \
+--labels An_cclA_20h_HA An_cclA_kdmA_del_20h_HA An_ecmB_20h_HA An_ecmB_kdmA_del_20h_HA An_ecoA_20h_HA An_hepA_20h_HA An_kdmA_20h_HA An_kdmB_20h_HA An_laeA_20h_HA An_rpdA_20h_HA An_rstB_20h_HA An_rstB_kdmA_del_20h_HA An_sntB_20h_HA An_untagged_20h_HA  
+
+## QA-QC fingerplot: An_48h_HA
+plotFingerprint -plot An_48h_HA.png --plotTitle  An_48h_HA --outRawCounts An_48h_HA.rawCounts.tab --binSize 200 -p 12 \
+--bamfiles /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_cclA_48h_HA/An_cclA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_cclA_kdmA_del_48h_HA/An_cclA_kdmA_del_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX2/An_ecmB_48h_HA/An_ecmB_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_ecmB_kdmA_del_48h_HA/An_ecmB_kdmA_del_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_ecoA_48h_HA/An_ecoA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_hepA_48h_HA/An_hepA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_kdmA_48h_HA/An_kdmA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_kdmB_48h_HA/An_kdmB_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_laeA_48h_HA/An_laeA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_rpdA_48h_HA/An_rpdA_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX2/An_rstB_48h_HA/An_rstB_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_rstB_kdmA_del_48h_HA/An_rstB_kdmA_del_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_2/An_sntB_48h_HA/An_sntB_48h_HA_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_untagged_48h_HA/An_untagged_48h_HA_bt2.bam \
+--labels An_cclA_48h_HA An_cclA_kdmA_del_48h_HA An_ecmB_48h_HA An_ecmB_kdmA_del_48h_HA An_ecoA_48h_HA An_hepA_48h_HA An_kdmA_48h_HA An_kdmB_48h_HA An_laeA_48h_HA An_rpdA_48h_HA An_rstB_48h_HA An_rstB_kdmA_del_48h_HA An_sntB_48h_HA An_untagged_48h_HA
+
+## QA-QC fingerplot: An_20h_48h_MYC
+plotFingerprint -plot An_20h_48h_MYC.png --plotTitle An_20h_48h_MYC --outRawCounts An_20h_48h_MYC.rawCounts.tab --binSize 200 -p 12 \
+--bamfiles /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_mcmA_20h_MYC/An_mcmA_20h_MYC_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX2/An_mcmA_48h_MYC/An_mcmA_48h_MYC_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_mcmA_kdmA_del_20h_MYC/An_mcmA_kdmA_del_20h_MYC_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_mcmA_kdmA_del_48h_MYC/An_mcmA_kdmA_del_48h_MYC_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_untagged_20h_MYC/An_untagged_20h_MYC_bt2.bam \
+/home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX3_1/An_untagged_48h_MYC/An_untagged_48h_MYC_bt2.bam \
+--labels An_mcmA_20h_MYC An_mcmA_48h_MYC An_mcmA_kdmA_del_20h_MYC An_mcmA_kdmA_del_48h_MYC An_untagged_20h_MYC An_untagged_48h_MYC 
+
+
+################
+--bw /home/lakhanp/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_MIX1/An_kdmA_48h_HA/An_kdmA_48h_HA_normalized.bw 
+--geneBed /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_Unique.bed 
+
+
+
+# Effective genome size AN: 29850950
+computeGCBias -b <> --effectiveGenomeSize 29850950 -g /home/lakhanp/database/A_nidulans_FGSC_A4/reference/A_nidulans_FGSC_A4_version_s10-m04-r03_chromosomes.2bit -l 60 --GCbiasFrequenciesFile GCbiasFreq.txt 
+
+
+
+##Interesting regions
+ChrII_A_nidulans_FGSC_A4:1,575,087-1,594,153
+ChrII_A_nidulans_FGSC_A4:1,608,378-1,617,910
+ChrII_A_nidulans_FGSC_A4:1,707,142-1,726,208
+
+
+##read paper
+https://www.cell.com/cell/fulltext/S0092-8674(13)01217-8
+
+
+###################################
+###			kdmB analysis		###
+###################################
+## generate IGV screenshot batch script for kdmB_HA samples
+## setSleepInterval 600
+
+bedtools igv -path E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_screenshots/pngs -name -img png -i kdmB_screenshot_regions.bed > kdmB_png_screenshots.batch 
+bedtools igv -path E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_screenshots/svgs -name -img svg -i kdmB_screenshot_regions.bed > kdmB_svg_screenshots.batch 
+
+
+## generate IGV screenshot batch script for kdmB complex
+bedtools igv -path E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_complex_screenshots/pngs -name -img png -i kdmB_complex_screenshot_regions.bed > kdmB_complex_png_screenshots.batch 
+bedtools igv -path E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_complex_screenshots/svgs -name -img svg -i kdmB_complex_screenshot_regions.bed > kdmB_complex_svg_screenshots.batch 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
