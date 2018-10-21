@@ -54,7 +54,7 @@ tfSampleList <- readr::read_tsv(file = tfSampleFile, col_names = c("id"),  comme
   as.data.frame()
 
 # 
-# tfSampleList <- data.frame(id = c("An_kdmB_20h_HA_1", "An_kdmB_laeA_del_20h_HA_2", "An_sudA_20h_HA_1", "An_rpdA_20h_HA_1", "An_sntB_20h_HA_1", "An_ecoA_20h_HA_1", "An_kdmB_48h_HA_1", "An_rpdA_48h_HA_1", "An_sntB_48h_HA_1", "An_sudA_48h_HA_1", "An_ecoA_48h_HA_1"),
+# tfSampleList <- data.frame(id = c("An_kdmA_20h_HA_1", "An_cclA_20h_HA_1", "An_mcmA_20h_MYC_1", "An_ecmB_20h_HA_1", "An_rstB_20h_HA_1", "An_kdmA_48h_HA_1", "An_cclA_48h_HA_1", "An_mcmA_48h_MYC_1", "An_ecmB_48h_HA_1", "An_rstB_48h_HA_1"),
 #                            stringsAsFactors = F)
 
 
@@ -90,7 +90,7 @@ foreach(i = 1:nrow(tfInfo), .packages= c("chipmine", "XLConnect", "org.Anidulans
   if(nrow(peakData) > 0){
     ## topGO enrichment for genes which has macs2 peak near ATG
     goEnrich <- topGO_enrichment(goMapFile = file_topGoMap, genesOfInterest = peakData$gene, goNodeSize = 5)
-    
+
     readr::write_tsv(x = goEnrich, path = paste(tfOutPrefix, "_macs2_topGO.tab", sep = ""), col_names = T)
     wrkSheet = "macs2_topGO"
     createSheet(exc, name = wrkSheet)
@@ -105,7 +105,7 @@ foreach(i = 1:nrow(tfInfo), .packages= c("chipmine", "XLConnect", "org.Anidulans
                                       orgdb = orgDb, keytype = "GID",
                                       keggOrg = keggOrgCode, pvalCut = 0.05)
     
-    readr::write_tsv(x = goEnrich, path = paste(tfOutPrefix, "_macs2_keggprofile.tab", sep = ""), col_names = T)
+    readr::write_tsv(x = keggEnr, path = paste(tfOutPrefix, "_macs2_keggprofile.tab", sep = ""), col_names = T)
     wrkSheet = "macs2_kegg"
     createSheet(exc, name = wrkSheet)
     createFreezePane(exc, sheet = wrkSheet, 2, 2)

@@ -1,6 +1,6 @@
 library(chipmine)
 library(org.Anidulans.eg.db)
-
+library(here)
 
 rm(list = ls())
 
@@ -15,18 +15,21 @@ sampleList <- c("An_kdmB_48h_HA_1",
                 "An_rpdA_48h_HA_1",
                 "An_untagged_48h_HA_1")
 
-path <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_complex_48h"
-setwd(path)
+# path <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_complex_48h"
+# setwd(path)
 
 
-outPrefix <- comparisonName
+outPrefix <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName)
 
-file_exptInfo <-"E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/sampleInfo.txt"
-TF_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/TF_data"
-polII_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/polII_data"
-file_genes <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/AN_genesForPolII.bed"
+## genes to read
+file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
 file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
+
+TF_dataPath <- here::here("data", "TF_data")
+polII_dataPath <- here::here("data", "polII_data")
+hist_dataPath <- here::here("data", "histone_data")
 
 orgDb <- org.Anidulans.eg.db
 
