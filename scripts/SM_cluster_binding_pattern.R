@@ -9,7 +9,7 @@ library(here)
 rm(list = ls())
 
 ##################################################################################
-analysisName <- "kdmB_SM"
+analysisName <- "kdmB"
 outPrefix <- here::here("kdmB_analysis/SM_analysis", analysisName)
 
 tfIds <- c("An_kdmB_20h_HA_1", "An_kdmB_48h_HA_1")
@@ -98,6 +98,7 @@ for (i in names(polIIDiffPairs)) {
 
 chipData <- get_TF_binding_data(genesDf = chipData, exptInfo = tfInfo, allColumns = FALSE) %>% 
   dplyr::filter(! is.na(SM_CLUSTER)) %>% 
+  dplyr::mutate(SM_CLUSTER = gsub(pattern = "SM_cluster_", replacement = "", x = SM_CLUSTER, fixed = TRUE)) %>% 
   dplyr::group_by(SM_CLUSTER) %>% 
   dplyr::arrange(start, .by_group = TRUE) %>% 
   dplyr::mutate(index = 1:n()) %>% 
@@ -107,14 +108,21 @@ chipData <- get_TF_binding_data(genesDf = chipData, exptInfo = tfInfo, allColumn
 
 view(dfSummary(chipData))
 
-pltDf <- tidyr::gather(chipData, key = "sample", value = "hasPeak",
-                       -gene, -SM_CLUSTER, -index, - !!as.name(polIIDiffPairs$p1$name)) %>% 
+
+
+
+##################################################################################
+## SM cluster binding plot
+pltDf1 <- tidyr::gather(chipData, key = "sample", value = "hasPeak",
+                        -gene, -SM_CLUSTER, -index, - !!as.name(polIIDiffPairs$p1$name)) %>% 
   dplyr::mutate(newId = paste(SM_CLUSTER, sample, sep = "_"))
 
 
-pltDf$sample <- factor(pltDf$sample, levels = rev(unname(tfCols$hasPeak)))
+pltDf1$sample <- factor(pltDf1$sample, levels = rev(unname(tfCols$hasPeak)))
 
-pt <- ggplot(data = pltDf) +
+pltTitle <- paste("SM cluster binding comparison:", analysisName)
+
+pt1 <- ggplot(data = pltDf1) +
   geom_tile(mapping = aes(x = index, y = sample, fill = hasPeak, color = sample), size = 0.75, height = 0.9) +
   scale_fill_manual(
     values = c("TRUE" = "black", "FALSE" = "white"),
@@ -123,15 +131,16 @@ pt <- ggplot(data = pltDf) +
   scale_color_discrete(
     guide = guide_legend(reverse=TRUE)
   ) +
-  # facet_grid(SM_CLUSTER ~ ., scales = "free_y", switch = "y") +
-  facet_wrap(facets = SM_CLUSTER ~ ., scales = "free_y", ncol = 2, strip.position = "left") +
+  scale_x_continuous(expand = c(0, 0)) +
+  facet_wrap(facets = SM_CLUSTER ~ ., scales = "free_y", ncol = 2, strip.position = "left", dir = "v") +
+  ggtitle(pltTitle) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 1, size = 14, face = "bold"),
+  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
         axis.text = element_blank(),
         axis.title = element_blank(),
         axis.ticks = element_blank(),
         panel.grid = element_blank(),
-        panel.spacing = unit(0.25, "lines"),
+        panel.spacing = unit(0.15, "lines"),
         strip.text.y = element_text(hjust = 0.5, size = 14, face = "bold", angle = 180),
         strip.background = element_rect(fill="white"),
         legend.text = element_text(size = 13),
@@ -140,17 +149,63 @@ pt <- ggplot(data = pltDf) +
         plot.margin = unit(rep(0.5, 4), "cm"))
 
 
-
-# png(filename = paste(outPrefix, "_cluster_binding_cmp.png"), width = 4000, height = 6000, res = 350)
-pdf(file = paste(outPrefix, "_cluster_binding_cmp.pdf"), width = 10, height = 10)
-pt
+pdf(file = paste(outPrefix, "_cluster_binding_cmp.pdf", sep = ""), width = 10, height = 10)
+pt1
 dev.off()
 
+##################################################################################
+## SM cluster polII signal plot
+pltDf2 <- tidyr::gather(chipData, key = "sample", value = "value",
+                        -gene, -SM_CLUSTER, -index) %>% 
+  dplyr::mutate(newId = paste(SM_CLUSTER, sample, sep = "_"))
 
 
+pltDf2$sample <- factor(pltDf2$sample, levels = unname(c(tfCols$hasPeak[2], polIIDiffPairs$p1$name, tfCols$hasPeak[1])))
 
 
+pltTitle <- paste("SM cluster polII fold change:", polIIDiffPairs$p1$name)
 
+pt2 <- ggplot() +
+  geom_segment(data = dplyr::filter(pltDf2, sample %in% unname(tfCols$hasPeak)) %>% 
+                 dplyr::mutate(value = as.character(value)),
+               mapping = aes(x = index - 0.5, xend = index + 0.5, y = sample, yend = sample, color = value),
+               size = 2) +
+  geom_tile(data = dplyr::filter(pltDf2, sample == polIIDiffPairs$p1$name),
+            mapping = aes(x = index, y = sample, fill = value),
+            color = "black", size = 0.5, height = 2) +
+  scale_fill_gradient2(
+    name = paste("log2(", polIIDiffPairs$p1$name, ")", sep = ""),
+    low = "#B35806", mid = "#F7F7F7", high = "#542788", midpoint = 0
+  ) +
+  scale_colour_manual(
+    name = "",
+    values = c("1" = "black", "0" = "white"),
+    breaks = c("1"),
+    labels = c("peak detected")) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_discrete(limits = unname(c(tfCols$hasPeak[2], polIIDiffPairs$p1$name, tfCols$hasPeak[1]))) +
+  facet_wrap(facets = SM_CLUSTER ~ ., scales = "free_y", ncol = 2, strip.position = "left", dir = "v",
+             labeller = labeller(vs = label_both, am = label_value)) +
+  ggtitle(pltTitle) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.spacing = unit(0.15, "lines"),
+        strip.text.y = element_text(hjust = 0.5, size = 14, face = "bold", angle = 180),
+        strip.background = element_rect(fill="white"),
+        legend.text = element_text(size = 13),
+        legend.position = "bottom",
+        legend.title = element_text(size = 13, face = "bold"),
+        plot.margin = unit(rep(0.5, 4), "cm"))
+
+
+# png(filename = paste(outPrefix, "SM_cluster_polII_diff.png"), width = 4000, height = 6000, res = 350)
+pdf(file = paste(outPrefix, "SM_cluster_polII_diff.pdf", sep = ""), width = 10, height = 10)
+pt2
+dev.off()
 
 
 
