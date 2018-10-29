@@ -164,8 +164,8 @@ lfcMat <- polIIMat
 for (i in 1:nrow(polIICtrlPairs)) {
   
   lfcMat <- get_fold_change(df = lfcMat,
-                            s1 = polIICtrlPairs[i, 1],
-                            s2 = polIICtrlPairs[i, 2],
+                            nmt = polIICtrlPairs[i, 1],
+                            dmt = polIICtrlPairs[i, 2],
                             newCol = polIICtrlPairs[i, 3],
                             isExpressedCols = polIICols$is_expressed)
   
