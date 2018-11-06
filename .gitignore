@@ -9,3 +9,7 @@
 /kdm[AB]_analysis/**/*.pdf
 /kdm[AB]_analysis/**/*.svg
 *.log
+*.bam
+*.bai
+*.bw
+*.bdg
