@@ -2,27 +2,25 @@ library(chipmine)
 require(XLConnect)
 options(java.parameters = "- Xmx4g")
 xlcFreeMemory()
+library(here)
 library(foreach)
 library(doParallel)
 
 
 rm(list = ls())
 
-path <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN"
-setwd(path)
+file_tcp <- here::here("data", "referenceData/tf_ctrl_polII_pairs.txt")
 
-file_tcp <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/tf_ctrl_polII_pairs.txt"
-
-tcpDf <- readr::read_tsv(file = file_tcp, col_names = T)
+tcpDf <- readr::read_tsv(file = file_tcp, col_names = T, comment = "#")
 ##################################################################################
 
-cl <- makeCluster(2) #not to overload your computer
+cl <- makeCluster(4) #not to overload your computer
 registerDoParallel(cl)
 
 i <- 1
 
 foreach(i = 1:nrow(tcpDf),
-        .packages = c("chipmine", "XLConnect")) %dopar% {
+        .packages = c("chipmine", "XLConnect")) %do% {
   
           
 
@@ -30,7 +28,6 @@ foreach(i = 1:nrow(tcpDf),
   input_sample <- tcpDf$control[i]
   polII_sample <- tcpDf$polII[i]
   h3_sample <- tcpDf$h3[i]
-  
   
   
   name <- TF_sample
@@ -46,11 +43,11 @@ foreach(i = 1:nrow(tcpDf),
   
   
   
-  file_exptInfo <-"E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/sampleInfo.txt"
-  TF_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/TF_data"
-  polII_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/polII_data"
-  hist_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/histone_data"
-  file_genes <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/AN_genesForPolII.bed"
+  file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+  TF_dataPath <- here::here("data", "TF_data")
+  polII_dataPath <- here::here("data", "polII_data")
+  hist_dataPath <- here::here("data", "histone_data")
+  file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
   
   
   ## additional annotations to add
@@ -148,6 +145,7 @@ foreach(i = 1:nrow(tcpDf),
                               columnTitle = tf_info$sampleId,
                               geneGroups = tf_info$clusterFile,
                               profileColor = col_fun,
+                              column_title_gp = gpar(fontsize = 12),
                               ylimFraction = tfYlim)
   
   
@@ -200,6 +198,7 @@ foreach(i = 1:nrow(tcpDf),
                               columnTitle = polII_info$sampleId,
                               geneGroups = clusterData,
                               profileColor = polII_profCol,
+                              column_title_gp = gpar(fontsize = 12),
                               clusterColor = profile1$clusterColor)
   
   
@@ -213,6 +212,7 @@ foreach(i = 1:nrow(tcpDf),
                               geneGroups = clusterData,
                               profileColor = col_fun,
                               clusterColor = profile1$clusterColor,
+                              column_title_gp = gpar(fontsize = 12),
                               ylimFraction = profile1$ylim)
   
   
@@ -226,6 +226,7 @@ foreach(i = 1:nrow(tcpDf),
                                geneGroups = clusterData,
                                profileColor = h3_profCol,
                                clusterColor = profile1$clusterColor,
+                               column_title_gp = gpar(fontsize = 12),
                                ylimFraction = tfYlim)
   
   
@@ -237,8 +238,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   # draw Heatmap and add the annotation name decoration
-  png(filename = paste0(outPrefix_all, ".png", collapse = ""), width=8000, height=6000, res = 400)
-  
+  pdf(file = paste0(outPrefix_all, ".pdf", collapse = ""), width = 17, height = 14)
   draw(htlist_allGenes,
        main_heatmap = tf_info$sampleId,
        # annotation_legend_list = list(profile1$legend),
@@ -293,6 +293,7 @@ foreach(i = 1:nrow(tcpDf),
                                        matSource = matrixType,
                                        matBins = matrixDim,
                                        ylimFraction = profileYlims,
+                                       column_title_gp = gpar(fontsize = 12),
                                        plotExpression = TRUE,
                                        expressionData = peak_genes,
                                        expressionColor = polII_color)
@@ -341,7 +342,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   # draw Heatmap and add the annotation name decoration
-  png(filename = paste0(outPrefix_peaks, ".png", collapse = ""), width=8000, height=6000, res = 400)
+  pdf(file = paste0(outPrefix_peaks, ".pdf", collapse = ""), width = 17, height = 14)
   
   draw(peaks_htlist,
        main_heatmap = tf_info$profileName,
@@ -379,17 +380,17 @@ foreach(i = 1:nrow(tcpDf),
     # sliceN <- 1
     
     ## set the row order by distance of the peak from ATG
-    rowOrd <- order(peak_genes[[peakDistCol]], decreasing = TRUE)
-    sliceN <- length(unique(peak_genes$cluster))
-    peaks_htlist2 <- peak_heatmaps$profileHeatmaps[[TF_sample]]$rowAnno
-    anGap <- c(2)
-    peaksOrdOutFile <- paste0(outPrefix_peaks, "_ordPeakDist.png", collapse = "")
-    
+    # rowOrd <- order(peak_genes[[peakDistCol]], decreasing = TRUE)
+    # sliceN <- length(unique(peak_genes$cluster))
+    # peaks_htlist2 <- peak_heatmaps$profileHeatmaps[[TF_sample]]$rowAnno
+    # anGap <- c(2)
+    # peaksOrdOutFile <- paste0(outPrefix_peaks, "_ordPeakDist.pdf", collapse = "")
+    # 
     ## set the row order by peak enrichment
-    # rowOrd <- order(peak_genes[[tssPeakEnrichCol]], decreasing = TRUE)
-    # sliceN <- 1
-    # peaksOrdOutFile <- paste0(outPrefix_peaks, "_ordSignal.png", collapse = "")
-    # peaksSplit <- rep(1, nrow(peak_genes))
+    rowOrd <- order(peak_genes[[tssPeakEnrichCol]], decreasing = TRUE)
+    sliceN <- 1
+    peaksOrdOutFile <- paste0(outPrefix_peaks, "_ordSignal.pdf", collapse = "")
+    peaksSplit <- rep(1, nrow(peak_genes))
   }
   
   
@@ -407,7 +408,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   # draw Heatmap and add the annotation name decoration
-  png(filename = peaksOrdOutFile, width=8000, height=6000, res = 400)
+  pdf(file = peaksOrdOutFile, width = 17, height = 14)
   
   draw(peaks_htlist2,
        main_heatmap = tf_info$profileName,
@@ -459,6 +460,7 @@ foreach(i = 1:nrow(tcpDf),
                                             ylimFraction = profileYlims,
                                             plotExpression = TRUE,
                                             expressionData = expressed_genes,
+                                            column_title_gp = gpar(fontsize = 12),
                                             expressionColor = polII_color)
   
   
@@ -483,7 +485,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   ## draw Heatmap and add the annotation name decoration
-  png(filename = paste0(outPrefix_expressed, ".png", collapse = ""), width=7500, height=6000, res = 400)
+  pdf(file = paste0(outPrefix_expressed, ".pdf", collapse = ""), width = 17, height = 14)
   
   draw(expressed_htlist,
        main_heatmap = tf_info$profileName,
@@ -530,6 +532,7 @@ foreach(i = 1:nrow(tcpDf),
                                      ylimFraction = profileYlims,
                                      plotExpression = TRUE,
                                      expressionData = sm_genes,
+                                     column_title_gp = gpar(fontsize = 12),
                                      expressionColor = polII_color)
   
   
@@ -546,7 +549,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   # draw Heatmap and add the annotation name decoration
-  png(filename = paste0(outPrefix_sm, ".png", collapse = ""), width=8000, height=6000, res = 400)
+  pdf(file = paste0(outPrefix_sm, ".pdf", collapse = ""), width = 17, height = 14)
   
   draw(sm_htlist,
        main_heatmap = tf_info$profileName,
@@ -595,6 +598,7 @@ foreach(i = 1:nrow(tcpDf),
                                         ylimFraction = profileYlims,
                                         plotExpression = TRUE,
                                         expressionData = pkExp_genes,
+                                        column_title_gp = gpar(fontsize = 12),
                                         expressionColor = polII_color)
   
   
@@ -647,7 +651,7 @@ foreach(i = 1:nrow(tcpDf),
   
   
   # draw Heatmap and add the annotation name decoration
-  png(filename = paste0(outPrefix_pkExp, ".png", collapse = ""), width=8000, height=6000, res = 400)
+  pdf(file = paste0(outPrefix_pkExp, ".pdf", collapse = ""), width = 17, height = 14)
   
   draw(pkExp_htlist,
        main_heatmap = tf_info$profileName,
