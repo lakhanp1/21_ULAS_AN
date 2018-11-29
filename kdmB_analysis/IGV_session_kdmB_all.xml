@@ -26,7 +26,6 @@
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_TFIIB_15h_mix22_1_normalized.bw"/>
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_1_normalized.bw"/>
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_20h_HA_2_normalized.bw"/>
-        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_2_normalized.bw"/>
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_Rpb1_15h_mix22_1_normalized.bw"/>
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_HA_2_normalized.bw"/>
         <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_48h_HA_1_normalized.bw"/>
@@ -428,9 +427,6 @@
         </Track>
         <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="153,132,0" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_1_normalized.bw" name="An_sntB_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
             <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="144.279" minimum="0.0" type="LINEAR"/>
-        </Track>
-        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="153,132,0" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_2_normalized.bw" name="An_sntB_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
-            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="59.328" minimum="0.0" type="LINEAR"/>
         </Track>
         <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="153,132,0" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_48h_polII_1_normalized.bw" name="An_sntB_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
             <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="178.35" minimum="0.0" type="LINEAR"/>
