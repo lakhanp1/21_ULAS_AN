@@ -7,46 +7,40 @@ library(chipmine)
 
 rm(list = ls())
 
-
-path <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmA_analysis/kdmA/kdmA_48h"
-setwd(path)
-
-
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmA_short_48h"
+comparisonName <- "kdmB_complex_20h"
+outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
 
-file_plotSamples <- "samples.txt"
+
+file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
 
 # "deeptools", "miao", "normalizedmatrix", "normalizedmatrix_5kb"
 matrixType <- "normalizedmatrix_5kb"
 matrixDim = c(500, 200, 100, 10)
 
-tssMatType <- "TSS_3kb_3kb_normalized"
-tssMatDim <- c(300, 1, 300, 10)
-
-tesMatType <- "TES_3kb_3kb_normalized"
-tesMatDim <- c(300, 1, 300, 10)
-
 showExpressionHeatmap <- TRUE
 
-file_exptInfo <-"E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/sampleInfo.txt"
-TF_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/TF_data"
-polII_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/polII_data"
-hist_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/histone_data"
-file_genes <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/AN_genesForPolII.bed"
 
+## genes to read
+file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
+
+
+TF_dataPath <- here::here("data", "TF_data")
+polII_dataPath <- here::here("data", "polII_data")
+hist_dataPath <- here::here("data", "histone_data")
 
 
 ## colors
 colList <- list()
 
-
-outPrefix_all <- paste0(comparisonName, "_allGenes", collapse = "")
-outPrefix_expressed <- paste0(comparisonName, "_expressedGenes", collapse = "")
-outPrefix_sm <- paste0(comparisonName, "_SM_genes", collapse = "")
-outPrefix_peaks <- paste0(comparisonName, "_peaksGenes", collapse = "")
-outPrefix_pkExp <- paste0(comparisonName, "_pkExpGenes", collapse = "")
+outPrefix_all <- paste0(outPrefix, "_allGenes", collapse = "")
+outPrefix_expressed <- paste0(outPrefix, "_expressedGenes", collapse = "")
+outPrefix_sm <- paste0(outPrefix, "_SM_genes", collapse = "")
+outPrefix_peaks <- paste0(outPrefix, "_peaksGenes", collapse = "")
+outPrefix_pkExp <- paste0(outPrefix, "_pkExpGenes", collapse = "")
 
 
 
@@ -70,15 +64,6 @@ tfData <- get_sample_information(exptInfoFile = file_exptInfo,
                                  dataPath = TF_dataPath,
                                  matrixSource = matrixType)
 
-# tfTssData <- get_sample_information(exptInfoFile = file_exptInfo,
-#                                     samples = tfIds,
-#                                     dataPath = TF_dataPath,
-#                                     matrixSource = tssMatType, profileType = "TSS_profile")
-# 
-# tfTesData <- get_sample_information(exptInfoFile = file_exptInfo,
-#                                     samples = tfIds,
-#                                     dataPath = TF_dataPath,
-#                                     matrixSource = tesMatType, profileType = "TES_profile")
 
 inputData <- get_sample_information(exptInfoFile = file_exptInfo,
                                     samples = inputIds,
