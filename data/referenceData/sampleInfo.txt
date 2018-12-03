@@ -1,220 +1,206 @@
-sampleId	TF	timepoint	IP_tag	rep	complex
-An_hepA_20h_HA_1	hepA	20h	HA	1	hepA
-An_hepA_20h_HA_2	hepA	20h	HA	2	hepA
-An_hepA_48h_HA_1	hepA	48h	HA	1	hepA
-An_hepA_48h_HA_2	hepA	48h	HA	2	hepA
-An_H3_20h_HIST_1	H3	20h	HIST	1	independent
-An_H3_48h_HIST_1	H3	48h	HIST	1	independent
-An_H3K36Me3_20h_HIST_1	H3K36Me3	20h	HIST	1	independent
-An_H3K36Me3_48h_HIST_1	H3K36Me3	48h	HIST	1	independent
-An_H3K4Me3_20h_HIST_1	H3K4Me3	20h	HIST	1	independent
-An_H3K4Me3_48h_HIST_1	H3K4Me3	48h	HIST	1	independent
-An_H3K9Ac_20h_HIST_1	H3K9Ac	20h	HIST	1	independent
-An_H3K9Ac_48h_HIST_1	H3K9Ac	48h	HIST	1	independent
-An_H3K9Me3_20h_HIST_1	H3K9Me3	20h	HIST	1	independent
-An_H3K9Me3_48h_HIST_1	H3K9Me3	48h	HIST	1	independent
-An_laeA_20h_HA_1	laeA	20h	HA	1	independent
-An_laeA_20h_HA_2	laeA	20h	HA	2	independent
-An_laeA_48h_HA_1	laeA	48h	HA	1	independent
-An_laeA_48h_HA_2	laeA	48h	HA	2	independent
-An_laeA_del_20h_polII_1	laeA_del	20h	polII	1	independent
-An_laeA_del_20h_polII_2	laeA_del	20h	polII	2	independent
-An_laeA_del_48h_polII_1	laeA_del	48h	polII	1	independent
-An_laeA_del_48h_polII_2	laeA_del	48h	polII	2	independent
-An_laeA_hepA_GFP_20h_HA_1	laeA_hepA_GFP	20h	HA	1	independent
-An_laeA_hepA_GFP_20h_HA_2	laeA_hepA_GFP	20h	HA	2	independent
-An_laeA_hepA_GFP_48h_HA_1	laeA_hepA_GFP	48h	HA	1	independent
-An_laeA_hepA_GFP_48h_HA_2	laeA_hepA_GFP	48h	HA	2	independent
-An_laeA_kdmB_del_20h_HA_2	laeA_kdmB_del	20h	HA	2	independent
-An_laeA_kdmB_del_48h_HA_2	laeA_kdmB_del	48h	HA	2	independent
-An_cclA_20h_HA_1	cclA	20h	HA	1	kdmA
-An_cclA_20h_HA_2	cclA	20h	HA	2	kdmA
-An_cclA_48h_HA_1	cclA	48h	HA	1	kdmA
-An_cclA_48h_HA_2	cclA	48h	HA	2	kdmA
-An_cclA_del_20h_polII_1	cclA_del	20h	polII	1	kdmA
-An_cclA_del_20h_polII_2	cclA_del	20h	polII	2	kdmA
-An_cclA_del_48h_polII_1	cclA_del	48h	polII	1	kdmA
-An_cclA_del_48h_polII_2	cclA_del	48h	polII	2	kdmA
-An_cclA_kdmA_del_20h_HA_1	cclA_kdmA_del	20h	HA	1	kdmA
-An_cclA_kdmA_del_20h_HA_2	cclA_kdmA_del	20h	HA	2	kdmA
-An_cclA_kdmA_del_48h_HA_1	cclA_kdmA_del	48h	HA	1	kdmA
-An_cclA_kdmA_del_48h_HA_2	cclA_kdmA_del	48h	HA	2	kdmA
-An_ecmB_20h_HA_1	ecmB	20h	HA	1	kdmA
-An_ecmB_20h_HA_2	ecmB	20h	HA	2	kdmA
-An_ecmB_48h_HA_1	ecmB	48h	HA	1	kdmA
-An_ecmB_48h_HA_2	ecmB	48h	HA	2	kdmA
-An_ecmB_del_20h_polII_1	ecmB_del	20h	polII	1	kdmA
-An_ecmB_del_20h_polII_2	ecmB_del	20h	polII	2	kdmA
-An_ecmB_del_48h_polII_1	ecmB_del	48h	polII	1	kdmA
-An_ecmB_del_48h_polII_2	ecmB_del	48h	polII	2	kdmA
-An_ecmB_kdmA_del_20h_HA_1	ecmB_kdmA_del	20h	HA	1	kdmA
-An_ecmB_kdmA_del_20h_HA_2	ecmB_kdmA_del	20h	HA	2	kdmA
-An_ecmB_kdmA_del_48h_HA_1	ecmB_kdmA_del	48h	HA	1	kdmA
-An_ecmB_kdmA_del_48h_HA_2	ecmB_kdmA_del	48h	HA	2	kdmA
-An_H3_cclA_del_20h_HIST_1	H3_cclA_del	20h	HIST	1	kdmA
-An_H3_cclA_del_48h_HIST_1	H3_cclA_del	48h	HIST	1	kdmA
-An_H3_kdmA_del_20h_HIST_1	H3_kdmA_del	20h	HIST	1	kdmA
-An_H3_kdmA_del_48h_HIST_1	H3_kdmA_del	48h	HIST	1	kdmA
-An_H3K36Me3_cclA_del_20h_HIST_1	H3K36Me3_cclA_del	20h	HIST	1	kdmA
-An_H3K36Me3_cclA_del_48h_HIST_1	H3K36Me3_cclA_del	48h	HIST	1	kdmA
-An_H3K36Me3_kdmA_del_20h_HIST_1	H3K36Me3_kdmA_del	20h	HIST	1	kdmA
-An_H3K36Me3_kdmA_del_48h_HIST_1	H3K36Me3_kdmA_del	48h	HIST	1	kdmA
-An_H3K4Me3_cclA_del_20h_HIST_1	H3K4Me3_cclA_del	20h	HIST	1	kdmA
-An_H3K4Me3_cclA_del_48h_HIST_1	H3K4Me3_cclA_del	48h	HIST	1	kdmA
-An_H3K4Me3_kdmA_del_20h_HIST_1	H3K4Me3_kdmA_del	20h	HIST	1	kdmA
-An_H3K4Me3_kdmA_del_48h_HIST_1	H3K4Me3_kdmA_del	48h	HIST	1	kdmA
-An_H3K9Ac_cclA_del_20h_HIST_1	H3K9Ac_cclA_del	20h	HIST	1	kdmA
-An_H3K9Ac_cclA_del_48h_HIST_1	H3K9Ac_cclA_del	48h	HIST	1	kdmA
-An_H3K9Ac_kdmA_del_20h_HIST_1	H3K9Ac_kdmA_del	20h	HIST	1	kdmA
-An_H3K9Me3_cclA_del_20h_HIST_1	H3K9Me3_cclA_del	20h	HIST	1	kdmA
-An_H3K9Me3_cclA_del_48h_HIST_1	H3K9Me3_cclA_del	48h	HIST	1	kdmA
-An_H3K9Me3_kdmA_del_20h_HIST_1	H3K9Me3_kdmA_del	20h	HIST	1	kdmA
-An_H3K9Me3_kdmA_del_48h_HIST_1	H3K9Me3_kdmA_del	48h	HIST	1	kdmA
-An_kdmA_20h_HA_1	kdmA	20h	HA	1	kdmA
-An_kdmA_20h_HA_2	kdmA	20h	HA	2	kdmA
-An_kdmA_48h_HA_1	kdmA	48h	HA	1	kdmA
-An_kdmA_48h_HA_2	kdmA	48h	HA	2	kdmA
-An_kdmA_del_20h_polII_1	kdmA_del	20h	polII	1	kdmA
-An_kdmA_del_20h_polII_2	kdmA_del	20h	polII	2	kdmA
-An_kdmA_del_48h_polII_1	kdmA_del	48h	polII	1	kdmA
-An_kdmA_del_48h_polII_2	kdmA_del	48h	polII	2	kdmA
-An_kdmA_short_20h_HA_1	kdmA_short	20h	HA	1	kdmA
-An_kdmA_short_20h_HA_2	kdmA_short	20h	HA	2	kdmA
-An_kdmA_short_48h_HA_1	kdmA_short	48h	HA	1	kdmA
-An_kdmA_short_48h_HA_2	kdmA_short	48h	HA	2	kdmA
-An_mcmA_20h_MYC_1	mcmA	20h	MYC	1	kdmA
-An_mcmA_20h_MYC_2	mcmA	20h	MYC	2	kdmA
-An_mcmA_48h_MYC_1	mcmA	48h	MYC	1	kdmA
-An_mcmA_48h_MYC_2	mcmA	48h	MYC	2	kdmA
-An_mcmA_kdmA_del_20h_MYC_1	mcmA_kdmA_del	20h	MYC	1	kdmA
-An_mcmA_kdmA_del_20h_MYC_2	mcmA_kdmA_del	20h	MYC	2	kdmA
-An_mcmA_kdmA_del_48h_MYC_1	mcmA_kdmA_del	48h	MYC	1	kdmA
-An_mcmA_kdmA_del_48h_MYC_2	mcmA_kdmA_del	48h	MYC	2	kdmA
-An_mcmA_teton_20h_polII_1	mcmA_teton	20h	polII	1	kdmA
-An_mcmA_teton_20h_polII_2	mcmA_teton	20h	polII	2	kdmA
-An_mcmA_teton_48h_polII_1	mcmA_teton	48h	polII	1	kdmA
-An_mcmA_teton_48h_polII_2	mcmA_teton	48h	polII	2	kdmA
-An_rstB_20h_HA_1	rstB	20h	HA	1	kdmA
-An_rstB_20h_HA_2	rstB	20h	HA	2	kdmA
-An_rstB_48h_HA_1	rstB	48h	HA	1	kdmA
-An_rstB_48h_HA_2	rstB	48h	HA	2	kdmA
-An_rstB_del_20h_polII_1	rstB_del	20h	polII	1	kdmA
-An_rstB_del_20h_polII_2	rstB_del	20h	polII	2	kdmA
-An_rstB_del_48h_polII_1	rstB_del	48h	polII	1	kdmA
-An_rstB_del_48h_polII_2	rstB_del	48h	polII	2	kdmA
-An_rstB_kdmA_del_20h_HA_1	rstB_kdmA_del	20h	HA	1	kdmA
-An_rstB_kdmA_del_20h_HA_2	rstB_kdmA_del	20h	HA	2	kdmA
-An_rstB_kdmA_del_48h_HA_1	rstB_kdmA_del	48h	HA	1	kdmA
-An_rstB_kdmA_del_48h_HA_2	rstB_kdmA_del	48h	HA	2	kdmA
-An_ecoA_20h_HA_1	ecoA	20h	HA	1	kdmB
-An_ecoA_20h_HA_2	ecoA	20h	HA	2	kdmB
-An_ecoA_48h_HA_1	ecoA	48h	HA	1	kdmB
-An_ecoA_48h_HA_2	ecoA	48h	HA	2	kdmB
-An_ecoA_kdmB_del_20h_HA_1	ecoA_kdmB_del	20h	HA	1	kdmB
-An_ecoA_kdmB_del_20h_HA_2	ecoA_kdmB_del	20h	HA	2	kdmB
-An_ecoA_kdmB_del_48h_HA_1	ecoA_kdmB_del	48h	HA	1	kdmB
-An_ecoA_kdmB_del_48h_HA_2	ecoA_kdmB_del	48h	HA	2	kdmB
-An_ecoA_sntB_del_20h_HA_1	ecoA_sntB_del	20h	HA	1	kdmB
-An_ecoA_sntB_del_20h_HA_2	ecoA_sntB_del	20h	HA	2	kdmB
-An_ecoA_sntB_del_48h_HA_1	ecoA_sntB_del	48h	HA	1	kdmB
-An_ecoA_sntB_del_48h_HA_2	ecoA_sntB_del	48h	HA	2	kdmB
-An_ecoA_teton_20h_polII_1	ecoA_teton	20h	polII	1	kdmB
-An_ecoA_teton_20h_polII_2	ecoA_teton	20h	polII	2	kdmB
-An_ecoA_teton_48h_polII_1	ecoA_teton	48h	polII	1	kdmB
-An_ecoA_teton_48h_polII_2	ecoA_teton	48h	polII	2	kdmB
-An_kdmB_20h_HA_1	kdmB	20h	HA	1	kdmB
-An_kdmB_20h_HA_2	kdmB	20h	HA	2	kdmB
-An_kdmB_48h_HA_1	kdmB	48h	HA	1	kdmB
-An_kdmB_48h_HA_2	kdmB	48h	HA	2	kdmB
-An_kdmB_del_20h_polII_1	kdmB_del	20h	polII	1	kdmB
-An_kdmB_del_20h_polII_2	kdmB_del	20h	polII	2	kdmB
-An_kdmB_del_48h_polII_1	kdmB_del	48h	polII	1	kdmB
-An_kdmB_del_48h_polII_2	kdmB_del	48h	polII	2	kdmB
-An_kdmB_del_sntB_del_20h_polII_1	kdmB_del_sntB_del	20h	polII	1	kdmB
-An_kdmB_del_sntB_del_20h_polII_2	kdmB_del_sntB_del	20h	polII	2	kdmB
-An_kdmB_del_sntB_del_48h_polII_1	kdmB_del_sntB_del	48h	polII	1	kdmB
-An_kdmB_del_sntB_del_48h_polII_2	kdmB_del_sntB_del	48h	polII	2	kdmB
-An_kdmB_laeA_del_20h_HA_1	kdmB_laeA_del	20h	HA	1	kdmB
-An_kdmB_laeA_del_20h_HA_2	kdmB_laeA_del	20h	HA	2	kdmB
-An_kdmB_laeA_del_48h_HA_1	kdmB_laeA_del	48h	HA	1	kdmB
-An_kdmB_laeA_del_48h_HA_2	kdmB_laeA_del	48h	HA	2	kdmB
-An_kdmB_sntB_del_20h_HA_1	kdmB_sntB_del	20h	HA	1	kdmB
-An_kdmB_sntB_del_20h_HA_2	kdmB_sntB_del	20h	HA	2	kdmB
-An_kdmB_sntB_del_48h_HA_1	kdmB_sntB_del	48h	HA	1	kdmB
-An_kdmB_sntB_del_48h_HA_2	kdmB_sntB_del	48h	HA	2	kdmB
-An_laeA_del_kdmB_del_20h_polII_1	laeA_del_kdmB_del	20h	polII	1	kdmB
-An_laeA_del_kdmB_del_20h_polII_2	laeA_del_kdmB_del	20h	polII	2	kdmB
-An_laeA_del_kdmB_del_48h_polII_1	laeA_del_kdmB_del	48h	polII	1	kdmB
-An_laeA_del_kdmB_del_48h_polII_2	laeA_del_kdmB_del	48h	polII	2	kdmB
-An_laeA_kdmB_del_20h_HA_1	laeA_kdmB_del	20h	HA	1	kdmB
-An_laeA_kdmB_del_48h_HA_1	laeA_kdmB_del	48h	HA	1	kdmB
-An_rpdA_20h_HA_1	rpdA	20h	HA	1	kdmB
-An_rpdA_20h_HA_2	rpdA	20h	HA	2	kdmB
-An_rpdA_48h_HA_1	rpdA	48h	HA	1	kdmB
-An_rpdA_48h_HA_2	rpdA	48h	HA	2	kdmB
-An_rpdA_kdmB_del_20h_HA_1	rpdA_kdmB_del	20h	HA	1	kdmB
-An_rpdA_kdmB_del_20h_HA_2	rpdA_kdmB_del	20h	HA	2	kdmB
-An_rpdA_kdmB_del_48h_HA_1	rpdA_kdmB_del	48h	HA	1	kdmB
-An_rpdA_kdmB_del_48h_HA_2	rpdA_kdmB_del	48h	HA	2	kdmB
-An_rpdA_sntB_del_20h_HA_1	rpdA_sntB_del	20h	HA	1	kdmB
-An_rpdA_sntB_del_20h_HA_2	rpdA_sntB_del	20h	HA	2	kdmB
-An_rpdA_sntB_del_48h_HA_1	rpdA_sntB_del	48h	HA	1	kdmB
-An_rpdA_sntB_del_48h_HA_2	rpdA_sntB_del	48h	HA	2	kdmB
-An_rpdA_teton_20h_polII_1	rpdA_teton	20h	polII	1	kdmB
-An_rpdA_teton_20h_polII_2	rpdA_teton	20h	polII	2	kdmB
-An_rpdA_teton_48h_polII_1	rpdA_teton	48h	polII	1	kdmB
-An_rpdA_teton_48h_polII_2	rpdA_teton	48h	polII	2	kdmB
-An_sntB_20h_HA_1	sntB	20h	HA	1	kdmB
-An_sntB_20h_HA_2	sntB	20h	HA	2	kdmB
-An_sntB_48h_HA_1	sntB	48h	HA	1	kdmB
-An_sntB_48h_HA_2	sntB	48h	HA	2	kdmB
-An_sntB_del_20h_polII_1	sntB_del	20h	polII	1	kdmB
-An_sntB_del_48h_polII_1	sntB_del	48h	polII	1	kdmB
-An_sntB_del_48h_polII_2	sntB_del	48h	polII	2	kdmB
-An_sntB_kdmB_del_20h_HA_1	sntB_kdmB_del	20h	HA	1	kdmB
-An_sntB_kdmB_del_20h_HA_2	sntB_kdmB_del	20h	HA	2	kdmB
-An_sntB_kdmB_del_48h_HA_1	sntB_kdmB_del	48h	HA	1	kdmB
-An_sntB_kdmB_del_48h_HA_2	sntB_kdmB_del	48h	HA	2	kdmB
-An_sudA_20h_HA_1	sudA	20h	HA	1	kdmB
-An_sudA_20h_HA_2	sudA	20h	HA	2	kdmB
-An_sudA_48h_HA_1	sudA	48h	HA	1	kdmB
-An_sudA_48h_HA_2	sudA	48h	HA	2	kdmB
-An_sudA_ecoA_teton_20h_HA_1	sudA_ecoA_teton	20h	HA	1	kdmB
-An_sudA_ecoA_teton_20h_HA_2	sudA_ecoA_teton	20h	HA	2	kdmB
-An_sudA_ecoA_teton_48h_HA_1	sudA_ecoA_teton	48h	HA	1	kdmB
-An_sudA_ecoA_teton_48h_HA_2	sudA_ecoA_teton	48h	HA	2	kdmB
-An_sudA_kdmB_del_20h_HA_1	sudA_kdmB_del	20h	HA	1	kdmB
-An_sudA_kdmB_del_20h_HA_2	sudA_kdmB_del	20h	HA	2	kdmB
-An_sudA_kdmB_del_48h_HA_1	sudA_kdmB_del	48h	HA	1	kdmB
-An_sudA_kdmB_del_48h_HA_2	sudA_kdmB_del	48h	HA	2	kdmB
-An_untagged_20h_HA_1	untagged	20h	HA	1	NA
-An_untagged_20h_HA_2	untagged	20h	HA	2	NA
-An_untagged_48h_HA_1	untagged	48h	HA	1	NA
-An_untagged_48h_HA_2	untagged	48h	HA	2	NA
-An_untagged_48h_input_1	untagged	48h	input	1	NA
-An_untagged_20h_MYC_1	untagged	20h	MYC	1	NA
-An_untagged_20h_MYC_2	untagged	20h	MYC	2	NA
-An_untagged_48h_MYC_1	untagged	48h	MYC	1	NA
-An_untagged_48h_MYC_2	untagged	48h	MYC	2	NA
-An_untagged_20h_polII_1	untagged	20h	polII	1	NA
-An_untagged_20h_polII_2	untagged	20h	polII	2	NA
-An_untagged_48h_polII_1	untagged	48h	polII	1	NA
-An_untagged_48h_polII_2	untagged	48h	polII	2	NA
-An_untagged_dox_20h_polII_1	untagged_dox	20h	polII	1	NA
-An_untagged_dox_20h_polII_2	untagged_dox	20h	polII	2	NA
-An_untagged_dox_48h_polII_1	untagged_dox	48h	polII	1	NA
-An_untagged_dox_48h_polII_2	untagged_dox	48h	polII	2	NA
-H3_NH4_ATCACG_CW466_525	H3_NH4	unknown	HIST	1	otherData
-veA1_Rpb1_15h_mix22_1	veA1_Rpb1	15h	HA	1	otherData
-veA1_Rpb3_15h_mix22_1	veA1_Rpb3	15h	HA	1	otherData
-veA1_TFIIB_15h_mix22_1	veA1_TFIIB	15h	HA	1	otherData
-veA1_TBP_15h_mix22_1	veA1_TBP	15h	HA	1	otherData
-veA_wt_Rpb1_15h_mix22_1	veA_wt_Rpb1	15h	HA	1	otherData
-veA_wt_Rpb1_15h_mix22_2	veA_wt_Rpb1	15h	HA	2	otherData
-veA_wt_Rpb3_15h_mix22_1	veA_wt_Rpb3	15h	HA	1	otherData
-veA_wt_Rpb3_15h_mix22_2	veA_wt_Rpb3	15h	HA	2	otherData
-veA_wt_TBP_15h_mix22_1	veA_wt_TBP	15h	HA	1	otherData
-veA_wt_TBP_15h_mix22_2	veA_wt_TBP	15h	HA	2	otherData
-veA_wt_TFIIB_15h_mix22_2	veA_wt_TFIIB	15h	HA	2	otherData
-veA_wt_TFIIB_15h_mix22_1	veA_wt_TFIIB	15h	HA	1	otherData
-
+sampleId	TF	timepoint	IP_tag	rep	complex	color
+An_hepA_20h_HA_1	hepA	20h	HA	1	hepA	red
+An_hepA_20h_HA_2	hepA	20h	HA	2	hepA	red
+An_hepA_48h_HA_1	hepA	48h	HA	1	hepA	red
+An_hepA_48h_HA_2	hepA	48h	HA	2	hepA	red
+An_H3_20h_HIST_1	H3	20h	HIST	1	independent	yellow
+An_H3_48h_HIST_1	H3	48h	HIST	1	independent	yellow
+An_H3K36Me3_20h_HIST_1	H3K36Me3	20h	HIST	1	independent	yellow
+An_H3K36Me3_48h_HIST_1	H3K36Me3	48h	HIST	1	independent	yellow
+An_H3K4Me3_20h_HIST_1	H3K4Me3	20h	HIST	1	independent	yellow
+An_H3K4Me3_48h_HIST_1	H3K4Me3	48h	HIST	1	independent	yellow
+An_H3K9Ac_20h_HIST_1	H3K9Ac	20h	HIST	1	independent	yellow
+An_H3K9Ac_48h_HIST_1	H3K9Ac	48h	HIST	1	independent	yellow
+An_H3K9Me3_20h_HIST_1	H3K9Me3	20h	HIST	1	independent	yellow
+An_H3K9Me3_48h_HIST_1	H3K9Me3	48h	HIST	1	independent	yellow
+An_laeA_20h_HA_1	laeA	20h	HA	1	independent	red
+An_laeA_20h_HA_2	laeA	20h	HA	2	independent	red
+An_laeA_48h_HA_1	laeA	48h	HA	1	independent	red
+An_laeA_48h_HA_2	laeA	48h	HA	2	independent	red
+An_laeA_del_20h_polII_1	laeA_del	20h	polII	1	independent	red
+An_laeA_del_20h_polII_2	laeA_del	20h	polII	2	independent	red
+An_laeA_del_48h_polII_1	laeA_del	48h	polII	1	independent	red
+An_laeA_del_48h_polII_2	laeA_del	48h	polII	2	independent	red
+An_laeA_hepA_GFP_20h_HA_1	laeA_hepA_GFP	20h	HA	1	independent	red
+An_laeA_hepA_GFP_20h_HA_2	laeA_hepA_GFP	20h	HA	2	independent	red
+An_laeA_hepA_GFP_48h_HA_1	laeA_hepA_GFP	48h	HA	1	independent	red
+An_laeA_hepA_GFP_48h_HA_2	laeA_hepA_GFP	48h	HA	2	independent	red
+An_laeA_kdmB_del_20h_HA_2	laeA_kdmB_del	20h	HA	2	independent	red
+An_laeA_kdmB_del_48h_HA_2	laeA_kdmB_del	48h	HA	2	independent	red
+An_cclA_20h_HA_1	cclA	20h	HA	1	kdmA	red
+An_cclA_20h_HA_2	cclA	20h	HA	2	kdmA	red
+An_cclA_48h_HA_1	cclA	48h	HA	1	kdmA	red
+An_cclA_48h_HA_2	cclA	48h	HA	2	kdmA	red
+An_cclA_del_20h_polII_1	cclA_del	20h	polII	1	kdmA	red
+An_cclA_del_20h_polII_2	cclA_del	20h	polII	2	kdmA	red
+An_cclA_del_48h_polII_1	cclA_del	48h	polII	1	kdmA	red
+An_cclA_del_48h_polII_2	cclA_del	48h	polII	2	kdmA	red
+An_cclA_kdmA_del_20h_HA_1	cclA_kdmA_del	20h	HA	1	kdmA	red
+An_cclA_kdmA_del_20h_HA_2	cclA_kdmA_del	20h	HA	2	kdmA	red
+An_cclA_kdmA_del_48h_HA_1	cclA_kdmA_del	48h	HA	1	kdmA	red
+An_cclA_kdmA_del_48h_HA_2	cclA_kdmA_del	48h	HA	2	kdmA	red
+An_ecmB_20h_HA_1	ecmB	20h	HA	1	kdmA	red
+An_ecmB_20h_HA_2	ecmB	20h	HA	2	kdmA	red
+An_ecmB_48h_HA_1	ecmB	48h	HA	1	kdmA	red
+An_ecmB_48h_HA_2	ecmB	48h	HA	2	kdmA	red
+An_ecmB_del_20h_polII_1	ecmB_del	20h	polII	1	kdmA	red
+An_ecmB_del_20h_polII_2	ecmB_del	20h	polII	2	kdmA	red
+An_ecmB_del_48h_polII_1	ecmB_del	48h	polII	1	kdmA	red
+An_ecmB_del_48h_polII_2	ecmB_del	48h	polII	2	kdmA	red
+An_ecmB_kdmA_del_20h_HA_1	ecmB_kdmA_del	20h	HA	1	kdmA	red
+An_ecmB_kdmA_del_20h_HA_2	ecmB_kdmA_del	20h	HA	2	kdmA	red
+An_ecmB_kdmA_del_48h_HA_1	ecmB_kdmA_del	48h	HA	1	kdmA	red
+An_ecmB_kdmA_del_48h_HA_2	ecmB_kdmA_del	48h	HA	2	kdmA	red
+An_H3_cclA_del_20h_HIST_1	H3_cclA_del	20h	HIST	1	kdmA	yellow
+An_H3_cclA_del_48h_HIST_1	H3_cclA_del	48h	HIST	1	kdmA	yellow
+An_H3_kdmA_del_20h_HIST_1	H3_kdmA_del	20h	HIST	1	kdmA	yellow
+An_H3_kdmA_del_48h_HIST_1	H3_kdmA_del	48h	HIST	1	kdmA	yellow
+An_H3K36Me3_cclA_del_20h_HIST_1	H3K36Me3_cclA_del	20h	HIST	1	kdmA	yellow
+An_H3K36Me3_cclA_del_48h_HIST_1	H3K36Me3_cclA_del	48h	HIST	1	kdmA	yellow
+An_H3K36Me3_kdmA_del_20h_HIST_1	H3K36Me3_kdmA_del	20h	HIST	1	kdmA	yellow
+An_H3K36Me3_kdmA_del_48h_HIST_1	H3K36Me3_kdmA_del	48h	HIST	1	kdmA	yellow
+An_H3K4Me3_cclA_del_20h_HIST_1	H3K4Me3_cclA_del	20h	HIST	1	kdmA	yellow
+An_H3K4Me3_cclA_del_48h_HIST_1	H3K4Me3_cclA_del	48h	HIST	1	kdmA	yellow
+An_H3K4Me3_kdmA_del_20h_HIST_1	H3K4Me3_kdmA_del	20h	HIST	1	kdmA	yellow
+An_H3K4Me3_kdmA_del_48h_HIST_1	H3K4Me3_kdmA_del	48h	HIST	1	kdmA	yellow
+An_H3K9Ac_cclA_del_20h_HIST_1	H3K9Ac_cclA_del	20h	HIST	1	kdmA	yellow
+An_H3K9Ac_cclA_del_48h_HIST_1	H3K9Ac_cclA_del	48h	HIST	1	kdmA	yellow
+An_H3K9Ac_kdmA_del_20h_HIST_1	H3K9Ac_kdmA_del	20h	HIST	1	kdmA	yellow
+An_H3K9Me3_cclA_del_20h_HIST_1	H3K9Me3_cclA_del	20h	HIST	1	kdmA	yellow
+An_H3K9Me3_cclA_del_48h_HIST_1	H3K9Me3_cclA_del	48h	HIST	1	kdmA	yellow
+An_H3K9Me3_kdmA_del_20h_HIST_1	H3K9Me3_kdmA_del	20h	HIST	1	kdmA	yellow
+An_H3K9Me3_kdmA_del_48h_HIST_1	H3K9Me3_kdmA_del	48h	HIST	1	kdmA	yellow
+An_kdmA_20h_HA_1	kdmA	20h	HA	1	kdmA	red
+An_kdmA_20h_HA_2	kdmA	20h	HA	2	kdmA	red
+An_kdmA_48h_HA_1	kdmA	48h	HA	1	kdmA	red
+An_kdmA_48h_HA_2	kdmA	48h	HA	2	kdmA	red
+An_kdmA_del_20h_polII_1	kdmA_del	20h	polII	1	kdmA	red
+An_kdmA_del_20h_polII_2	kdmA_del	20h	polII	2	kdmA	red
+An_kdmA_del_48h_polII_1	kdmA_del	48h	polII	1	kdmA	red
+An_kdmA_del_48h_polII_2	kdmA_del	48h	polII	2	kdmA	red
+An_kdmA_short_20h_HA_1	kdmA_short	20h	HA	1	kdmA	red
+An_kdmA_short_20h_HA_2	kdmA_short	20h	HA	2	kdmA	red
+An_kdmA_short_48h_HA_1	kdmA_short	48h	HA	1	kdmA	red
+An_kdmA_short_48h_HA_2	kdmA_short	48h	HA	2	kdmA	red
+An_mcmA_20h_MYC_1	mcmA	20h	MYC	1	kdmA	red
+An_mcmA_20h_MYC_2	mcmA	20h	MYC	2	kdmA	red
+An_mcmA_48h_MYC_1	mcmA	48h	MYC	1	kdmA	red
+An_mcmA_48h_MYC_2	mcmA	48h	MYC	2	kdmA	red
+An_mcmA_kdmA_del_20h_MYC_1	mcmA_kdmA_del	20h	MYC	1	kdmA	red
+An_mcmA_kdmA_del_20h_MYC_2	mcmA_kdmA_del	20h	MYC	2	kdmA	red
+An_mcmA_kdmA_del_48h_MYC_1	mcmA_kdmA_del	48h	MYC	1	kdmA	red
+An_mcmA_kdmA_del_48h_MYC_2	mcmA_kdmA_del	48h	MYC	2	kdmA	red
+An_mcmA_teton_20h_polII_1	mcmA_teton	20h	polII	1	kdmA	red
+An_mcmA_teton_20h_polII_2	mcmA_teton	20h	polII	2	kdmA	red
+An_mcmA_teton_48h_polII_1	mcmA_teton	48h	polII	1	kdmA	red
+An_mcmA_teton_48h_polII_2	mcmA_teton	48h	polII	2	kdmA	red
+An_rstB_20h_HA_1	rstB	20h	HA	1	kdmA	red
+An_rstB_20h_HA_2	rstB	20h	HA	2	kdmA	red
+An_rstB_48h_HA_1	rstB	48h	HA	1	kdmA	red
+An_rstB_48h_HA_2	rstB	48h	HA	2	kdmA	red
+An_rstB_del_20h_polII_1	rstB_del	20h	polII	1	kdmA	red
+An_rstB_del_20h_polII_2	rstB_del	20h	polII	2	kdmA	red
+An_rstB_del_48h_polII_1	rstB_del	48h	polII	1	kdmA	red
+An_rstB_del_48h_polII_2	rstB_del	48h	polII	2	kdmA	red
+An_rstB_kdmA_del_20h_HA_1	rstB_kdmA_del	20h	HA	1	kdmA	red
+An_rstB_kdmA_del_20h_HA_2	rstB_kdmA_del	20h	HA	2	kdmA	red
+An_rstB_kdmA_del_48h_HA_1	rstB_kdmA_del	48h	HA	1	kdmA	red
+An_rstB_kdmA_del_48h_HA_2	rstB_kdmA_del	48h	HA	2	kdmA	red
+An_ecoA_20h_HA_1	ecoA	20h	HA	1	kdmB	#990084
+An_ecoA_20h_HA_2	ecoA	20h	HA	2	kdmB	#990084
+An_ecoA_48h_HA_1	ecoA	48h	HA	1	kdmB	#990084
+An_ecoA_48h_HA_2	ecoA	48h	HA	2	kdmB	#990084
+An_ecoA_kdmB_del_20h_HA_1	ecoA_kdmB_del	20h	HA	1	kdmB	#990084
+An_ecoA_kdmB_del_20h_HA_2	ecoA_kdmB_del	20h	HA	2	kdmB	#990084
+An_ecoA_kdmB_del_48h_HA_1	ecoA_kdmB_del	48h	HA	1	kdmB	#990084
+An_ecoA_kdmB_del_48h_HA_2	ecoA_kdmB_del	48h	HA	2	kdmB	#990084
+An_ecoA_sntB_del_20h_HA_1	ecoA_sntB_del	20h	HA	1	kdmB	#990084
+An_ecoA_sntB_del_20h_HA_2	ecoA_sntB_del	20h	HA	2	kdmB	#990084
+An_ecoA_sntB_del_48h_HA_1	ecoA_sntB_del	48h	HA	1	kdmB	#990084
+An_ecoA_sntB_del_48h_HA_2	ecoA_sntB_del	48h	HA	2	kdmB	#990084
+An_ecoA_teton_20h_polII_1	ecoA_teton	20h	polII	1	kdmB	red
+An_ecoA_teton_20h_polII_2	ecoA_teton	20h	polII	2	kdmB	red
+An_ecoA_teton_48h_polII_1	ecoA_teton	48h	polII	1	kdmB	red
+An_ecoA_teton_48h_polII_2	ecoA_teton	48h	polII	2	kdmB	red
+An_kdmB_20h_HA_1	kdmB	20h	HA	1	kdmB	#DA0000
+An_kdmB_20h_HA_2	kdmB	20h	HA	2	kdmB	#DA0000
+An_kdmB_48h_HA_1	kdmB	48h	HA	1	kdmB	#DA0000
+An_kdmB_48h_HA_2	kdmB	48h	HA	2	kdmB	#DA0000
+An_kdmB_del_20h_polII_1	kdmB_del	20h	polII	1	kdmB	red
+An_kdmB_del_20h_polII_2	kdmB_del	20h	polII	2	kdmB	red
+An_kdmB_del_48h_polII_1	kdmB_del	48h	polII	1	kdmB	red
+An_kdmB_del_48h_polII_2	kdmB_del	48h	polII	2	kdmB	red
+An_kdmB_del_sntB_del_20h_polII_1	kdmB_del_sntB_del	20h	polII	1	kdmB	red
+An_kdmB_del_sntB_del_20h_polII_2	kdmB_del_sntB_del	20h	polII	2	kdmB	red
+An_kdmB_del_sntB_del_48h_polII_1	kdmB_del_sntB_del	48h	polII	1	kdmB	red
+An_kdmB_del_sntB_del_48h_polII_2	kdmB_del_sntB_del	48h	polII	2	kdmB	red
+An_kdmB_laeA_del_20h_HA_1	kdmB_laeA_del	20h	HA	1	kdmB	#DA0000
+An_kdmB_laeA_del_20h_HA_2	kdmB_laeA_del	20h	HA	2	kdmB	#DA0000
+An_kdmB_laeA_del_48h_HA_1	kdmB_laeA_del	48h	HA	1	kdmB	#DA0000
+An_kdmB_laeA_del_48h_HA_2	kdmB_laeA_del	48h	HA	2	kdmB	#DA0000
+An_kdmB_sntB_del_20h_HA_1	kdmB_sntB_del	20h	HA	1	kdmB	#DA0000
+An_kdmB_sntB_del_20h_HA_2	kdmB_sntB_del	20h	HA	2	kdmB	#DA0000
+An_kdmB_sntB_del_48h_HA_1	kdmB_sntB_del	48h	HA	1	kdmB	#DA0000
+An_kdmB_sntB_del_48h_HA_2	kdmB_sntB_del	48h	HA	2	kdmB	#DA0000
+An_laeA_del_kdmB_del_20h_polII_1	laeA_del_kdmB_del	20h	polII	1	kdmB	red
+An_laeA_del_kdmB_del_20h_polII_2	laeA_del_kdmB_del	20h	polII	2	kdmB	red
+An_laeA_del_kdmB_del_48h_polII_1	laeA_del_kdmB_del	48h	polII	1	kdmB	red
+An_laeA_del_kdmB_del_48h_polII_2	laeA_del_kdmB_del	48h	polII	2	kdmB	red
+An_laeA_kdmB_del_20h_HA_1	laeA_kdmB_del	20h	HA	1	kdmB	red
+An_laeA_kdmB_del_48h_HA_1	laeA_kdmB_del	48h	HA	1	kdmB	red
+An_rpdA_20h_HA_1	rpdA	20h	HA	1	kdmB	#3300D4
+An_rpdA_20h_HA_2	rpdA	20h	HA	2	kdmB	#3300D4
+An_rpdA_48h_HA_1	rpdA	48h	HA	1	kdmB	#3300D4
+An_rpdA_48h_HA_2	rpdA	48h	HA	2	kdmB	#3300D4
+An_rpdA_kdmB_del_20h_HA_1	rpdA_kdmB_del	20h	HA	1	kdmB	#3300D4
+An_rpdA_kdmB_del_20h_HA_2	rpdA_kdmB_del	20h	HA	2	kdmB	#3300D4
+An_rpdA_kdmB_del_48h_HA_1	rpdA_kdmB_del	48h	HA	1	kdmB	#3300D4
+An_rpdA_kdmB_del_48h_HA_2	rpdA_kdmB_del	48h	HA	2	kdmB	#3300D4
+An_rpdA_sntB_del_20h_HA_1	rpdA_sntB_del	20h	HA	1	kdmB	#3300D4
+An_rpdA_sntB_del_20h_HA_2	rpdA_sntB_del	20h	HA	2	kdmB	#3300D4
+An_rpdA_sntB_del_48h_HA_1	rpdA_sntB_del	48h	HA	1	kdmB	#3300D4
+An_rpdA_sntB_del_48h_HA_2	rpdA_sntB_del	48h	HA	2	kdmB	#3300D4
+An_rpdA_teton_20h_polII_1	rpdA_teton	20h	polII	1	kdmB	red
+An_rpdA_teton_20h_polII_2	rpdA_teton	20h	polII	2	kdmB	red
+An_rpdA_teton_48h_polII_1	rpdA_teton	48h	polII	1	kdmB	red
+An_rpdA_teton_48h_polII_2	rpdA_teton	48h	polII	2	kdmB	red
+An_sntB_20h_HA_1	sntB	20h	HA	1	kdmB	#008159
+An_sntB_20h_HA_2	sntB	20h	HA	2	kdmB	#008159
+An_sntB_48h_HA_1	sntB	48h	HA	1	kdmB	#008159
+An_sntB_48h_HA_2	sntB	48h	HA	2	kdmB	#008159
+An_sntB_del_20h_polII_1	sntB_del	20h	polII	1	kdmB	red
+An_sntB_del_48h_polII_1	sntB_del	48h	polII	1	kdmB	red
+An_sntB_del_48h_polII_2	sntB_del	48h	polII	2	kdmB	red
+An_sntB_kdmB_del_20h_HA_1	sntB_kdmB_del	20h	HA	1	kdmB	#008159
+An_sntB_kdmB_del_20h_HA_2	sntB_kdmB_del	20h	HA	2	kdmB	#008159
+An_sntB_kdmB_del_48h_HA_1	sntB_kdmB_del	48h	HA	1	kdmB	#008159
+An_sntB_kdmB_del_48h_HA_2	sntB_kdmB_del	48h	HA	2	kdmB	#008159
+An_sudA_20h_HA_1	sudA	20h	HA	1	kdmB	red
+An_sudA_20h_HA_2	sudA	20h	HA	2	kdmB	red
+An_sudA_48h_HA_1	sudA	48h	HA	1	kdmB	red
+An_sudA_48h_HA_2	sudA	48h	HA	2	kdmB	red
+An_sudA_ecoA_teton_20h_HA_1	sudA_ecoA_teton	20h	HA	1	kdmB	red
+An_sudA_ecoA_teton_20h_HA_2	sudA_ecoA_teton	20h	HA	2	kdmB	red
+An_sudA_ecoA_teton_48h_HA_1	sudA_ecoA_teton	48h	HA	1	kdmB	red
+An_sudA_ecoA_teton_48h_HA_2	sudA_ecoA_teton	48h	HA	2	kdmB	red
+An_sudA_kdmB_del_20h_HA_1	sudA_kdmB_del	20h	HA	1	kdmB	red
+An_sudA_kdmB_del_20h_HA_2	sudA_kdmB_del	20h	HA	2	kdmB	red
+An_sudA_kdmB_del_48h_HA_1	sudA_kdmB_del	48h	HA	1	kdmB	red
+An_sudA_kdmB_del_48h_HA_2	sudA_kdmB_del	48h	HA	2	kdmB	red
+An_untagged_20h_HA_1	untagged	20h	HA	1	NA	red
+An_untagged_20h_HA_2	untagged	20h	HA	2	NA	red
+An_untagged_48h_HA_1	untagged	48h	HA	1	NA	red
+An_untagged_48h_HA_2	untagged	48h	HA	2	NA	red
+An_untagged_48h_input_1	untagged	48h	input	1	NA	red
+An_untagged_20h_MYC_1	untagged	20h	MYC	1	NA	red
+An_untagged_20h_MYC_2	untagged	20h	MYC	2	NA	red
+An_untagged_48h_MYC_1	untagged	48h	MYC	1	NA	red
+An_untagged_48h_MYC_2	untagged	48h	MYC	2	NA	red
+An_untagged_20h_polII_1	untagged	20h	polII	1	NA	red
+An_untagged_20h_polII_2	untagged	20h	polII	2	NA	red
+An_untagged_48h_polII_1	untagged	48h	polII	1	NA	red
+An_untagged_48h_polII_2	untagged	48h	polII	2	NA	red
+An_untagged_dox_20h_polII_1	untagged_dox	20h	polII	1	NA	red
+An_untagged_dox_20h_polII_2	untagged_dox	20h	polII	2	NA	red
+An_untagged_dox_48h_polII_1	untagged_dox	48h	polII	1	NA	red
+An_untagged_dox_48h_polII_2	untagged_dox	48h	polII	2	NA	red
