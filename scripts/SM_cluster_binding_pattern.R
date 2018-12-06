@@ -13,7 +13,7 @@ rm(list = ls())
 
 ##################################################################################
 analysisName <- "kdmB_del"
-outPrefix <- here::here("kdmB_analysis/SM_analysis", analysisName)
+outPrefix <- here::here("kdmB_analysis", "SM_analysis", analysisName)
 
 tfIds <- c("An_kdmB_20h_HA_1", "An_kdmB_48h_HA_1")
 polII1 <- "An_untagged_20h_polII_1"
@@ -111,13 +111,23 @@ for (i in names(polIIDiffPairs)) {
                               nmt = polIIDiffPairs[[i]]$samples[2],
                               dmt = polIIDiffPairs[[i]]$samples[1],
                               newCol = polIIDiffPairs[[i]]$name,
+                              lfcLimit = 0.58,
                               isExpressedCols = polIICols$is_expressed)
 }
 
-
+## add TF binding information
 chipData <- get_TF_binding_data(genesDf = chipData, exptInfo = tfInfo, allColumns = FALSE) %>% 
-  dplyr::filter(! is.na(SM_CLUSTER)) %>% 
-  dplyr::mutate(SM_CLUSTER = gsub(pattern = "SM_cluster_", replacement = "", x = SM_CLUSTER, fixed = TRUE)) %>% 
+  dplyr::filter(! is.na(SM_CLUSTER))
+
+# dplyr::filter(chipData, ! is.na(SM_CLUSTER)) %>%
+#   dplyr::group_by_at(.vars = vars(unname(polIICols$is_expressed[polIIDiffPairs$p1$samples]))) %>%
+#   dplyr::summarise(n = n())
+# 
+# dplyr::group_by_at(chipData, .vars = vars(starts_with("hasPeak."))) %>%
+#   dplyr::summarise(n = n())
+
+chipData <- dplyr::mutate(chipData,
+                SM_CLUSTER = gsub(pattern = "SM_cluster_", replacement = "", x = SM_CLUSTER, fixed = TRUE)) %>% 
   dplyr::group_by(SM_CLUSTER) %>% 
   dplyr::arrange(start, .by_group = TRUE) %>% 
   dplyr::mutate(index = 1:n()) %>% 
@@ -126,6 +136,8 @@ chipData <- get_TF_binding_data(genesDf = chipData, exptInfo = tfInfo, allColumn
   as.data.frame()
 
 view(dfSummary(chipData))
+
+
 
 ptTheme <- theme_bw() +
   theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
@@ -216,7 +228,7 @@ pt2 <- ggplot() +
 
 
 # png(filename = paste(outPrefix, "_SM_cluster_polII_diff.png"), width = 4000, height = 6000, res = 350)
-pdf(file = paste(outPrefix, "_SM_cluster_polII_diff.pdf", sep = ""), width = 15, height = 8)
+pdf(file = paste(outPrefix, "_SM_cluster_polII_diff.pdf", sep = ""), width = 18, height = 10)
 pt2
 dev.off()
 
@@ -235,14 +247,14 @@ pt3Df$gene <- factor(pt3Df$gene, levels = pt3Df$gene)
 ## function to generate tile plot for a df
 SM_tile_plot <- function(df, nrow){
   pt = ggplot() +
-    geom_point(
-      data = tidyr::gather(df, key = "tf", value = "tfPeak",
-                           -gene, -SM_CLUSTER, -index, -hasPeak, -ends_with("_polII")) %>% 
-        dplyr::mutate(tfPeak = as.logical(tfPeak)) %>% 
-        dplyr::mutate(peak = if_else(tfPeak == TRUE, tf, "FALSE")),
-      mapping = aes(x = 1, y = tf, color = peak),
-      size = 2, shape = 16
-    ) +
+    # geom_point(
+    #   data = tidyr::gather(df, key = "tf", value = "tfPeak",
+    #                        -gene, -SM_CLUSTER, -index, -hasPeak, -ends_with("_polII")) %>% 
+    #     dplyr::mutate(tfPeak = as.logical(tfPeak)) %>% 
+    #     dplyr::mutate(peak = if_else(tfPeak == TRUE, tf, "FALSE")),
+    #   mapping = aes(x = 1, y = tf, color = peak),
+    #   size = 2, shape = 16
+    # ) +
     geom_tile(
       data = tidyr::gather(df, key = "polII", value = "lfc",
                            -gene, -SM_CLUSTER, -index, -hasPeak, -starts_with("hasPeak.")),
@@ -253,13 +265,14 @@ SM_tile_plot <- function(df, nrow){
       name = paste("log2(", "polII fold change", ")", sep = ""),
       low = "#B35806", mid = "#F7F7F7", high = "#542788", midpoint = 0
     ) +
-    scale_colour_manual(
-      name = "",
-      breaks = unname(tfCols$hasPeak),
-      values = structure(c("red", "blue"), names = tfCols$hasPeak),
-      labels = names(tfCols$hasPeak)) +
+    # scale_colour_manual(
+    #   name = "",
+    #   breaks = unname(tfCols$hasPeak),
+    #   values = structure(c("red", "blue"), names = tfCols$hasPeak),
+    #   labels = names(tfCols$hasPeak)) +
     scale_y_discrete(
-      limits = unname(c(rev(purrr::map_chr(polIIDiffPairs, "name")), tfCols$hasPeak[2], tfCols$hasPeak[1])),
+      limits = unname(c(rev(purrr::map_chr(polIIDiffPairs, "name")))),
+      # limits = unname(c(rev(purrr::map_chr(polIIDiffPairs, "name")), tfCols$hasPeak[2], tfCols$hasPeak[1])),
       expand = expand_scale(add = c(0.0, 0.5))
     ) +
     scale_x_continuous(expand = expand_scale(add = c(0.0, 0.0))) +
@@ -271,15 +284,20 @@ SM_tile_plot <- function(df, nrow){
 }
 
 
-dplyr::group_by_at(pt3Df, .vars = vars(unname(tfCols$hasPeak))) %>% 
+statTab <- dplyr::group_by_at(pt3Df, .vars = vars(unname(tfCols$hasPeak))) %>% 
   dplyr::summarise(n = n()) %>% 
-  dplyr::mutate(wd = ceiling(n / 16))
+  dplyr::ungroup() %>% 
+  dplyr::arrange_at(.vars = vars(unname(tfCols$hasPeak)), desc) %>% 
+  dplyr::mutate_if(.predicate = is.logical, .funs = as.character)
 
+pt3Table <- ggtexttable(statTab, rows = NULL, theme = ttheme("lCyanWhite"))
 
 pt3.1 <- SM_tile_plot(
   df = dplyr::filter(.data = pt3Df, !! as.name(tfCols$hasPeak[1]) == TRUE, !! as.name(tfCols$hasPeak[2]) == TRUE),
   nrow = 16
 )
+
+
 
 pt3.2 <- SM_tile_plot(
   df = dplyr::filter(.data = pt3Df, !! as.name(tfCols$hasPeak[1]) == TRUE, !! as.name(tfCols$hasPeak[2]) == FALSE),
@@ -299,16 +317,15 @@ pt3.4 <- SM_tile_plot(
 # c(72, 32, 60, 411)
 # c(5, 3, 4, 23)
 pt3 <- ggpubr::ggarrange(
-  # ggarrange(
-    pt3.1, pt3.2, pt3.3, pt3.4, nrow = 1, ncol = 4, common.legend = TRUE, legend = "bottom", widths = c(5, 2.4, 4, 23)
-  # ),
-  # pt3.4,
-  # ncol = 2, nrow = 1, widths = c(1, 3), common.legend = TRUE
+  ggarrange(
+    pt3.1, pt3.2, pt3.3, pt3.4, nrow = 1, ncol = 4, common.legend = TRUE, legend = "bottom", widths = c(5, 3, 4, 23)
+  ),
+  pt3Table,
+  ncol = 1, nrow = 2, heights = c(8, 2)
 )
 
 
-# png(filename = paste(outPrefix, "_SM_cluster_hasPeak_pairs.png", sep = ""), width = 6000, height = 6000, res = 550)
-pdf(file = paste(outPrefix, "_SM_cluster_hasPeak_pairs.pdf", sep = ""), width = 18, height = 10)
+pdf(file = paste(outPrefix, "_SM_cluster_hasPeak_pairs.pdf", sep = ""), width = 12, height = 12)
 pt3
 dev.off()
 
