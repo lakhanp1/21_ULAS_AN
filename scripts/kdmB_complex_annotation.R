@@ -1,6 +1,7 @@
 library(chipmine)
 library(org.Anidulans.eg.db)
 library(here)
+library(summarytools)
 
 ## generate profile plots for kdmB complex members
 ## group the genes into different categories based on kdmB complex member binding status
@@ -9,11 +10,11 @@ library(here)
 
 rm(list = ls())
 
-source(file = "E:/Chris_UM/Codes/GO_enrichment/topGO_functions.R")
+source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
 
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmB_complex_20h"
+comparisonName <- "kdmB_complex_48h"
 outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
 
 file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
@@ -64,15 +65,43 @@ head(geneInfo)
 ##################################################################################
 
 ## read the experiment sample details and select only those which are to be plotted
-exptData <- get_sample_information(exptInfoFile = file_exptInfo,
+tempSInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                    samples = sampleList$sampleId,
                                    dataPath = TF_dataPath,
                                    matrixSource = matrixType)
 
+polII_ids <- tempSInfo$sampleId[which(tempSInfo$IP_tag == "polII")]
+tfIds <- tempSInfo$sampleId[which(tempSInfo$IP_tag %in% c("HA", "MYC", "TAP") & tempSInfo$TF != "untagged")]
+inputIds <- tempSInfo$sampleId[which(! tempSInfo$IP_tag %in% c("polII", "HIST") & tempSInfo$TF == "untagged")]
+histIds <- tempSInfo$sampleId[which(tempSInfo$IP_tag == "HIST")]
 
-polII_ids <- exptData$sampleId[which(exptData$IP_tag == "polII")]
-tfIds <- exptData$sampleId[which(exptData$IP_tag %in% c("HA", "MYC", "TAP") & exptData$TF != "untagged")]
 
+## read the experiment sample details and select only those which are to be plotted
+tfData <- get_sample_information(exptInfoFile = file_exptInfo,
+                                 samples = tfIds,
+                                 dataPath = TF_dataPath,
+                                 matrixSource = matrixType)
+
+
+inputData <- get_sample_information(exptInfoFile = file_exptInfo,
+                                    samples = inputIds,
+                                    dataPath = TF_dataPath,
+                                    matrixSource = matrixType)
+
+polIIData <- get_sample_information(exptInfoFile = file_exptInfo,
+                                    samples = polII_ids,
+                                    dataPath = polII_dataPath,
+                                    matrixSource = matrixType)
+
+histData <- get_sample_information(exptInfoFile = file_exptInfo,
+                                   samples = histIds,
+                                   dataPath = hist_dataPath,
+                                   matrixSource = matrixType)
+
+exptData <- dplyr::bind_rows(tfData, inputData, histData, polIIData)
+
+exptDataList <- purrr::transpose(exptData) %>% 
+  purrr::set_names(nm = purrr::map(., "sampleId"))
 
 polIICols <- list(
   exp = structure(polII_ids, names = polII_ids),
@@ -86,6 +115,9 @@ tfCols <- sapply(c("hasPeak", "pval", "peakType", "tesPeakType", "peakDist", "su
 
 expressionData <- get_TF_binding_data(exptInfo = exptData,
                                       genesDf = geneInfo)
+
+expressionData <- get_polII_expressions(exptInfo = exptData,
+                                        genesDf = expressionData)
 
 dplyr::group_by_at(expressionData, .vars = vars(starts_with("hasPeak."))) %>% 
   dplyr::summarise(n = n())
@@ -142,23 +174,44 @@ matList <- profile_matrix_list(exptInfo = exptData, geneList = geneInfo$gene, so
                                up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
 
 ## get average signal over all factors to select color
-meanSignal <- getSignalsFromList(lt = matList[tfIds])
-quantile(meanSignal, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
-meanCol <- colorRamp2(quantile(meanSignal, c(0.50, 0.99), na.rm = T), c("white", "red"))
+tfMeanProfile <- getSignalsFromList(lt = matList[tfIds])
+quantile(tfMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
 
-colorList <- sapply(X = exptData$sampleId, FUN = function(x){return(meanCol)})
+# tfMeanColor <- colorRamp2(quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T), c("white", "red"))
+tfColorList <- sapply(
+  X = c(tfIds, inputIds),
+  FUN = function(x){
+    return(colorRamp2(breaks = quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T),
+                      colors = c("white", exptDataList[[x]]$color)))
+  }
+)
+
+colorList <- tfColorList
+
+##################################################################################
+## polII signal matrix
+polIIMat <- data.matrix(log2(expressionData[, polII_ids] + 1))
+rownames(polIIMat) <- expressionData$gene
+
+quantile(polIIMat, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
+
+
+polII_color <- colorRamp2(breaks = c(0, quantile(polIIMat, c(0.5, 0.8, 0.9, 0.92, 0.95, 0.97, 0.99, 0.995, 0.999))),
+                          colors = c("white", RColorBrewer::brewer.pal(n = 9, name = "RdPu")))
+
 
 ##################################################################################
 ylimList <- sapply(exptData$sampleId, function(x){return(c(0,25))}, simplify = FALSE)
 
-profiles_peaks <- multi_profile_plots(exptInfo = exptData,
-                                      genesToPlot = hasPeakDf$gene,
-                                      clusters = NULL,
-                                      profileColors = colorList,
-                                      matSource = matrixType,
-                                      matBins = matrixDim,
-                                      ylimFraction = ylimList,
-                                      column_title_gp = gpar(fontsize = 12)
+profiles_peaks <- multi_profile_plots(
+  exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
+  genesToPlot = hasPeakDf$gene,
+  clusters = NULL,
+  profileColors = colorList,
+  matSource = matrixType,
+  matBins = matrixDim,
+  ylimFraction = ylimList,
+  column_title_gp = gpar(fontsize = 12)
 )
 
 anGl_peaks <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
@@ -200,16 +253,28 @@ dev.off()
 newClusters <- dplyr::select(hasPeakDf, gene, group) %>% 
   dplyr::rename(cluster = group)
 
-profiles_peakGroups <- multi_profile_plots(exptInfo = exptData,
-                                          genesToPlot = hasPeakDf$gene,
-                                          clusters = newClusters,
-                                          clustOrd = sort(unique(newClusters$cluster)),
-                                          profileColors = colorList,
-                                          matSource = matrixType,
-                                          matBins = matrixDim,
-                                          column_title_gp = gpar(fontsize = 12)
+profiles_peakGroups <- multi_profile_plots(
+  exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
+  genesToPlot = hasPeakDf$gene,
+  clusters = newClusters,
+  clustOrd = sort(unique(newClusters$cluster)),
+  profileColors = colorList,
+  matSource = matrixType,
+  matBins = matrixDim,
+  column_title_gp = gpar(fontsize = 12)
 )
 
+## polII signal heatmap
+polIIMat_peakGroups <- polIIMat[hasPeakDf$gene, , drop=FALSE]
+
+polIIht_peakExp <- signal_heatmap(
+  log2_matrix = polIIMat_peakGroups,
+  htName = "polII_signal",
+  col_title = polII_ids,
+  legend_title = "log2(polII_singal)",
+  color = polII_color,
+  column_title_gp = gpar(fontsize = 12),
+  cluster_columns = FALSE)
 
 
 ## heatmap of binary assignment of samples to different group
@@ -242,11 +307,11 @@ grp_ht <- Heatmap(htMat,
 anGl_peakGroups <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
 
 
-peakGroups_htlist <- anGl_peakGroups$an + profiles_peakGroups$heatmapList + grp_ht
+peakGroups_htlist <- anGl_peakGroups$an + profiles_peakGroups$heatmapList + polIIht_peakExp + grp_ht
 
 pdfWd <- 2 + 
   (length(profiles_peakGroups$heatmapList@ht_list) * 2) +
-  (length(polII_ids) * 0.25 * showExpressionHeatmap) + 1
+  (length(polII_ids) * 0.5 * showExpressionHeatmap) + 2
 
 title_peak= "Transcription factor binding profile: kdmB complex TF bound genes"
 
@@ -277,21 +342,21 @@ dev.off()
 ## average line plots for peak groups
 testDf <- dplyr::filter(hasPeakDf, group == "07")
 
-lineColors = structure(.Data = c(RColorBrewer::brewer.pal(n = 4, name = "Set1"), "black"),
-                       names = exptData$sampleId)
+lineColors = structure(.Data = exptData$color[exptData$sampleId %in% c(tfIds, inputIds)],
+                       names = exptData$sampleId[exptData$sampleId %in% c(tfIds, inputIds)])
 
 lineShape = structure(.Data = c(1, 1, 1, 1, 6),
-                      names = exptData$sampleId)
+                      names = exptData$sampleId[exptData$sampleId %in% c(tfIds, inputIds)])
 
 
-draw_avg_profile_plot(exptInfo = exptData,
+draw_avg_profile_plot(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                       profileMats = matList,
                       genes = testDf$gene,
                       lineColors = lineColors,
                       lineShape = lineShape)
 
 
-ap <- geneset_average_profile(exptInfo = exptData,
+ap <- geneset_average_profile(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                               profileMats = matList,
                               genes = testDf$gene,
                               cluster = "group_1")
@@ -300,7 +365,7 @@ ap <- geneset_average_profile(exptInfo = exptData,
 ## average profile data for each group
 groupMeanProfiles <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
   dplyr::do(
-    geneset_average_profile(exptInfo = exptData,
+    geneset_average_profile(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                             profileMats = matList,
                             genes = .$gene,
                             cluster = unique(.$group))
