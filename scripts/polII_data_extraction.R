@@ -10,22 +10,29 @@ library(org.Anidulans.eg.db)
 
 rm(list = ls())
 
-path <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data"
-setwd(path)
+##################################################################################
+analysisName <- "polII_signal"
+outPrefix <- here::here("data", "polII_data", analysisName)
 
 
-file_exptInfo <-"E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/sampleInfo.txt"
-TF_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/TF_data"
-polII_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/polII_data"
-file_genes <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/AN_genesForPolII.bed"
-
+## genes to read
+file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
+
+TF_dataPath <- here::here("data", "TF_data")
+polII_dataPath <- here::here("data", "polII_data")
+hist_dataPath <- here::here("data", "histone_data")
+
+
+orgDb <- org.Anidulans.eg.db
 
 file_factors <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/factor_names.list"
 
 orgDb <- org.Anidulans.eg.db
 
-file_polIIsamples <- paste(polII_dataPath, "/polII_sample.list", sep = "")
+file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
 file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")
 
 
@@ -109,15 +116,22 @@ exprDf <- dplyr::select(goiPolII, -id, -chr, -start, -end, -strand, -length, -DE
 fwrite(x = exprDf, file = paste(polII_dataPath, "/factors_polII_signal.tab", sep = ""),
        sep = "\t", col.names = T, quote = F, row.names = F)
 
+## for log2 calculations, set the values to 1 if they are < 1
+exprDf <- dplyr::mutate_at(.tbl = exprDf,
+                           .vars = vars(!!!goi$name),
+                           .funs = funs(if_else(condition = . < 1, true = 1, false = .)))
+  
 
-
-exprMat <- log2(as.matrix(tibble::column_to_rownames(exprDf, "sample")) + 1)
-
+exprMat <- log2(as.matrix(exprDf[, goi$name]))
+rownames(exprMat) <- exprDf$sample
 
 quantile(exprMat, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
 
 htCol <- colorRamp2(breaks = quantile(exprMat, c(0, 0.1, 0.9, 0.99, 0.999)),
                     colors = c("white", "#f7f4f9", "#ce1256", "#980043", "#67001f"))
+
+# htCol <- colorRamp2(breaks = seq(0, quantile(exprMat, 0.999), length.out = 8),
+#            colors = RColorBrewer::brewer.pal(n = 8, name = "RdPu"))
 
 colAt <- as.numeric(sprintf("%.0f", c(seq(quantile(exprMat, 0.1), quantile(exprMat, 0.99), length = 4),
                                       quantile(exprMat, 0.995))))
@@ -125,27 +139,27 @@ colAt <- as.numeric(sprintf("%.0f", c(seq(quantile(exprMat, 0.1), quantile(exprM
 ht <- Heatmap(matrix = exprMat,
               col = htCol,
               column_title = "polII signal for various factors in mutants",
-              column_title_gp = gpar(fontsize = 20, fontface = "bold"),
+              column_title_gp = gpar(fontsize = 14, fontface = "bold"),
               cell_fun = function(j, i, x, y, width, height, fill) {
-                grid.text(sprintf("%.1f", exprMat[i, j]), x, y, gp = gpar(fontsize = 10))
+                grid.text(sprintf("%.1f", exprMat[i, j]), x, y, gp = gpar(fontsize = 8))
               },
               heatmap_legend_param = list(
                 title = "log2(polII signal)",
                 # at = colAt,
                 legend_height = unit(4, "cm"),
-                labels_gp = gpar(fontsize = 14),
-                title_gp = gpar(fontsize = 18, fontface = "bold"),
+                labels_gp = gpar(fontsize = 12),
+                title_gp = gpar(fontsize = 12, fontface = "bold"),
                 title_position = "topcenter"
               ),
               cluster_rows = FALSE, cluster_columns = FALSE,
               row_names_side = "left",
-              column_names_gp = gpar(fontsize = 16, fontface = "bold"),
-              row_names_gp = gpar(fontsize = 14),
+              column_names_gp = gpar(fontsize = 12, fontface = "bold"),
+              row_names_gp = gpar(fontsize = 12),
               row_names_max_width = unit(10, "cm")
 )
 
 
-png(filename = paste(polII_dataPath, "/factors_polII_signal.png", sep = ""), width = 4000, height = 5000, res = 400)
+pdf(file = paste(polII_dataPath, "/factors_polII_signal.pdf", sep = ""), width = 8, height = 10)
 draw(ht)
 dev.off()
 
@@ -214,23 +228,23 @@ lfc_color <- colorRamp2(breaks = c(-2, -1, -0.5, 0, 0.5, 1, 2),
 htLfc <- Heatmap(matrix = lfcMat,
                  col = lfc_color,
                  column_title = "polII signal fold change for various factors in mutants",
-                 column_title_gp = gpar(fontsize = 20, fontface = "bold"),
+                 column_title_gp = gpar(fontsize = 14, fontface = "bold"),
                  heatmap_legend_param = list(
                    title = "log2(fold change)",
                    legend_height = unit(4, "cm"),
-                   labels_gp = gpar(fontsize = 14),
-                   title_gp = gpar(fontsize = 18, fontface = "bold"),
+                   labels_gp = gpar(fontsize = 12),
+                   title_gp = gpar(fontsize = 12, fontface = "bold"),
                    title_position = "topcenter"
                  ),
                  cluster_rows = FALSE, cluster_columns = FALSE,
                  row_names_side = "left",
-                 column_names_gp = gpar(fontsize = 16, fontface = "bold"),
-                 row_names_gp = gpar(fontsize = 14),
+                 column_names_gp = gpar(fontsize = 12, fontface = "bold"),
+                 row_names_gp = gpar(fontsize = 12),
                  row_names_max_width = unit(10, "cm")
 )
 
 
-png(filename = paste(polII_dataPath, "/factors_polII_signal_LFC.png", sep = ""), width = 4000, height = 5000, res = 400)
+pdf(file = paste(polII_dataPath, "/factors_polII_signal_LFC.pdf", sep = ""), width = 10, height = 12)
 draw(htLfc)
 dev.off()
 
