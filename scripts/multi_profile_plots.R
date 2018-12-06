@@ -1,5 +1,5 @@
 library(chipmine)
-
+library(here)
 
 
 ## This script plots the profile heatmaps for multiple samples. If the expression values are present, it
@@ -8,7 +8,7 @@ library(chipmine)
 rm(list = ls())
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmB_complex_20h"
+comparisonName <- "kdmB_del_sntB_del_20h_combined"
 outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
 
 
@@ -18,7 +18,7 @@ file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
 matrixType <- "normalizedmatrix_5kb"
 matrixDim = c(500, 200, 100, 10)
 
-showExpressionHeatmap <- TRUE
+showExpressionHeatmap <- FALSE
 
 
 ## genes to read
@@ -93,6 +93,8 @@ histData <- get_sample_information(exptInfoFile = file_exptInfo,
 
 exptData <- dplyr::bind_rows(tfData, inputData, histData, polIIData)
 
+exptDataList <- purrr::transpose(exptData)  %>% 
+  purrr::set_names(nm = purrr::map(., "sampleId"))
 
 polIICols <- list(
   exp = structure(polII_ids, names = polII_ids),
@@ -124,9 +126,10 @@ head(geneInfo)
 expressionData <- get_TF_binding_data(exptInfo = tfData,
                                       genesDf = geneInfo)
 
-expressionData <- get_polII_expressions(exptInfo = polIIData,
-                                        genesDf = expressionData)
+# expressionData <- get_polII_expressions(exptInfo = polIIData,
+#                                         genesDf = expressionData)
 
+view(dfSummary(expressionData))
 
 
 anLables <- list()
@@ -198,37 +201,50 @@ if(length(c(tfIds)) == 1){
 }
 
 quantile(tfMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
-tfMeanColor <- colorRamp2(quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T), c("white", "red"))
-tfColorList <- sapply(X = c(tfIds, inputIds), FUN = function(x){return(tfMeanColor)})
+# tfMeanColor <- colorRamp2(quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T), c("white", "red"))
+tfColorList <- sapply(
+  X = c(tfIds, inputIds),
+  FUN = function(x){
+    return(colorRamp2(breaks = quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T),
+                      colors = c("white", exptDataList[[x]]$color)))
+  }
+)
 
 ## polII colors
 polIIMeanProfile <- NULL
-if(nrow(polIIData) == 1){
-  polIIMeanProfile <- matList[[polIIData$sampleId]]
-} else{
-  polIIMeanProfile <- getSignalsFromList(lt = matList[polIIData$sampleId])
-}
-quantile(polIIMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
-polIIMeanColor <- colorRamp2(quantile(polIIMeanProfile, c(0.01, 0.5, 0.995), na.rm = T), c("blue", "white", "red"))
 polIIColorList <- NULL
-polIIColorList <- sapply(X = polIIData$sampleId, FUN = function(x){return(polIIMeanColor)})
+# if(nrow(polIIData) == 1){
+#   polIIMeanProfile <- matList[[polIIData$sampleId]]
+# } else{
+#   polIIMeanProfile <- getSignalsFromList(lt = matList[polIIData$sampleId])
+# }
+# quantile(polIIMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
+# polIIMeanColor <- colorRamp2(quantile(polIIMeanProfile, c(0.01, 0.5, 0.995), na.rm = T), c("blue", "white", "red"))
+# polIIColorList <- sapply(X = polIIData$sampleId, FUN = function(x){return(polIIMeanColor)})
 
 ## histone colors
 histMeanProfile <- NULL
 histColorList <- NULL
-# if(nrow(histData) == 1){
-#   histMeanProfile <- matList[[histData$sampleId]]
-# } else{
-#   histMeanProfile <- getSignalsFromList(lt = matList[histData$sampleId])
-# }
-# quantile(histMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
+if(nrow(histData) == 1){
+  histMeanProfile <- matList[[histData$sampleId]]
+} else{
+  histMeanProfile <- getSignalsFromList(lt = matList[histData$sampleId])
+}
+quantile(histMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
 # histMeanColor <- colorRamp2(quantile(histMeanProfile, c(0.30, 0.995), na.rm = T), c("black", "yellow"))
-# histColorList <- sapply(X = histData$sampleId, FUN = function(x){return(histMeanColor)})
+histColorList <- sapply(
+  X = histData$sampleId,
+  FUN = function(x){
+    return(colorRamp2(breaks = quantile(histMeanProfile, c(0.30, 0.995), na.rm = T),
+                      colors =  c("black", exptDataList[[x]]$color)))
+    }
+  )
 
 colorList <- unlist(list(tfColorList, polIIColorList, histColorList))
-ylimList <- sapply(c(polII_ids, histIds), function(x){return(0.996)}, simplify = FALSE)
+ylimList <- list()
+# ylimList <- sapply(c(polII_ids, histIds), function(x){return(0.996)}, simplify = FALSE)
 ylimList <- append(x = ylimList,
-                   values = sapply(c(tfIds, inputIds), function(x){return(c(0, 35))}, simplify = FALSE))
+                   values = sapply(c(tfIds, inputIds), function(x){return(c(0, 25))}, simplify = FALSE))
 
 
 
@@ -305,20 +321,15 @@ htlist_allGenes <- anGl$an +
 #   rowOrd <- order(expressionData[[polIICols$exp[1]]], decreasing = TRUE)
 # }
 
-wd <- 500 + 
-  (length(multiProfiles_all$heatmapList@ht_list) * 700) +
-  (length(polII_ids) * 100 * showExpressionHeatmap) 
-# (length(tssTesPlotList@ht_list) * 700)
-
 pdfWd <- 2 + 
   (length(multiProfiles_all$heatmapList@ht_list) * 2) +
-  (length(polII_ids) * 0.25 * showExpressionHeatmap) 
+  (length(polII_ids) * 0.25 * showExpressionHeatmap)
 
 title_all <- paste(comparisonName, ": all genes", collapse = "")
 
 # draw Heatmap and add the annotation name decoration
 # png(filename = paste(outPrefix_all, "_profiles.png", sep = ""), width=wd, height=3500, res = 250)
-pdf(file = paste(outPrefix_all, "_profiles.pdf", sep = ""), width = pdfWd, height = 15)
+pdf(file = paste(outPrefix_all, "_profiles.pdf", sep = ""), width = pdfWd, height = 13)
 
 draw(htlist_allGenes,
      main_heatmap = exptData$profileName[1],
@@ -332,7 +343,6 @@ draw(htlist_allGenes,
      padding = unit(rep(0.5, times = 4), "cm")
 )
 
-add_annotation_titles(annotations = c("gene_length"), anTitle = anLables)
 
 row_annotation_axis(an = "gene_length",
                     at = c(0, 2000, 4000),
@@ -343,6 +353,103 @@ row_annotation_axis(an = "gene_length",
 
 dev.off()
 
+##################################################################################
+# plot genes which has TF peak in any of the TF samples
+hasPeakDf <- filter_at(.tbl = expressionData,
+                       .vars = unname(tfCols$hasPeak[ sampleList$sampleId[sampleList$usePeaks] ]),
+                       .vars_predicate = any_vars(. == "TRUE"))
+
+# plot genes which has TF peak in a specific TF sample
+# hasPeakDf <- filter_at(.tbl = expressionData, .vars = unname(tfCols$hasPeak[1]), .vars_predicate = any_vars(. == "TRUE"))
+
+
+multiProfiles_peak <- multi_profile_plots(exptInfo = exptData,
+                                          expressionData = hasPeakDf,
+                                          genesToPlot = hasPeakDf$gene,
+                                          matSource = matrixType,
+                                          matBins = matrixDim,
+                                          clusters = hasPeakDf,
+                                          clusterColor = multiProfiles_all$profileHeatmaps[[1]]$clusterColor,
+                                          profileColors = colorList,
+                                          expressionColor = multiProfiles_all$expressionColor,
+                                          column_title_gp = gpar(fontsize = 12),
+                                          plotExpression = showExpressionHeatmap,
+                                          ylimFraction = ylimList)
+
+
+## gene length annotation
+anGl_peaks <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
+
+
+peaks_htlist <- anGl_peaks$an +
+  multiProfiles_peak$heatmapList
+
+
+## make sure that the order of genes in the heatmap list and in the dataframe is same
+if(all(rownames(peaks_htlist@ht_list[[ tfData$profileName[1] ]]@matrix) == hasPeakDf$gene)){
+  
+  rowOrd_peaks <- order(hasPeakDf[[ tfCols$peakDist[[1]] ]], decreasing = TRUE)
+  
+}
+
+
+# wd <- 500 + (nrow(exptData) * 700) + (length(polII_ids) * 500 * showExpressionHeatmap)
+title_peak= paste(comparisonName, ": genes with binding signal (macs2 peak targets)", collapse = "")
+
+# draw Heatmap and add the annotation name decoration
+pdf(file = paste(outPrefix_peaks, "_profiles.pdf", sep = ""), width = pdfWd, height = 13)
+
+draw(peaks_htlist,
+     main_heatmap = exptData$profileName[1],
+     # annotation_legend_list = list(profile1$legend),
+     column_title = title_peak,
+     column_title_gp = gpar(fontsize = 14, fontface = "bold"),
+     row_sub_title_side = "left",
+     heatmap_legend_side = "bottom",
+     gap = unit(7, "mm"),
+     # row_order = rowOrd_peaks,
+     padding = unit(rep(0.5, times = 4), "cm")
+)
+
+row_annotation_axis(an = "gene_length",
+                    at = c(0, 2000, 4000),
+                    labels = c("0kb", "2kb", ">4kb"),
+                    slice = length(unique(hasPeakDf$cluster)))
+dev.off()
+
+
+
+##draw Heatmap and add the annotation name decoration
+# peaks_htlist2 <- anGl_peaks$an
+# 
+# peaks_htlist2 <- anGl_peaks$an
+# i <- 1
+# for(i in 1:nrow(exptData)){
+#   peaks_htlist2 <- peaks_htlist2 + multiProfiles_peak$profileHeatmaps[[exptData$sampleId[i]]]$heatmap
+# }
+# 
+# 
+# # draw Heatmap and add the annotation name decoration
+# pdf(file = paste(outPrefix_peaks, "_profiles_ungrouped.pdf", sep = ""), width = pdfWd, height = 13)
+# 
+# draw(peaks_htlist2,
+#      main_heatmap = exptData$profileName[1],
+#      # annotation_legend_list = list(profile1$legend),
+#      column_title = title_peak,
+#      column_title_gp = gpar(fontsize = 14, fontface = "bold"),
+#      row_sub_title_side = "left",
+#      heatmap_legend_side = "bottom",
+#      gap = unit(7, "mm"),
+#      split = rep(1, nrow(hasPeakDf)),
+#      # row_order = rowOrd_peaks,
+#      padding = unit(rep(0.5, times = 4), "cm")
+# )
+# 
+# row_annotation_axis(an = "gene_length",
+#                     at = c(0, 2000, 4000),
+#                     labels = c("0kb", "2kb", ">4kb"),
+#                     slice = 1)
+# dev.off()
 
 
 ##################################################################################
@@ -425,7 +532,7 @@ title_pkExp <- paste(comparisonName, ": macs2 peak target genes and top 10% polI
 
 # draw Heatmap and add the annotation name decoration
 # png(filename = paste(outPrefix_pkExp, "_profiles.png", sep = ""), width=wd, height=3500, res = 270)
-pdf(file = paste(outPrefix_pkExp, "_profiles.pdf", sep = ""), width = pdfWd, height = 15)
+pdf(file = paste(outPrefix_pkExp, "_profiles.pdf", sep = ""), width = pdfWd, height = 14)
 
 draw(pkExp_htlist,
      main_heatmap = exptData$profileName[1],
@@ -447,71 +554,6 @@ row_annotation_axis(an = "gene_length",
                     slice = 1)
 
 dev.off()
-
-##################################################################################
-# plot genes which has TF peak in any of the TF samples
-hasPeakDf <- filter_at(.tbl = expressionData, .vars = unname(tfCols$hasPeak), .vars_predicate = any_vars(. == "TRUE"))
-
-# plot genes which has TF peak in a specific TF sample
-# hasPeakDf <- filter_at(.tbl = expressionData, .vars = unname(tfCols$hasPeak[1]), .vars_predicate = any_vars(. == "TRUE"))
-
-
-multiProfiles_peak <- multi_profile_plots(exptInfo = exptData,
-                                          expressionData = hasPeakDf,
-                                          genesToPlot = hasPeakDf$gene,
-                                          matSource = matrixType,
-                                          matBins = matrixDim,
-                                          clusters = hasPeakDf,
-                                          clusterColor = multiProfiles_all$profileHeatmaps[[1]]$clusterColor,
-                                          profileColors = colorList,
-                                          expressionColor = multiProfiles_all$expressionColor,
-                                          plotExpression = showExpressionHeatmap,
-                                          ylimFraction = ylimList)
-
-
-## gene length annotation
-anGl_peaks <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
-
-
-peaks_htlist <- anGl_peaks$an +
-  multiProfiles_peak$heatmapList
-
-
-## make sure that the order of genes in the heatmap list and in the dataframe is same
-if(all(rownames(peaks_htlist@ht_list[[ tfData$profileName[1] ]]@matrix) == hasPeakDf$gene)){
-  
-  rowOrd <- order(hasPeakDf[[ tfCols$peakDist[[1]] ]], decreasing = TRUE)
-  
-}
-
-
-# wd <- 500 + (nrow(exptData) * 700) + (length(polII_ids) * 500 * showExpressionHeatmap)
-title_peak= paste(comparisonName, ": genes with binding signal (macs2 peak targets)", collapse = "")
-
-# draw Heatmap and add the annotation name decoration
-# png(filename = paste(outPrefix_peaks, "_profiles.png", sep = ""), width=wd, height=3500, res = 270)
-pdf(file = paste(outPrefix_peaks, "_profiles.pdf", sep = ""), width = pdfWd, height = 15)
-
-draw(peaks_htlist,
-     main_heatmap = exptData$profileName[1],
-     # annotation_legend_list = list(profile1$legend),
-     column_title = title_peak,
-     column_title_gp = gpar(fontsize = 14, fontface = "bold"),
-     row_sub_title_side = "left",
-     heatmap_legend_side = "bottom",
-     gap = unit(7, "mm"),
-     # row_order = rowOrd,
-     padding = unit(rep(0.5, times = 4), "cm")
-)
-
-add_annotation_titles(annotations = c("gene_length"), anTitle = anLables)
-
-row_annotation_axis(an = "gene_length",
-                    at = c(0, 2000, 4000),
-                    labels = c("0kb", "2kb", ">4kb"),
-                    slice = length(unique(hasPeakDf$cluster)))
-dev.off()
-
 
 
 
