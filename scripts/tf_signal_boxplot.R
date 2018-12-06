@@ -13,7 +13,7 @@ rm(list = ls())
 ##################################################################################
 ## main configuration
 comparisonName <- "tf_signal_polII_correlation"
-outPrefix <- here::here("kdmB_analysis/combined_analysis", comparisonName)
+outPrefix <- here::here("kdmB_analysis", "combined_analysis", comparisonName)
 
 tfDiffPairs <- list(
   p1 = list(
@@ -74,14 +74,11 @@ polII2 <- polIIDiffPairs[[mainPolIIPair]]$samples[2]
 matrixType <- "normalizedmatrix_5kb"
 matrixDim = c(500, 200, 100, 10)
 
-clusterStorePath <- paste(outPrefix, "_profile.kmeans.clusters.txt", sep = "")
-
 ## genes to read
 file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
 file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
 file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
-
 
 TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
@@ -101,7 +98,9 @@ geneSet <- data.table::fread(file = file_genes, header = F,
                              col.names = c("chr", "start", "end", "gene", "score", "strand")) %>% 
   dplyr::mutate(length = end - start)
 
-geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+geneDesc <- suppressMessages(
+  AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+)
 
 geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
 
