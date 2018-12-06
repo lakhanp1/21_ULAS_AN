@@ -2,8 +2,8 @@ library(chipmine)
 library(here)
 library(summarytools)
 
-## This script plots the profile heatmaps for multiple samples. If the expression values are present, it
-## also plots a simple heatmap using these expression values
+## This script plots the profile heatmaps for kdmB_del and sntB_del samples
+## three plots are generate: all genes, macs2 target genes: grouped and ungrouped
 
 rm(list = ls())
 
