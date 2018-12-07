@@ -1,6 +1,7 @@
 library(chipmine)
 library(rtracklayer)
 library(GenomicRanges)
+library(here)
 
 ## TF samples:
 ## 1) extract genome wide 1kb bin wise coverage for each TF sample
@@ -14,22 +15,20 @@ library(GenomicRanges)
 
 rm(list = ls())
 
-
-path <-  "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/"
-setwd(path)
-
 ##################################################################################
+outPrefix <- here::here("generic_analysis", "mitochondrial_coverage", "chr_coverage_summary")
 
-file_exptInfo <-"E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/sampleInfo.txt"
-TF_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/TF_data"
-polII_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/polII_data"
-hist_dataPath <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/histone_data"
-file_genes <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/AN_genesForPolII.bed"
 
+## genes to read
+file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
+file_chrs <- here::here("data", "referenceData/A_Nidulans_chromosomes.bed")
 
-file_chrs <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/A_Nidulans_chromosomes.bed"
-
+TF_dataPath <- here::here("data", "TF_data")
+polII_dataPath <- here::here("data", "polII_data")
+hist_dataPath <- here::here("data", "histone_data")
 
 chrGr <- import.bed(con = file_chrs)
 seqlengths(chrGr) <- width(chrGr)
@@ -38,8 +37,19 @@ genomeBins <- tileGenome(seqlengths = seqlengths(chrGr),tilewidth = 1000, cut.la
 genomeBins$chr <- as.character(seqnames(genomeBins))
 genomeBins$region <- paste(as.character(seqnames(genomeBins)), ":", start(genomeBins), "-", end(genomeBins), sep = "")
 
+## import gene regions and find its overlap with genomewide 1kb bins
+geneGr <- import.bed(con = file_genes)
+binOpGene <- findOverlaps(query = genomeBins,
+                          subject = geneGr)
+
+## set background information to FALSE for the bins which overlap with gene regions
+# mcols(genomeBins)[[ "intergenicBin" ]] <- TRUE
+# mcols(genomeBins)[[ "intergenicBin" ]][ unique(queryHits(binOpGene)) ] <- FALSE
+# intergenicBins <- genomeBins[genomeBins$intergenicBin]
+# export.bed(object = intergenicBins, con = here::here("data", "referenceData", "intergenic_bins.bed"))
+
 ##################################################################################
-tfSampleFile <- paste(TF_dataPath, "/", "tf_samples.list", sep = "")
+tfSampleFile <- paste(TF_dataPath, "/", "sample_tfs.list", sep = "")
 
 tfSampleList <- fread(file = tfSampleFile, sep = "\t", header = F,
                       stringsAsFactors = F, col.names = c("id"), data.table = F)
@@ -108,7 +118,7 @@ for (i in 1:nrow(tfInfo)) {
 ##################################################################################
 ## polII data
 
-polIIsampleFile <- paste(polII_dataPath, "/", "polII_sample.list", sep = "")
+polIIsampleFile <- paste(polII_dataPath, "/", "sample_polII.list", sep = "")
 
 polIISampleList <- fread(file = polIIsampleFile, sep = "\t", header = F,
                          stringsAsFactors = F, col.names = c("id"), data.table = F)
@@ -120,10 +130,6 @@ polII_info <- get_sample_information(exptInfoFile = file_exptInfo,
                                      dataPath = polII_dataPath,
                                      matrixSource = "normalizedmatrix")
 
-## import gene regions and find its overlap with genomewide 1kb bins
-geneGr <- import.bed(con = file_genes)
-binOpGene <- findOverlaps(query = genomeBins,
-                          subject = geneGr)
 
 i <- 1
 
@@ -204,7 +210,7 @@ summaryDf <- as.data.frame(do.call("rbind", summaryList)) %>%
                                true = "polII", false = "TF")) %>% 
   dplyr::select(sampleId, type, everything())
 
-fwrite(x = summaryDf, file = "chr_coverage_summary.tab", sep = "\t", quote = FALSE, col.names = T)
+fwrite(x = summaryDf, file = paste(outPrefix, "_tf_polII.tab", sep = ""), sep = "\t", quote = FALSE, col.names = T)
 
 ##################################################################################
 ## histone data
