@@ -14,7 +14,7 @@ source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
 
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmB_complex_48h"
+comparisonName <- "kdmB_complex_20h"
 outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
 
 file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
@@ -137,6 +137,12 @@ groupLabelDf <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("h
   dplyr::mutate(groupLabels = paste(group, ": ", n, " genes", sep = ""))
 
 groupLabels <- structure(groupLabelDf$groupLabels, names = groupLabelDf$group)
+
+##################################################################################
+## binding stats
+bindingMat = combinatorial_binding_matrix(sampleInfo = tfData)
+
+readr::write_tsv(x = bindingMat, path = paste(outPrefix, "_binding_matrix.tab", sep = ""))
 
 ##################################################################################
 ## topGO enrichment
