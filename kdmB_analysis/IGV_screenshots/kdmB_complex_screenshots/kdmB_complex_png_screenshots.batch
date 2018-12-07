@@ -1,5 +1,5 @@
 setSleepInterval 1000
-snapshotDirectory E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/kdmB_complex_screenshots/pngs
+snapshotDirectory E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/IGV_screenshots/kdmB_complex_screenshots/png_20h_mutants
 goto ChrIII_A_nidulans_FGSC_A4:139102-145841
 snapshot ChrIII_A_nidulans_FGSC_A4_139102_145841_AN5055.png
 goto ChrIII_A_nidulans_FGSC_A4:356053-362147
