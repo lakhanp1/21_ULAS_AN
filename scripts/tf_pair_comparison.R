@@ -532,6 +532,10 @@ peakExpDf <- dplyr::mutate(peakExpDf,
                              TRUE ~ "0"
                            ))
 
+plot_scatter(df = peakExpDf, s1 = polII1, s2 = tfCols$peakCoverage[tf2], title = "Scatter plot", colorCol = "group")
+plot_MA_gg(df = peakExpDf, s1 = tfCols$peakCoverage[tf2], s2 = tfCols$peakCoverage[tf1], colorCol = "group")
+plot_scatter(df = peakExpDf, s1 = tfCols$peakCoverage[tf1], s2 = tfCols$peakCoverage[tf2], title = "Scatter plot", colorCol = "group")
+
 dplyr::group_by(peakExpDf, group) %>% 
   dplyr::summarise(n = n()) %>% 
   readr::write_tsv(path = paste(outPrefix_peakExp, "_stats.tab", sep = ""))
