@@ -14,7 +14,7 @@ source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
 
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmB_complex_20h"
+comparisonName <- "kdmB_complex_48h"
 outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
 
 file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
