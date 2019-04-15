@@ -141,7 +141,7 @@ anLables[["is_TF"]] = "Transcription Factor"
 
 ##################################################################################
 ## color list
-matList <- profile_matrix_list(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
+matList <- import_profiles(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
                                geneList = geneInfo$gene,
                                source = matrixType,
                                up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])

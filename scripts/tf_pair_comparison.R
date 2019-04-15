@@ -412,7 +412,7 @@ lfc_color <- colorRamp2(breaks = c(-2, -1, -0.5, 0, 0.5, 1, 2),
 
 ##################################################################################
 ## colors for profile matrix
-matList <- profile_matrix_list(exptInfo = exptData,
+matList <- import_profiles(exptInfo = exptData,
                                geneList = geneInfo$gene,
                                source = matrixType,
                                up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])

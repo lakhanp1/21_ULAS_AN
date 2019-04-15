@@ -176,7 +176,7 @@ fwrite(x = keggEnr,
 ##################################################################################
 
 ## profile matrix of the genes which show binding
-matList <- profile_matrix_list(exptInfo = exptData, geneList = geneInfo$gene, source = matrixType,
+matList <- import_profiles(exptInfo = exptData, geneList = geneInfo$gene, source = matrixType,
                                up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
 
 ## get average signal over all factors to select color

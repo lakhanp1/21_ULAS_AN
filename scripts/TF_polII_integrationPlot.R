@@ -134,7 +134,7 @@ clusterData <- get_TF_binding_data(exptInfo = tf_info,
   as.data.frame()
 
 
-matList <- profile_matrix_list(exptInfo = sampleInfo,
+matList <- import_profiles(exptInfo = sampleInfo,
                                geneList = geneSet$gene,
                                source = matrixType,
                                # keep = c(0, 0.995),

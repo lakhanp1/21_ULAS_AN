@@ -146,7 +146,7 @@ foreach(i = 1:nrow(tcpDf),
     as.data.frame()
   
   
-  matList <- profile_matrix_list(exptInfo = sampleInfo,
+  matList <- import_profiles(exptInfo = sampleInfo,
                                  geneList = geneSet$gene,
                                  source = matrixType,
                                  # keep = c(0, 0.995),

@@ -142,18 +142,18 @@ anLables[["gene_length"]] = "Gene Length"
 
 ##################################################################################
 ## color list
-matList <- profile_matrix_list(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
+matList <- import_profiles(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
                                geneList = geneInfo$gene,
                                source = matrixType,
                                up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
 
-# matListTss <- profile_matrix_list(exptInfo = dplyr::bind_rows(tfTssData, histTssData),
+# matListTss <- import_profiles(exptInfo = dplyr::bind_rows(tfTssData, histTssData),
 #                                   geneList = geneInfo$gene,
 #                                   source = "normalizedmatrix",
 #                                   up = tssMatDim[1], down = tssMatDim[3],
 #                                   targetType = "TSS")
 # 
-# matListTes <- profile_matrix_list(exptInfo = dplyr::bind_rows(tfTesData, histTesData),
+# matListTes <- import_profiles(exptInfo = dplyr::bind_rows(tfTesData, histTesData),
 #                                   geneList = geneInfo$gene,
 #                                   source = "normalizedmatrix",
 #                                   up = tesMatDim[1], down = tesMatDim[3],
