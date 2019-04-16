@@ -1,6 +1,6 @@
 library(chipmine)
 library(org.Anidulans.eg.db)
-
+library(GGally)
 
 ## this script performs following tasks
 ## 1) extract the polII signal for all samples
@@ -34,7 +34,7 @@ orgDb <- org.Anidulans.eg.db
 
 file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
 file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")
-
+file_polIITimeDiffPairs <- paste(polII_dataPath, "/polII_48h_vs_20h_diff_pairs.txt", sep = "")
 
 ##################################################################################
 ## extract polII signal matrix for all the genes
@@ -120,7 +120,7 @@ fwrite(x = exprDf, file = paste(polII_dataPath, "/factors_polII_signal.tab", sep
 exprDf <- dplyr::mutate_at(.tbl = exprDf,
                            .vars = vars(!!!goi$name),
                            .funs = funs(if_else(condition = . < 1, true = 1, false = .)))
-  
+
 
 exprMat <- log2(as.matrix(exprDf[, goi$name]))
 rownames(exprMat) <- exprDf$sample
@@ -165,11 +165,9 @@ dev.off()
 
 
 ##################################################################################
-## polII data fold change results
-
-polIICtrlPairs <- readr::read_tsv(file = file_polIICtrlPairs, col_names = T) %>% 
-  as.data.frame() %>% 
-  dplyr::mutate(lfcCol = paste("lfc.", sampleId, "_vs_", control, sep = ""))
+## polII data fold change results: mutant-wt pairs
+polIICtrlPairs <- suppressMessages(readr::read_tsv(file = file_polIICtrlPairs, col_names = T)) %>% 
+  dplyr::mutate(lfcCol = paste("lfc.", sampleId1, "_vs_", sampleId2, sep = ""))
 
 lfcMat <- polIIMat
 
@@ -178,9 +176,9 @@ lfcMat <- polIIMat
 for (i in 1:nrow(polIICtrlPairs)) {
   
   lfcMat <- get_fold_change(df = lfcMat,
-                            nmt = polIICtrlPairs[i, 1],
-                            dmt = polIICtrlPairs[i, 2],
-                            newCol = polIICtrlPairs[i, 3],
+                            nmt = polIICtrlPairs$sampleId1[i],
+                            dmt = polIICtrlPairs$sampleId2[i],
+                            newCol = polIICtrlPairs$lfcCol[i],
                             isExpressedCols = polIICols$is_expressed)
   
 }
@@ -188,10 +186,68 @@ for (i in 1:nrow(polIICtrlPairs)) {
 
 lfcMat <- dplyr::select(lfcMat, gene, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
 
-
-fwrite(x = lfcMat, file = paste(polII_dataPath, "/polII_LFC_matrix.tab", sep = ""),
+fwrite(x = lfcMat, file = paste(polII_dataPath, "/polII_LFC_mut_vs_wt.tab", sep = ""),
        sep = "\t", col.names = T, quote = F, row.names = F)
 
+
+pt <- ggpairs(data = dplyr::select(lfcMat, starts_with("lfc.")),
+              upper = list(continuous = wrap("points", size = 0.1)),
+              lower = list(continuous = wrap("cor", size = 4)),
+              diag = list(continuous = "densityDiag")) +
+  theme_bw() +
+  theme(
+    strip.text.y = element_text(size = 8, angle = 0, hjust = 0),
+    strip.text.x = element_text(size = 8, angle = 90, hjust = 0)
+  )
+
+png(filename = paste(polII_dataPath, "/polII_LFC_mut_vs_wt.png", sep = ""),
+    width = 6000, height = 6000, res = 250)
+
+pt
+dev.off()
+
+
+##################################################################################
+## polII data fold change results: 48h-20h pairs
+polIITimeDiffPairs <- suppressMessages(readr::read_tsv(file = file_polIITimeDiffPairs, col_names = T)) %>% 
+  dplyr::mutate(lfcCol = paste("lfc.", sampleId1, "_vs_", sampleId2, sep = ""))
+
+lfcMat2 <- polIIMat
+
+# i <- 1
+
+for (i in 1:nrow(polIITimeDiffPairs)) {
+  
+  lfcMat2 <- get_fold_change(df = lfcMat2,
+                             nmt = polIITimeDiffPairs$sampleId1[i],
+                             dmt = polIITimeDiffPairs$sampleId2[i],
+                             newCol = polIITimeDiffPairs$lfcCol[i],
+                             isExpressedCols = polIICols$is_expressed)
+  
+}
+
+
+lfcMat2 <- dplyr::select(lfcMat2, gene, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
+
+
+fwrite(x = lfcMat2, file = paste(polII_dataPath, "/polII_LFC_40h_vs_20h.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+pt2 <- ggpairs(data = dplyr::select(lfcMat2, starts_with("lfc.")),
+               upper = list(continuous = wrap("points", size = 0.1)),
+               lower = list(continuous = wrap("cor", size = 4)),
+               diag = list(continuous = "densityDiag")) +
+  theme_bw() +
+  theme(
+    strip.text.y = element_text(size = 8, angle = 0, hjust = 0),
+    strip.text.x = element_text(size = 8, angle = 90, hjust = 0)
+  )
+
+png(filename = paste(polII_dataPath, "/polII_LFC_40h_vs_20h.png", sep = ""),
+    width = 6000, height = 6000, res = 250)
+
+pt2
+dev.off()
 
 ##################################################################################
 ## fold change heatmap for genes of interest
