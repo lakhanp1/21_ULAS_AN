@@ -37,11 +37,6 @@ hist_dataPath <- here::here("data", "histone_data")
 orgDb <- org.Anidulans.eg.db
 
 anLables <- list()
-outPrefix_all <- paste0(outPrefix, "_allGenes", collapse = "")
-outPrefix_expressed <- paste0(outPrefix, "_expressedGenes", collapse = "")
-outPrefix_sm <- paste0(outPrefix, "_SM_genes", collapse = "")
-outPrefix_peaks <- paste0(outPrefix, "_peaksGenes", collapse = "")
-outPrefix_pkExp <- paste0(outPrefix, "_pkExpGenes", collapse = "")
 
 ##################################################################################
 
@@ -66,9 +61,9 @@ head(geneInfo)
 
 ## read the experiment sample details and select only those which are to be plotted
 tempSInfo <- get_sample_information(exptInfoFile = file_exptInfo,
-                                   samples = sampleList$sampleId,
-                                   dataPath = TF_dataPath,
-                                   matrixSource = matrixType)
+                                    samples = sampleList$sampleId,
+                                    dataPath = TF_dataPath,
+                                    matrixSource = matrixType)
 
 polII_ids <- tempSInfo$sampleId[which(tempSInfo$IP_tag == "polII")]
 tfIds <- tempSInfo$sampleId[which(tempSInfo$IP_tag %in% c("HA", "MYC", "TAP") & tempSInfo$TF != "untagged")]
@@ -109,15 +104,18 @@ polIICols <- list(
 )
 
 
-tfCols <- sapply(c("hasPeak", "pval", "peakType", "tesPeakType", "peakDist", "summitDist", "upstreamExpr", "peakExpr", "relativeDist"),
-                 FUN = function(x){ structure(paste(x, ".", tfIds, sep = ""), names = tfIds) },
-                 simplify = F, USE.NAMES = T)
+tfCols <- sapply(
+  c("peakDist", "featureCovFrac", "hasPeak", "peakCoverage", "peakPosition", "peakId", "peakType",
+    "peakPval", "peakEnrichment", "preference", "peakCategory"),
+  FUN = function(x){ structure(paste(x, ".", tfIds, sep = ""), names = tfIds) },
+  simplify = F, USE.NAMES = T)
 
-expressionData <- get_TF_binding_data(exptInfo = exptData,
-                                      genesDf = geneInfo)
+peakTargetMat <- peak_target_matrix(sampleInfo = tfData, position = "best")
 
 expressionData <- get_polII_expressions(exptInfo = exptData,
-                                        genesDf = expressionData)
+                                        genesDf = geneInfo)
+
+expressionData <- dplyr::left_join(x = expressionData, y = peakTargetMat, by = "gene")
 
 dplyr::group_by_at(expressionData, .vars = vars(starts_with("hasPeak."))) %>% 
   dplyr::summarise(n = n())
@@ -126,10 +124,9 @@ dplyr::group_by_at(expressionData, .vars = vars(starts_with("hasPeak."))) %>%
 hasPeakDf <- expressionData %>% 
   dplyr::filter_at(.vars = vars(starts_with("hasPeak")), .vars_predicate = any_vars(. == TRUE)) %>% 
   dplyr::mutate(group = group_indices(., !!! lapply(unname(tfCols$hasPeak), as.name))) %>% 
-  dplyr::mutate(group = sprintf(fmt = "%02d", group)) %>% 
-  as.data.frame()
+  dplyr::mutate(group = sprintf(fmt = "%02d", group))
 
-readr::write_tsv(x = hasPeakDf, path = paste(outPrefix, "_peaks_data.tab", sep = ""))
+readr::write_tsv(x = hasPeakDf, path = paste(outPrefix, ".peaks_data.tab", sep = ""))
 
 ## group label data mean profile facet plot
 groupLabelDf <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
@@ -142,16 +139,16 @@ groupLabels <- structure(groupLabelDf$groupLabels, names = groupLabelDf$group)
 ## binding stats
 bindingMat = combinatorial_binding_matrix(sampleInfo = tfData)
 
-readr::write_tsv(x = bindingMat, path = paste(outPrefix, "_binding_matrix.tab", sep = ""))
+readr::write_tsv(x = bindingMat, path = paste(outPrefix, ".binding_matrix.tab", sep = ""))
 
 ##################################################################################
 ## topGO enrichment
 goEnrich <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  do(topGO_enrichment(goMapFile = file_topGoMap, genesOfInterest = .$gene, goNodeSize = 5))
+  do(topGO_enrichment(goMapFile = file_topGoMap, genes = .$gene, goNodeSize = 5))
 
 
 fwrite(x = goEnrich,
-       file = paste(outPrefix, "_peakGroups_GO_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
+       file = paste(outPrefix, ".peakGroups.GO_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
 
 
 
@@ -160,7 +157,7 @@ grpGo <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak.
   do(clusterProfiler_groupGO(genes = .$gene, org = orgDb, goLevel = 3, type = "BP", keyType ="GID"))
 
 fwrite(x = grpGo,
-       file = paste(outPrefix, "_peakGroups_GO_assignment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
+       file = paste(outPrefix, ".peakGroups.GO_assignment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
 
 
 
@@ -170,14 +167,14 @@ keggEnr <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPea
 
 
 fwrite(x = keggEnr,
-       file = paste(outPrefix, "_peakGroups_KEGG_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
+       file = paste(outPrefix, ".peakGroups.KEGG_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
 
 
 ##################################################################################
 
 ## profile matrix of the genes which show binding
 matList <- import_profiles(exptInfo = exptData, geneList = geneInfo$gene, source = matrixType,
-                               up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
+                           up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
 
 ## get average signal over all factors to select color
 tfMeanProfile <- getSignalsFromList(lt = matList[tfIds])
@@ -187,8 +184,10 @@ quantile(tfMeanProfile, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999
 tfColorList <- sapply(
   X = c(tfIds, inputIds),
   FUN = function(x){
-    return(colorRamp2(breaks = quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T),
-                      colors = c("white", exptDataList[[x]]$color)))
+    return(
+      colorRamp2(breaks = quantile(tfMeanProfile, c(0.50, 0.995), na.rm = T),
+                 colors = unlist(strsplit(x = exptDataList[[x]]$color, split = ",")))
+    )
   }
 )
 
@@ -217,20 +216,20 @@ profiles_peaks <- multi_profile_plots(
   matSource = matrixType,
   matBins = matrixDim,
   ylimFraction = ylimList,
-  column_title_gp = gpar(fontsize = 12)
+  column_title_gp = gpar(fontsize = 14)
 )
 
 anGl_peaks <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
 
-peaks_htlist <- anGl_peaks$an + profiles_peaks$heatmapList
+peaks_htlist <- profiles_peaks$heatmapList + anGl_peaks$an
 
-pdfWd <- 2 + (length(profiles_peaks$heatmapList@ht_list) * 2) +
-  (length(polII_ids) * 0.25 * showExpressionHeatmap) + 2
+pdfWd <- 3 + (length(profiles_peaks$heatmapList@ht_list) * 2) +
+  (length(polII_ids) * 0.25 * showExpressionHeatmap) + 3
 
 title_peak= "Transcription factor binding profile: kdmB complex TF bound genes"
 
 # draw Heatmap and add the annotation name decoration
-pdf(file = paste(outPrefix, "_peaks_unclustered.pdf", sep = ""), width = pdfWd, height = 12)
+pdf(file = paste(outPrefix, ".profilePlot_unclustered.pdf", sep = ""), width = pdfWd, height = 12)
 
 draw(peaks_htlist,
      main_heatmap = exptData$profileName[1],
@@ -239,8 +238,8 @@ draw(peaks_htlist,
      column_title_gp = gpar(fontsize = 14, fontface = "bold"),
      row_sub_title_side = "left",
      heatmap_legend_side = "right",
-     gap = unit(5, "mm"),
-     padding = unit(rep(0.5, times = 4), "cm")
+     gap = unit(7, "mm"),
+     padding = unit(rep(0.3, times = 4), "cm")
 )
 
 
@@ -259,11 +258,12 @@ dev.off()
 newClusters <- dplyr::select(hasPeakDf, gene, group) %>% 
   dplyr::rename(cluster = group)
 
+newClusters$cluster <- factor(x = newClusters$cluster, levels = sort(unique(newClusters$cluster)))
+
 profiles_peakGroups <- multi_profile_plots(
   exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
   genesToPlot = hasPeakDf$gene,
   clusters = newClusters,
-  clustOrd = sort(unique(newClusters$cluster)),
   profileColors = colorList,
   matSource = matrixType,
   matBins = matrixDim,
@@ -293,12 +293,12 @@ colNameAnn <- HeatmapAnnotation(
   colName = anno_text(
     x = unname(tfCols$hasPeak),
     rot = 90, just = "left",
-    offset = unit(1, "mm"),
+    location = unit(1, "mm"),
     gp = gpar(fontsize = 10)),
   annotation_height = unit.c(max_text_width(unname(tfCols$hasPeak)))
 )
 
-grp_ht <- Heatmap(htMat,
+grp_ht <- Heatmap(as.matrix(htMat),
                   col = c("TRUE" = "black", "FALSE" = "white"),
                   heatmap_legend_param = list(title = "Peak detected"),
                   # column_names_side = "top",
@@ -313,16 +313,16 @@ grp_ht <- Heatmap(htMat,
 anGl_peakGroups <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
 
 
-peakGroups_htlist <- anGl_peakGroups$an + profiles_peakGroups$heatmapList + polIIht_peakExp + grp_ht
+peakGroups_htlist <- profiles_peakGroups$heatmapList + polIIht_peakExp + grp_ht + anGl_peakGroups$an
 
-pdfWd <- 2 + 
+pdfWd <- 3 + 
   (length(profiles_peakGroups$heatmapList@ht_list) * 2) +
-  (length(polII_ids) * 0.5 * showExpressionHeatmap) + 2
+  (length(polII_ids) * 0.5 * showExpressionHeatmap) + 3
 
 title_peak= "Transcription factor binding profile: kdmB complex TF bound genes"
 
 # draw Heatmap and add the annotation name decoration
-pdf(file = paste(outPrefix, "_peak_comparison.pdf", sep = ""), width = pdfWd, height = 12)
+pdf(file = paste(outPrefix, ".profilePlot_groups.pdf", sep = ""), width = pdfWd, height = 12)
 
 draw(peakGroups_htlist,
      main_heatmap = exptData$profileName[1],
@@ -348,8 +348,8 @@ dev.off()
 ## average line plots for peak groups
 testDf <- dplyr::filter(hasPeakDf, group == "07")
 
-lineColors = structure(.Data = exptData$color[exptData$sampleId %in% c(tfIds, inputIds)],
-                       names = exptData$sampleId[exptData$sampleId %in% c(tfIds, inputIds)])
+lineColors = purrr::map_chr(.x = exptDataList[c(tfIds, inputIds)],
+                            .f = function(x) unlist(strsplit(x = x$color, split = ","))[2])
 
 lineShape = structure(.Data = c(1, 1, 1, 1, 6),
                       names = exptData$sampleId[exptData$sampleId %in% c(tfIds, inputIds)])
@@ -448,7 +448,7 @@ p = ggplot(data = groupMeanProfiles) +
   )
 
 
-pdf(file = paste(outPrefix, "_mean_profiles.pdf", sep = ""), width = 18, height = 10)
+pdf(file = paste(outPrefix, ".mean_profiles.pdf", sep = ""), width = 18, height = 10)
 p
 dev.off()
 
