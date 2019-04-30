@@ -96,9 +96,11 @@ polIICols <- list(
   is_expressed = structure(paste("is_expressed", ".", polII_ids, sep = ""), names = polII_ids)
 )
 
-tfCols <- sapply(c("hasPeak", "pval", "peakType", "tesPeakType", "peakDist", "summitDist", "upstreamExpr", "peakExpr", "relativeDist"),
-                 FUN = function(x){ structure(paste(x, ".", tfIds, sep = ""), names = tfIds) },
-                 simplify = F, USE.NAMES = T)
+tfCols <- sapply(
+  c("peakDist", "featureCovFrac", "hasPeak", "peakCoverage", "peakPosition", "peakId", "peakType",
+    "peakPval", "peakEnrichment", "preference", "peakCategory"),
+  FUN = function(x){ structure(paste(x, ".", tfIds, sep = ""), names = tfIds) },
+  simplify = F, USE.NAMES = T)
 
 
 ##################################################################################
@@ -126,8 +128,9 @@ chipData <- get_TF_binding_data(genesDf = chipData, exptInfo = tfInfo, allColumn
 # dplyr::group_by_at(chipData, .vars = vars(starts_with("hasPeak."))) %>%
 #   dplyr::summarise(n = n())
 
-chipData <- dplyr::mutate(chipData,
-                SM_CLUSTER = gsub(pattern = "SM_cluster_", replacement = "", x = SM_CLUSTER, fixed = TRUE)) %>% 
+chipData <- dplyr::mutate(
+  chipData,
+  SM_CLUSTER = gsub(pattern = "SM_cluster_", replacement = "", x = SM_CLUSTER, fixed = TRUE)) %>% 
   dplyr::group_by(SM_CLUSTER) %>% 
   dplyr::arrange(start, .by_group = TRUE) %>% 
   dplyr::mutate(index = 1:n()) %>% 
