@@ -8,7 +8,7 @@ library(here)
 rm(list = ls())
 
 # cl <- makeCluster(4) #not to overload your computer
-# registerDoParallel(cl)
+# registerDoParallel(cl)  
 
 ##################################################################################
 
@@ -22,7 +22,6 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 other_dataPath <- here::here("data", "other_data")
-
 
 
 geneSet <- data.table::fread(file = file_genes, header = F,
@@ -109,26 +108,30 @@ tfInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                  matrixSource = "normalizedmatrix")
 
 i <- 1
+# An_cclA_kdmA_del_48h_HA_2
 
-for(i in 1:nrow(tfInfo)){
+for(i in 68:nrow(tfInfo)){
   
   ## annotate peaks based on TxDB
-  peakAn <- narrowPeak_annotate(peakFile = tfInfo$narrowpeakFile[i],
-                                txdb = txDb,
-                                includeFractionCut = 0.7,
-                                bindingInGene = FALSE, promoterLength = 500,
-                                insideSkewToEndCut = 0.7,
-                                output = tfInfo$narrowpeakAnno[i])
-  
-  file_newPeakAn <- gsub(pattern = "annotated", replacement = "annotatedNew", x = tfInfo$tfPeakFile[i])
-  
-  tfDf <- chipmine::preProcess_macs2_results(sampleId = tfInfo$sampleId[i],
-                                             peakAnnotation = tfInfo$narrowpeakAnno[i],
-                                             cdsFile = geneCdsFile,
-                                             peakFile = tfInfo$narrowpeakFile[i],
-                                             bwFile = tfInfo$bwFile[i],
-                                             outFile = file_newPeakAn,
-                                             bindingInGene = FALSE)
+  peakAn <- narrowPeak_annotate(
+    peakFile = tfInfo$narrowpeakFile[i],
+    txdb = txDb,
+    includeFractionCut = 0.7,
+    bindingInGene = FALSE, promoterLength = 500,
+    insideSkewToEndCut = 0.7,
+    output = tfInfo$narrowpeakAnno[i])
+
+  if(!is.null(peakAn)){
+    tfDf <- gene_level_peak_annotation(
+      sampleId = tfInfo$sampleId[i],
+      peakAnnotation = tfInfo$narrowpeakAnno[i],
+      cdsFile = geneCdsFile,
+      peakFile = tfInfo$narrowpeakFile[i],
+      bwFile = tfInfo$bwFile[i],
+      preference = c("nearStart", "peakInFeature", "featureInPeak", "nearEnd", "upstreamTss"),
+      outFile = tfInfo$peakTargetFile[i],
+      bindingInGene = FALSE)
+  }
   
   # ## 2kb - 2kb - 1kb matrix
   # bwMat <- chipmine::bigwig_profile_matrix(bwFile = tfInfo$bwFile[i],
@@ -234,15 +237,20 @@ for (i in 1:nrow(tfInfo)) {
                                 insideSkewToEndCut = 0.7,
                                 output = tfInfo$narrowpeakAnno[i])
   
-  file_newPeakAn <- gsub(pattern = "annotated", replacement = "annotatedNew", x = tfInfo$tfPeakFile[i])
+
+  if(!is.null(peakAn)){
+    tfDf <- gene_level_peak_annotation(
+      sampleId = tfInfo$sampleId[i],
+      peakAnnotation = tfInfo$narrowpeakAnno[i],
+      cdsFile = geneCdsFile,
+      peakFile = tfInfo$narrowpeakFile[i],
+      bwFile = tfInfo$bwFile[i],
+      preference = c("nearStart", "peakInFeature", "featureInPeak", "nearEnd", "upstreamTss"),
+      outFile = tfInfo$peakTargetFile[i],
+      bindingInGene = FALSE)
+  }
   
-  tfDf <- chipmine::preProcess_macs2_results(sampleId = tfInfo$sampleId[i],
-                                             peakAnnotation = tfInfo$narrowpeakAnno[i],
-                                             cdsFile = geneCdsFile,
-                                             peakFile = tfInfo$narrowpeakFile[i],
-                                             bwFile = tfInfo$bwFile[i],
-                                             outFile = file_newPeakAn,
-                                             bindingInGene = TRUE)
+  print(tfInfo$sampleId[i])
   
 }
 
