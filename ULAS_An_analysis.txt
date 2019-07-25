@@ -125,10 +125,10 @@ for i in `cat sample_tf_macs2.list`
 do
 cd $i
 printf "##macs2 broad peak calling: with control
-macs2 callpeak -t %s_bt2.bam -c \$control --name %s_withCtrl --outdir macs2_withCtrl_broad -g 30e6 --nomodel --extsize 200 --broad
+macs2 callpeak -t %s_bt2.bam -c \$control --name %s.withCtrl --outdir macs2_withCtrl_broad -g 30e6 --nomodel --extsize 200 --broad
 error_exit \$? \n\n" $i $i >> generalJob.sh
 printf "##macs2 narrow peak calling: with control
-macs2 callpeak -t %s_bt2.bam -c \$control --name %s_withCtrl --outdir macs2_withCtrl_narrow -g 30e6 --nomodel --extsize 200
+macs2 callpeak -t %s_bt2.bam -c \$control --name %s.withCtrl --outdir macs2_withCtrl_narrow -g 30e6 --nomodel --extsize 200
 error_exit \$? \n\n" $i $i >> generalJob.sh
 cd ..
 done
@@ -141,7 +141,7 @@ for i in `cat sample_tf_macs2.list`
 do
 cd $i
 printf "##Find the nearest CDS start for each narrowPeak: with control
-bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_withCtrl_narrow/%s_withCtrl_peaks.narrowPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat narrowPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_withCtrl_narrow/%s.withCtrl.narrowPeak.nearestCDS.tab
+bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_withCtrl_narrow/%s.withCtrl_peaks.narrowPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat narrowPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_withCtrl_narrow/%s.withCtrl.narrowPeak.nearestCDS.tab
 error_exit \$?\n\n" $i $i >> generalJob.sh
 cd ..
 done
@@ -154,7 +154,7 @@ for i in `cat sample_tf_macs2.list`
 do
 cd $i
 printf "##Find the nearest CDS start for each broadPeak
-bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_withCtrl_broad/%s_withCtrl_peaks.broadPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat broadPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_withCtrl_broad/%s.withCtrl.broadPeak.nearestCDS.tab
+bedtools closest -nonamecheck -k 5 -t all -D b -id -a macs2_withCtrl_broad/%s.withCtrl_peaks.broadPeak -b /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed | perl /home/lakhanp/scripts/ChIP_seq/bedtoolsClosestPeakAnnotate.pl --peakFormat broadPeak \$bindingType --bedFile /home/lakhanp/database/A_nidulans_FGSC_A4/annotation/A_nidulans_FGSC_A4_version_s10-m04-r03_genes.bed.gz > macs2_withCtrl_broad/%s.withCtrl.broadPeak.nearestCDS.tab
 error_exit \$?\n\n" $i $i >> generalJob.sh
 cd ..
 done

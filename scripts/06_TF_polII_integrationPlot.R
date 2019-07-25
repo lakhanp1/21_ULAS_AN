@@ -171,8 +171,10 @@ profileYlims[[input_sample]] <- profileYlims[[TF_sample]]
 
 quantile(expressionData$log2_mat, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 1), na.rm = T)
 
-polII_color <- colorRamp2(breaks = c(0, quantile(expressionData$log2_mat, c(0.5, 0.8, 0.9, 0.92, 0.95, 0.97, 0.99, 0.995, 0.999))),
-                          colors = c("white", RColorBrewer::brewer.pal(n = 9, name = "RdPu")))
+polII_color <- colorRamp2(
+  breaks = c(0, quantile(expressionData$log2_mat, c(0.5, 0.8, 0.9, 0.92, 0.95, 0.97, 0.99, 0.995, 0.999))),
+  colors = c("white", RColorBrewer::brewer.pal(n = 9, name = "RdPu"))
+)
 
 
 ##################################################################################
@@ -229,7 +231,7 @@ dev.off()
 
 cat("## drawing heatmap with the genes for which peak was called by macs2\n")
 
-peaks_title <- paste0(name, ": macs2 targets", collapse = "")
+peaks_title <- paste(name, ": macs2 targets", sep = "")
 
 peak_genes <- clusterData[which(clusterData[[unname(tfCols$hasPeak)]]), ]
 rownames(peak_genes) <- peak_genes$gene
@@ -248,6 +250,15 @@ peak_heatmaps <- multi_profile_plots(exptInfo = sampleInfo,
                                      expressionData = peak_genes,
                                      expressionColor = polII_color)
 
+
+matData <- as.data.frame(peak_heatmaps$profileHeatmaps$An_kdmB_20h_HA_1$heatmap@matrix) %>% 
+  tibble::rownames_to_column(var = "gene") %>% 
+  dplyr::mutate_if(.predicate = is.numeric, .funs = list(~round(., digits = 2))) %>% 
+  dplyr::left_join(y = dplyr::select(peak_genes, gene, cluster, starts_with("peakDist")), by = "gene") %>% 
+  dplyr::select(gene, cluster, starts_with("peakDist"), everything()) %>% 
+  dplyr::arrange(cluster, desc(!!as.name(tfCols$peakDist)))
+
+readr::write_tsv(x = matData, path = paste(outPrefix_peaks, ".matData.tab", sep = ""))
 
 ## peak type annotation
 peakTypeDf <- peak_genes[c(unname(tfCols$peakType))]
@@ -295,7 +306,7 @@ peaks_htlist <- peak_heatmaps$profileHeatmaps[[TF_sample]]$rowGroupHt +
 
 
 # draw Heatmap and add the annotation name decoration
-pdf(file = paste0(outPrefix_peaks, ".pdf", collapse = ""), width = 17, height = 12)
+pdf(file = paste(outPrefix_peaks, ".pdf", sep = ""), width = 17, height = 12)
 
 draw(peaks_htlist,
      # main_heatmap = tf_info$profileName,
