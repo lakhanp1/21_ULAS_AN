@@ -1,5 +1,5 @@
 setSleepInterval 1000
-snapshotDirectory E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/IGV_screenshots/kdmB_complex_screenshots/png_20h_mutants
+snapshotDirectory E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/kdmB_analysis/IGV_screenshots/kdmB_complex_screenshots/png_20h
 goto ChrIII_A_nidulans_FGSC_A4:139102-145841
 snapshot ChrIII_A_nidulans_FGSC_A4_139102_145841_AN5055.png
 goto ChrIII_A_nidulans_FGSC_A4:356053-362147
@@ -50,6 +50,10 @@ goto ChrII_A_nidulans_FGSC_A4:1489150-1500057
 snapshot ChrII_A_nidulans_FGSC_A4_1489150_1500057_AN9414.png
 goto ChrII_A_nidulans_FGSC_A4:3040669-3051677
 snapshot ChrII_A_nidulans_FGSC_A4_3040669_3051677_AN3793.png
+goto ChrII_A_nidulans_FGSC_A4:809574-817158
+snapshot ChrII_A_nidulans_FGSC_A4_809574_817158_AN8120.png
+goto ChrII_A_nidulans_FGSC_A4:207541-216202
+snapshot ChrII_A_nidulans_FGSC_A4_207541_216202_AN7909.png
 goto ChrIV_A_nidulans_FGSC_A4:111968-122425
 snapshot ChrIV_A_nidulans_FGSC_A4_111968_122425_AN7387.png
 goto ChrIV_A_nidulans_FGSC_A4:637172-647452
@@ -100,6 +104,8 @@ goto ChrVIII_A_nidulans_FGSC_A4:752662-758223
 snapshot ChrVIII_A_nidulans_FGSC_A4_752662_758223_AN1356.png
 goto ChrVIII_A_nidulans_FGSC_A4:3975059-3987042
 snapshot ChrVIII_A_nidulans_FGSC_A4_3975059_3987042_AN0301.png
+goto ChrVIII_A_nidulans_FGSC_A4:4443602-4452140
+snapshot ChrVIII_A_nidulans_FGSC_A4_4443602_4452140_AN0150.png
 goto ChrVII_A_nidulans_FGSC_A4:52857-61102
 snapshot ChrVII_A_nidulans_FGSC_A4_52857_61102_AN9042.png
 goto ChrVII_A_nidulans_FGSC_A4:137866-144162
