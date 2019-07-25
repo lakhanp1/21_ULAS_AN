@@ -118,9 +118,10 @@ ptTheme <- theme_bw() +
 
 
 ##################################################################################
+## heatbox with KERS targets
 
 # mergedData <- dplyr::filter(mergedData, SM_CLUSTER %in% c("01", "02", "03", "04", "05"))
-
+plotTitle <- paste("SM genes | KERS targets |", polII_ids)
 ## prepare peak data
 hasPeak <- as.data.table(mergedData) %>% 
   data.table::melt(id.vars = c("gene", "SM_CLUSTER", "index"),
@@ -168,7 +169,7 @@ pt <- ggplot() +
   ) +
   scale_color_manual(name = "KERS peak", values = tfColor) +
   scale_x_continuous(expand = expand_scale(add = c(0.0, 0.0))) +
-  ggtitle("KERS binding and RNA PolII signal at SM cluster genes at 20h") +
+  ggtitle(plotTitle) +
   facet_wrap(facets =  vars(gene), ncol = 20, strip.position = "left", dir = "v") +
   ptTheme + theme(strip.text.y = element_blank())
 
