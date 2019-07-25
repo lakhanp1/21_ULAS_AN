@@ -25,13 +25,13 @@ other_dataPath <- here::here("data", "other_data")
 
 
 geneSet <- data.table::fread(file = file_genes, header = F,
-                             col.names = c("chr", "start", "end", "gene", "score", "strand")) %>% 
+                             col.names = c("chr", "start", "end", "geneId", "score", "strand")) %>% 
   dplyr::select(-score) %>% 
   dplyr::mutate(length = end - start)
 
 geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
 
-geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
+geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("geneId" = "GID"))
 
 # ##################################################################################
 # 
@@ -105,34 +105,41 @@ tfSampleList <- readr::read_tsv(file = tfSampleFile, col_names = c("id"),  comme
 tfInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                  samples = tfSampleList$id,
                                  dataPath = TF_dataPath,
-                                 matrixSource = "normalizedmatrix")
+                                 profileMatrixSuffix = "normalizedmatrix")
 
 i <- 1
 # An_cclA_kdmA_del_48h_HA_2
 
-for(i in 68:nrow(tfInfo)){
+for(i in 1:nrow(tfInfo)){
   
-  ## annotate peaks based on TxDB
+  peakType <- dplyr::case_when(
+    tfInfo$peakType[i] == "narrow" ~ "narrowPeak",
+    tfInfo$peakType[i] == "broad" ~ "broadPeak"
+  )
+  
   peakAn <- narrowPeak_annotate(
-    peakFile = tfInfo$narrowpeakFile[i],
+    peakFile = tfInfo$peakFile[i],
     txdb = txDb,
+    fileFormat = peakType,
     includeFractionCut = 0.7,
-    bindingInGene = FALSE, promoterLength = 500,
+    bindingInGene = FALSE,
+    promoterLength = 500,
     insideSkewToEndCut = 0.7,
-    output = tfInfo$narrowpeakAnno[i])
-
-  if(!is.null(peakAn)){
+    reportPseudo = FALSE,
+    output = tfInfo$peakAnno[i])
+  
+  if( !is.null(peakAn) ){
     tfDf <- gene_level_peak_annotation(
       sampleId = tfInfo$sampleId[i],
-      peakAnnotation = tfInfo$narrowpeakAnno[i],
-      cdsFile = geneCdsFile,
-      peakFile = tfInfo$narrowpeakFile[i],
+      peakAnnotation = tfInfo$peakAnno[i],
+      genesDf = geneSet,
+      peakFile = tfInfo$peakFile[i],
       bwFile = tfInfo$bwFile[i],
-      preference = c("nearStart", "peakInFeature", "featureInPeak", "nearEnd", "upstreamTss"),
-      outFile = tfInfo$peakTargetFile[i],
-      bindingInGene = FALSE)
+      outFile = tfInfo$peakTargetFile[i])
+    
   }
   
+
   # ## 2kb - 2kb - 1kb matrix
   # bwMat <- chipmine::bigwig_profile_matrix(bwFile = tfInfo$bwFile[i],
   #                                          bedFile = file_genes,
@@ -205,7 +212,7 @@ for(i in 68:nrow(tfInfo)){
   #                                          target = "tes")
   #
   
-  print(tfInfo$sampleId[i])
+  # print(tfInfo$sampleId[i])
   
 }
 
@@ -230,20 +237,20 @@ for (i in 1:nrow(tfInfo)) {
   
   
   ## annotate peaks based on TxDB
-  peakAn <- narrowPeak_annotate(peakFile = tfInfo$narrowpeakFile[i],
+  peakAn <- narrowPeak_annotate(peakFile = tfInfo$peakFile[i],
                                 txdb = txDb,
                                 includeFractionCut = 0.7,
                                 bindingInGene = TRUE, promoterLength = 500,
                                 insideSkewToEndCut = 0.7,
-                                output = tfInfo$narrowpeakAnno[i])
+                                output = tfInfo$peakAnno[i])
   
 
   if(!is.null(peakAn)){
     tfDf <- gene_level_peak_annotation(
       sampleId = tfInfo$sampleId[i],
-      peakAnnotation = tfInfo$narrowpeakAnno[i],
+      peakAnnotation = tfInfo$peakAnno[i],
       cdsFile = geneCdsFile,
-      peakFile = tfInfo$narrowpeakFile[i],
+      peakFile = tfInfo$peakFile[i],
       bwFile = tfInfo$bwFile[i],
       preference = c("nearStart", "peakInFeature", "featureInPeak", "nearEnd", "upstreamTss"),
       outFile = tfInfo$peakTargetFile[i],
