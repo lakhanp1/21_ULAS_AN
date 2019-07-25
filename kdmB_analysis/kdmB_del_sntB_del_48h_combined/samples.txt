@@ -1,0 +1,13 @@
+sampleId	usePeaks
+An_kdmB_48h_HA_1	TRUE
+An_sntB_48h_HA_1	TRUE
+An_ecoA_48h_HA_1	TRUE
+An_rpdA_48h_HA_1	TRUE
+An_sntB_kdmB_del_48h_HA_1	FALSE
+An_ecoA_kdmB_del_48h_HA_1	FALSE
+An_rpdA_kdmB_del_48h_HA_1	FALSE
+An_kdmB_sntB_del_48h_HA_1	FALSE
+An_ecoA_sntB_del_48h_HA_1	FALSE
+An_rpdA_sntB_del_48h_HA_1	FALSE
+An_untagged_48h_HA_1	FALSE
+An_H3_48h_HIST_1	FALSE

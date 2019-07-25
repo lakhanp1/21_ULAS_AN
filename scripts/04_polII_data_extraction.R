@@ -1,0 +1,309 @@
+library(chipmine)
+library(org.Anidulans.eg.db)
+library(GGally)
+
+## this script performs following tasks
+## 1) extract the polII signal for all samples
+## 2) prepare polII signal matrix for gene of interest (kdmB complex members) and plot heatmap
+## 3) calculate the log2 fold change for each polII sample using appropriate control data
+
+
+rm(list = ls())
+
+##################################################################################
+analysisName <- "polII_signal"
+outPrefix <- here::here("data", "polII_data", analysisName)
+
+
+## genes to read
+file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
+file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
+file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
+
+TF_dataPath <- here::here("data", "TF_data")
+polII_dataPath <- here::here("data", "polII_data")
+hist_dataPath <- here::here("data", "histone_data")
+
+
+orgDb <- org.Anidulans.eg.db
+
+file_factors <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/factor_names.list"
+
+orgDb <- org.Anidulans.eg.db
+
+file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
+file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")
+file_polIITimeDiffPairs <- paste(polII_dataPath, "/polII_48h_vs_20h_diff_pairs.txt", sep = "")
+
+##################################################################################
+## extract polII signal matrix for all the genes
+geneSet <- data.table::fread(file = file_genes, header = F,
+                             col.names = c("chr", "start", "end", "gene", "score", "strand")) %>% 
+  dplyr::select(-score) %>% 
+  dplyr::mutate(length = end - start)
+
+
+geneDesc <- select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+
+geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
+
+
+polIISamples <- fread(file = file_polIIsamples, sep = "\t", header = F,
+                      stringsAsFactors = F, col.names = c("id"), data.table = F)
+
+
+polII_info <- get_sample_information(exptInfoFile = file_exptInfo,
+                                     samples = polIISamples$id,
+                                     dataPath = polII_dataPath)
+
+polIICols <- list(
+  exp = structure(polIISamples$id, names = polIISamples$id),
+  is_expressed = structure(paste("is_expressed", ".", polIISamples$id, sep = ""), names = polIISamples$id)
+)
+
+
+
+polIIMat <- get_polII_expressions(genesDf = geneSet, exptInfo = polII_info) %>% 
+  # dplyr::select(-starts_with("is_expressed")) %>%
+  dplyr::select(chr, start, end, gene, strand, length, DESCRIPTION, everything())
+
+
+fwrite(x = polIIMat, file = paste(polII_dataPath, "/polII_signal_matrix.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+##################################################################################
+## polII signal percentile matrix
+quantile(x = polIIMat$An_untagged_20h_polII_1,
+         c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
+
+
+polIIQuantiles <- lapply(
+  X = polIICols$exp,
+  FUN = function(x){
+    quantile(
+      x = polIIMat[[x]],
+      c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
+  }) %>% 
+  as.data.frame() %>% 
+  tibble::rownames_to_column(var = "quantile") %>% 
+  # dplyr::mutate(quantile = paste("quantile_", quantile, sep = "")) %>% 
+  tidyr::gather(key = sample, value = signal, -quantile) %>% 
+  tidyr::spread(key = quantile, value = signal)
+
+
+fwrite(x = polIIQuantiles, file = paste(polII_dataPath, "/polII_signal_quantiles.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+
+##################################################################################
+## polII signal matrix for genes of interest
+
+goi <- read_tsv(file = file_factors, col_names = T)
+
+goiPolII <- dplyr::left_join(goi, polIIMat, by = c("id" = "gene")) 
+
+
+exprDf <- dplyr::select(goiPolII, -id, -chr, -start, -end, -strand, -length, -DESCRIPTION,
+                        -starts_with("is_expressed")) %>% 
+  tidyr::gather(key = sample, value = expression, -name, factor_key = TRUE) %>% 
+  tidyr::spread(key = name, value = expression) %>% 
+  dplyr::mutate_if(.predicate = is.factor, .funs = as.character) %>% 
+  dplyr::select(sample, goi$name) %>% 
+  as.data.frame()
+
+
+fwrite(x = exprDf, file = paste(polII_dataPath, "/factors_polII_signal.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+## for log2 calculations, set the values to 1 if they are < 1
+exprDf <- dplyr::mutate_at(.tbl = exprDf,
+                           .vars = vars(!!!goi$name),
+                           .funs = funs(if_else(condition = . < 1, true = 1, false = .)))
+
+
+exprMat <- log2(as.matrix(exprDf[, goi$name]))
+rownames(exprMat) <- exprDf$sample
+
+quantile(exprMat, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.999, 0.9999, 1), na.rm = T)
+
+htCol <- colorRamp2(breaks = quantile(exprMat, c(0, 0.1, 0.9, 0.99, 0.999)),
+                    colors = c("white", "#f7f4f9", "#ce1256", "#980043", "#67001f"))
+
+# htCol <- colorRamp2(breaks = seq(0, quantile(exprMat, 0.999), length.out = 8),
+#            colors = RColorBrewer::brewer.pal(n = 8, name = "RdPu"))
+
+colAt <- as.numeric(sprintf("%.0f", c(seq(quantile(exprMat, 0.1), quantile(exprMat, 0.99), length = 4),
+                                      quantile(exprMat, 0.995))))
+
+ht <- Heatmap(matrix = exprMat,
+              col = htCol,
+              column_title = "polII signal for various factors in mutants",
+              column_title_gp = gpar(fontsize = 14, fontface = "bold"),
+              cell_fun = function(j, i, x, y, width, height, fill) {
+                grid.text(sprintf("%.1f", exprMat[i, j]), x, y, gp = gpar(fontsize = 8))
+              },
+              heatmap_legend_param = list(
+                title = "log2(polII signal)",
+                # at = colAt,
+                legend_height = unit(4, "cm"),
+                labels_gp = gpar(fontsize = 12),
+                title_gp = gpar(fontsize = 12, fontface = "bold"),
+                title_position = "topcenter"
+              ),
+              cluster_rows = FALSE, cluster_columns = FALSE,
+              row_names_side = "left",
+              column_names_gp = gpar(fontsize = 12, fontface = "bold"),
+              row_names_gp = gpar(fontsize = 12),
+              row_names_max_width = unit(10, "cm")
+)
+
+
+pdf(file = paste(polII_dataPath, "/factors_polII_signal.pdf", sep = ""), width = 8, height = 10)
+draw(ht)
+dev.off()
+
+
+##################################################################################
+## polII data fold change results: mutant-wt pairs
+polIICtrlPairs <- suppressMessages(readr::read_tsv(file = file_polIICtrlPairs, col_names = T)) %>% 
+  dplyr::mutate(lfcCol = paste("lfc.", sampleId1, "_vs_", sampleId2, sep = ""))
+
+lfcMat <- polIIMat
+
+# i <- 1
+
+for (i in 1:nrow(polIICtrlPairs)) {
+  
+  lfcMat <- get_fold_change(df = lfcMat,
+                            nmt = polIICtrlPairs$sampleId1[i],
+                            dmt = polIICtrlPairs$sampleId2[i],
+                            newCol = polIICtrlPairs$lfcCol[i],
+                            isExpressedCols = polIICols$is_expressed)
+  
+}
+
+
+lfcMat <- dplyr::select(lfcMat, gene, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
+
+fwrite(x = lfcMat, file = paste(polII_dataPath, "/polII_LFC_mut_vs_wt.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+
+pt <- ggpairs(data = dplyr::select(lfcMat, starts_with("lfc.")),
+              upper = list(continuous = wrap("points", size = 0.1)),
+              lower = list(continuous = wrap("cor", size = 4)),
+              diag = list(continuous = "densityDiag")) +
+  theme_bw() +
+  theme(
+    strip.text.y = element_text(size = 8, angle = 0, hjust = 0),
+    strip.text.x = element_text(size = 8, angle = 90, hjust = 0)
+  )
+
+png(filename = paste(polII_dataPath, "/polII_LFC_mut_vs_wt.png", sep = ""),
+    width = 6000, height = 6000, res = 250)
+
+pt
+dev.off()
+
+
+##################################################################################
+## polII data fold change results: 48h-20h pairs
+polIITimeDiffPairs <- suppressMessages(readr::read_tsv(file = file_polIITimeDiffPairs, col_names = T)) %>% 
+  dplyr::mutate(lfcCol = paste("lfc.", sampleId1, "_vs_", sampleId2, sep = ""))
+
+lfcMat2 <- polIIMat
+
+# i <- 1
+
+for (i in 1:nrow(polIITimeDiffPairs)) {
+  
+  lfcMat2 <- get_fold_change(df = lfcMat2,
+                             nmt = polIITimeDiffPairs$sampleId1[i],
+                             dmt = polIITimeDiffPairs$sampleId2[i],
+                             newCol = polIITimeDiffPairs$lfcCol[i],
+                             isExpressedCols = polIICols$is_expressed)
+  
+}
+
+
+lfcMat2 <- dplyr::select(lfcMat2, gene, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
+
+
+fwrite(x = lfcMat2, file = paste(polII_dataPath, "/polII_LFC_40h_vs_20h.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+pt2 <- ggpairs(data = dplyr::select(lfcMat2, starts_with("lfc.")),
+               upper = list(continuous = wrap("points", size = 0.1)),
+               lower = list(continuous = wrap("cor", size = 4)),
+               diag = list(continuous = "densityDiag")) +
+  theme_bw() +
+  theme(
+    strip.text.y = element_text(size = 8, angle = 0, hjust = 0),
+    strip.text.x = element_text(size = 8, angle = 90, hjust = 0)
+  )
+
+png(filename = paste(polII_dataPath, "/polII_LFC_40h_vs_20h.png", sep = ""),
+    width = 6000, height = 6000, res = 250)
+
+pt2
+dev.off()
+
+##################################################################################
+## fold change heatmap for genes of interest
+goi <- read_tsv(file = file_factors, col_names = T)
+
+goiLfc <- dplyr::left_join(goi, lfcMat, by = c("id" = "gene")) 
+
+
+lfcDf <- dplyr::select(goiLfc, name, starts_with("lfc.")) %>% 
+  tidyr::gather(key = lfcCol, value = expression, -name, factor_key = TRUE) %>% 
+  tidyr::spread(key = name, value = expression) %>% 
+  dplyr::mutate_if(.predicate = is.factor, .funs = as.character) %>% 
+  dplyr::left_join(y = polIICtrlPairs, by = c("lfcCol" = "lfcCol")) %>% 
+  dplyr::select(lfcCol, sampleId, control, goi$name) %>% 
+  as.data.frame()
+
+
+fwrite(x = lfcDf, file = paste(polII_dataPath, "/factors_polII_signal_LFC.tab", sep = ""),
+       sep = "\t", col.names = T, quote = F, row.names = F)
+
+
+lfcMat <- dplyr::select(lfcDf, -sampleId, -control) %>% 
+  tibble::column_to_rownames(var = "lfcCol") %>% 
+  as.matrix()
+
+rownames(lfcMat) <- gsub(pattern = "(lfc.|An_|_polII_\\d)", replacement = "", x = rownames(lfcMat)) %>% 
+  gsub(pattern = "_vs_", replacement = " / ", x = .)
+
+lfc_color <- colorRamp2(breaks = c(-2, -1, -0.5, 0, 0.5, 1, 2),
+                        # colors = RColorBrewer::brewer.pal(n = 7, name = "PuOr"),
+                        colors = c("#b35806", "#f1a340", "#f7f7f7", "#f7f7f7", "#f7f7f7", "#998ec3", "#542788"))
+
+
+htLfc <- Heatmap(matrix = lfcMat,
+                 col = lfc_color,
+                 column_title = "polII signal fold change for various factors in mutants",
+                 column_title_gp = gpar(fontsize = 14, fontface = "bold"),
+                 heatmap_legend_param = list(
+                   title = "log2(fold change)",
+                   legend_height = unit(4, "cm"),
+                   labels_gp = gpar(fontsize = 12),
+                   title_gp = gpar(fontsize = 12, fontface = "bold"),
+                   title_position = "topcenter"
+                 ),
+                 cluster_rows = FALSE, cluster_columns = FALSE,
+                 row_names_side = "left",
+                 column_names_gp = gpar(fontsize = 12, fontface = "bold"),
+                 row_names_gp = gpar(fontsize = 12),
+                 row_names_max_width = unit(10, "cm")
+)
+
+
+pdf(file = paste(polII_dataPath, "/factors_polII_signal_LFC.pdf", sep = ""), width = 10, height = 12)
+draw(htLfc)
+dev.off()
+
+
+
+

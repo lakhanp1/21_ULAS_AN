@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Session genome="E:\Chris_UM\Database\A_Nidulans\A_nidulans_FGSC_A4_version_s10-m04-r03_chromosomes.fasta" hasGeneTrack="false" hasSequenceTrack="true" locus="ChrI_A_nidulans_FGSC_A4:1785481-1802818" nextAutoscaleGroup="5" path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\kdmB_analysis\IGV_session_kdmB_all.xml" version="8">
+    <Resources>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_input_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_MYC_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_Rpb3_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Me3_20h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TFIIB_15h_mix22_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_TFIIB_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_Rpb1_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\referenceData\SM_genes.bed"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3_20h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_MYC_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K4Me3_20h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3_48h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb1_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_MYC_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Ac_48h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TFIIB_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb3_15h_mix22_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TBP_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K36Me3_20h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Me3_48h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_TBP_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_MYC_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K36Me3_48h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TBP_15h_mix22_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Database\A_Nidulans\A_nidulans_FGSC_A4_version_s10-m04-r03_features.gff"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_20h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_48h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_20h_polII_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb3_15h_mix22_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K4Me3_48h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_20h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_20h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_48h_HA_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_48h_HA_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb1_15h_mix22_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Ac_20h_HIST_1_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_48h_polII_2_normalized.bw"/>
+        <Resource path="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\referenceData\sampleAttributes.txt"/>
+    </Resources>
+    <Panel height="93" name="FeaturePanel" width="1901">
+        <Track altColor="0,0,178" autoScale="false" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="Reference sequence" name="Reference sequence" sortable="false" visible="true"/>
+        <Track altColor="0,0,178" autoScale="false" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" displayMode="SQUISHED" featureVisibilityWindow="-1" fontSize="10" height="50" id="E:\Chris_UM\Database\A_Nidulans\A_nidulans_FGSC_A4_version_s10-m04-r03_features.gff" name="A_nidulans_FGSC_A4_version_s10-m04-r03_features.gff" renderer="BASIC_FEATURE" sortable="false" visible="true" windowFunction="count"/>
+        <Track altColor="0,0,178" autoScale="false" clazz="org.broad.igv.track.FeatureTrack" color="255,51,51" displayMode="SQUISHED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\referenceData\SM_genes.bed" name="SM_genes.bed" renderer="BASIC_FEATURE" sortable="false" visible="true" windowFunction="count"/>
+    </Panel>
+    <Panel height="4400" name="DataPanel" width="1901">
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_20h_HA_1_normalized.bw" name="An_hepA_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="47.696" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_20h_HA_2_normalized.bw" name="An_hepA_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="29.375" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_48h_HA_1_normalized.bw" name="An_hepA_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="30.765" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_hepA_48h_HA_2_normalized.bw" name="An_hepA_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="30.492" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3_20h_HIST_1_normalized.bw" name="An_H3_20h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.98" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3_48h_HIST_1_normalized.bw" name="An_H3_48h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="14.626" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K36Me3_20h_HIST_1_normalized.bw" name="An_H3K36Me3_20h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="29.992" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K36Me3_48h_HIST_1_normalized.bw" name="An_H3K36Me3_48h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="27.772" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K4Me3_20h_HIST_1_normalized.bw" name="An_H3K4Me3_20h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="58.22" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K4Me3_48h_HIST_1_normalized.bw" name="An_H3K4Me3_48h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="70.31" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Ac_20h_HIST_1_normalized.bw" name="An_H3K9Ac_20h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="34.888" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Ac_48h_HIST_1_normalized.bw" name="An_H3K9Ac_48h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="29.005713" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Me3_20h_HIST_1_normalized.bw" name="An_H3K9Me3_20h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="31.892" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="204,102,0" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="102,102,102" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_H3K9Me3_48h_HIST_1_normalized.bw" name="An_H3K9Me3_48h_HIST_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.768" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_20h_HA_1_normalized.bw" name="An_laeA_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="36.45" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_20h_HA_2_normalized.bw" name="An_laeA_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="34.32" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_48h_HA_1_normalized.bw" name="An_laeA_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="47.088" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_48h_HA_2_normalized.bw" name="An_laeA_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="53.5" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" colorScale="ContinuousColorScale;0.0;277.239990234375;255,255,255;204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_20h_polII_1_normalized.bw" name="An_laeA_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.12" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_20h_polII_2_normalized.bw" name="An_laeA_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="8.555" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_48h_polII_1_normalized.bw" name="An_laeA_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="29.07" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_48h_polII_2_normalized.bw" name="An_laeA_del_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="13.668" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_20h_HA_1_normalized.bw" name="An_laeA_hepA_GFP_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="32.499" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_20h_HA_2_normalized.bw" name="An_laeA_hepA_GFP_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="26.862" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_48h_HA_1_normalized.bw" name="An_laeA_hepA_GFP_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="38.5875" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_hepA_GFP_48h_HA_2_normalized.bw" name="An_laeA_hepA_GFP_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="22.54" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_20h_HA_2_normalized.bw" name="An_laeA_kdmB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="41.292" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_48h_HA_2_normalized.bw" name="An_laeA_kdmB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="58.177776" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_20h_HA_1_normalized.bw" name="An_ecoA_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="28.204" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_20h_HA_2_normalized.bw" name="An_ecoA_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="24.837" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_48h_HA_1_normalized.bw" name="An_ecoA_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="34.48457" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_48h_HA_2_normalized.bw" name="An_ecoA_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="21.28" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_20h_HA_1_normalized.bw" name="An_ecoA_kdmB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.15" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_20h_HA_2_normalized.bw" name="An_ecoA_kdmB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.062" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_48h_HA_1_normalized.bw" name="An_ecoA_kdmB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.09" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_kdmB_del_48h_HA_2_normalized.bw" name="An_ecoA_kdmB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.1" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_20h_HA_1_normalized.bw" name="An_ecoA_sntB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.536" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_20h_HA_2_normalized.bw" name="An_ecoA_sntB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.918" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_48h_HA_1_normalized.bw" name="An_ecoA_sntB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="29.014" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_sntB_del_48h_HA_2_normalized.bw" name="An_ecoA_sntB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.55" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_20h_polII_1_normalized.bw" name="An_ecoA_teton_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.117" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_20h_polII_2_normalized.bw" name="An_ecoA_teton_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.645" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_48h_polII_1_normalized.bw" name="An_ecoA_teton_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="13.224" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_ecoA_teton_48h_polII_2_normalized.bw" name="An_ecoA_teton_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="36.722" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_20h_HA_1_normalized.bw" name="An_kdmB_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="31.65" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_20h_HA_2_normalized.bw" name="An_kdmB_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="21.76" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_48h_HA_1_normalized.bw" name="An_kdmB_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="46.141773" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_48h_HA_2_normalized.bw" name="An_kdmB_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="22.425" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_20h_polII_1_normalized.bw" name="An_kdmB_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.3777" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_20h_polII_2_normalized.bw" name="An_kdmB_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="21.141" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_48h_polII_1_normalized.bw" name="An_kdmB_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.953" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_48h_polII_2_normalized.bw" name="An_kdmB_del_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="27.384" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_20h_polII_1_normalized.bw" name="An_kdmB_del_sntB_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.58343" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_20h_polII_2_normalized.bw" name="An_kdmB_del_sntB_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.45" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_48h_polII_1_normalized.bw" name="An_kdmB_del_sntB_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="24.301144" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_del_sntB_del_48h_polII_2_normalized.bw" name="An_kdmB_del_sntB_del_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.364" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_20h_HA_1_normalized.bw" name="An_kdmB_laeA_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.642" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_20h_HA_2_normalized.bw" name="An_kdmB_laeA_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.141" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_48h_HA_1_normalized.bw" name="An_kdmB_laeA_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="22.455751" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_laeA_del_48h_HA_2_normalized.bw" name="An_kdmB_laeA_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.384" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_20h_HA_1_normalized.bw" name="An_kdmB_sntB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.64" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_20h_HA_2_normalized.bw" name="An_kdmB_sntB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.966" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_48h_HA_1_normalized.bw" name="An_kdmB_sntB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="32.093" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_kdmB_sntB_del_48h_HA_2_normalized.bw" name="An_kdmB_sntB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.96" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_20h_polII_1_normalized.bw" name="An_laeA_del_kdmB_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.416" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_20h_polII_2_normalized.bw" name="An_laeA_del_kdmB_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="13.155999" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_48h_polII_1_normalized.bw" name="An_laeA_del_kdmB_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="10.782" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_del_kdmB_del_48h_polII_2_normalized.bw" name="An_laeA_del_kdmB_del_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="27.504" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_20h_HA_1_normalized.bw" name="An_laeA_kdmB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.962" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_laeA_kdmB_del_48h_HA_1_normalized.bw" name="An_laeA_kdmB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.15125" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_20h_HA_1_normalized.bw" name="An_rpdA_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="31.57" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_20h_HA_2_normalized.bw" name="An_rpdA_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.464" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_48h_HA_1_normalized.bw" name="An_rpdA_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="38.528" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_48h_HA_2_normalized.bw" name="An_rpdA_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="39.612373" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_20h_HA_1_normalized.bw" name="An_rpdA_kdmB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.868572" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_20h_HA_2_normalized.bw" name="An_rpdA_kdmB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.444" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_48h_HA_1_normalized.bw" name="An_rpdA_kdmB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="26.196333" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_kdmB_del_48h_HA_2_normalized.bw" name="An_rpdA_kdmB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="28.665" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_20h_HA_1_normalized.bw" name="An_rpdA_sntB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.022" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_20h_HA_2_normalized.bw" name="An_rpdA_sntB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.418" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_48h_HA_1_normalized.bw" name="An_rpdA_sntB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="31.668" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_sntB_del_48h_HA_2_normalized.bw" name="An_rpdA_sntB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="26.065" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_20h_polII_1_normalized.bw" name="An_rpdA_teton_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.561" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_20h_polII_2_normalized.bw" name="An_rpdA_teton_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="11.84" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_48h_polII_1_normalized.bw" name="An_rpdA_teton_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="14.175" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_rpdA_teton_48h_polII_2_normalized.bw" name="An_rpdA_teton_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="28.756" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_20h_HA_1_normalized.bw" name="An_sntB_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="38.97725" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_20h_HA_2_normalized.bw" name="An_sntB_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.856" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_48h_HA_1_normalized.bw" name="An_sntB_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="23.43" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_48h_HA_2_normalized.bw" name="An_sntB_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.695" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_1_normalized.bw" name="An_sntB_del_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.83" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_20h_polII_2_normalized.bw" name="An_sntB_del_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="44.125195" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_48h_polII_1_normalized.bw" name="An_sntB_del_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.699999" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_del_48h_polII_2_normalized.bw" name="An_sntB_del_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.898" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_20h_HA_1_normalized.bw" name="An_sntB_kdmB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.152" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_20h_HA_2_normalized.bw" name="An_sntB_kdmB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.956" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_48h_HA_1_normalized.bw" name="An_sntB_kdmB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="22.304" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sntB_kdmB_del_48h_HA_2_normalized.bw" name="An_sntB_kdmB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.176" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_20h_HA_1_normalized.bw" name="An_sudA_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.782" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_20h_HA_2_normalized.bw" name="An_sudA_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.266" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_48h_HA_1_normalized.bw" name="An_sudA_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.023" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_48h_HA_2_normalized.bw" name="An_sudA_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.894" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_20h_HA_1_normalized.bw" name="An_sudA_ecoA_teton_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.18" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_20h_HA_2_normalized.bw" name="An_sudA_ecoA_teton_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.813" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_48h_HA_1_normalized.bw" name="An_sudA_ecoA_teton_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.9645" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_ecoA_teton_48h_HA_2_normalized.bw" name="An_sudA_ecoA_teton_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.28" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_20h_HA_1_normalized.bw" name="An_sudA_kdmB_del_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.46" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_20h_HA_2_normalized.bw" name="An_sudA_kdmB_del_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.585142" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_48h_HA_1_normalized.bw" name="An_sudA_kdmB_del_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.256" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_sudA_kdmB_del_48h_HA_2_normalized.bw" name="An_sudA_kdmB_del_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.1152" minimum="0.0" type="LINEAR"/>
+        </Track>
+    </Panel>
+    <Panel height="480" name="DataPanel2" width="1901">
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb1_15h_mix22_1_normalized.bw" name="veA_wt_Rpb1_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.876" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_Rpb1_15h_mix22_1_normalized.bw" name="veA1_Rpb1_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="11.682" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb1_15h_mix22_2_normalized.bw" name="veA_wt_Rpb1_15h_mix22_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="16.36457" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb3_15h_mix22_1_normalized.bw" name="veA_wt_Rpb3_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.325" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_Rpb3_15h_mix22_1_normalized.bw" name="veA1_Rpb3_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="10.692" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_Rpb3_15h_mix22_2_normalized.bw" name="veA_wt_Rpb3_15h_mix22_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.024" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TBP_15h_mix22_1_normalized.bw" name="veA_wt_TBP_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="26.775" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_TBP_15h_mix22_1_normalized.bw" name="veA1_TBP_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="23.184" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TBP_15h_mix22_2_normalized.bw" name="veA_wt_TBP_15h_mix22_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="34.978127" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TFIIB_15h_mix22_1_normalized.bw" name="veA_wt_TFIIB_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="30.5525" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA1_TFIIB_15h_mix22_1_normalized.bw" name="veA1_TFIIB_15h_mix22_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="18.538" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\veA_wt_TFIIB_15h_mix22_2_normalized.bw" name="veA_wt_TFIIB_15h_mix22_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.381" minimum="0.0" type="LINEAR"/>
+        </Track>
+    </Panel>
+    <Panel height="680" name="DataPanel3" width="1901">
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_HA_1_normalized.bw" name="An_untagged_20h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="12.138" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_HA_2_normalized.bw" name="An_untagged_20h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="15.744" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_HA_1_normalized.bw" name="An_untagged_48h_HA_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="13.468" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_HA_2_normalized.bw" name="An_untagged_48h_HA_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="22.435" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_input_1_normalized.bw" name="An_untagged_48h_input_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="12.644" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_MYC_1_normalized.bw" name="An_untagged_20h_MYC_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.02" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_MYC_2_normalized.bw" name="An_untagged_20h_MYC_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="19.864" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_MYC_1_normalized.bw" name="An_untagged_48h_MYC_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="12.198" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_MYC_2_normalized.bw" name="An_untagged_48h_MYC_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="17.157" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_polII_1_normalized.bw" name="An_untagged_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="12.744" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_20h_polII_2_normalized.bw" name="An_untagged_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.623331" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_polII_1_normalized.bw" name="An_untagged_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="25.259" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_48h_polII_2_normalized.bw" name="An_untagged_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="20.871555" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_20h_polII_1_normalized.bw" name="An_untagged_dox_20h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="14.276" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_20h_polII_2_normalized.bw" name="An_untagged_dox_20h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="12.609" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_48h_polII_1_normalized.bw" name="An_untagged_dox_48h_polII_1_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="48.461876" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" color="204,0,153" displayMode="EXPANDED" featureVisibilityWindow="-1" fontSize="10" id="E:\Chris_UM\Analysis\21_CL2017_ChIPmix_ULAS_MIX\ULAS_AN\data\bwFiles\An_untagged_dox_48h_polII_2_normalized.bw" name="An_untagged_dox_48h_polII_2_normalized.bw" normalize="false" renderer="BAR_CHART" sortable="true" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="26.965998" minimum="0.0" type="LINEAR"/>
+        </Track>
+    </Panel>
+    <PanelLayout dividerFractions="0.10323383084577115,0.5497512437810945,0.8009950248756219"/>
+    <Filter match="all" name="" showTracks="true">
+        <FilterElement booleanOperator="AND" item="IP_tag" operator="does not contain" value="POLII"/>
+    </Filter>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>

@@ -1,0 +1,11 @@
+sampleId
+An_kdmB_48h_HA_1
+An_ecoA_48h_HA_1
+An_ecoA_kdmB_del_48h_HA_1
+An_sntB_48h_HA_1
+An_sntB_kdmB_del_48h_HA_1
+An_rpdA_48h_HA_1
+An_rpdA_kdmB_del_48h_HA_1
+An_sudA_48h_HA_1
+An_sudA_kdmB_del_48h_HA_1
+An_untagged_48h_HA_1
