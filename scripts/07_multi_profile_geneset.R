@@ -12,12 +12,12 @@ rm(list = ls())
 ##################################################################################
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "geneset1_48h"
-outPrefix <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, comparisonName)
+comparisonName <- "geneset1_20h"
+outPrefix <- here::here("kdmB_analysis", "kdmB_complex_20h", comparisonName, comparisonName)
 
 
-file_plotSamples <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, "samples.txt")
-file_geneSubset <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, "geneList.txt")
+file_plotSamples <- here::here("kdmB_analysis", "kdmB_complex_20h", comparisonName, "samples.txt")
+file_geneSubset <- here::here("kdmB_analysis", "kdmB_complex_20h", comparisonName, "geneList.txt")
 
 
 matrixType <- "2kb_ATG_1kb"
@@ -150,20 +150,20 @@ anLables[["gene_length"]] = "Gene Length"
 
 
 ## generate profile matrix for the first time
-genesGr <- rtracklayer::import(con = file_genes, format = "bed")
-
-geneStartGr <- GenomicRanges::resize(x = genesGr, width = 1, fix = "start")
-
-i <- 1
-for(i in 1:nrow(exptData)){
-  bwMat <- bigwig_profile_matrix(bwFile = exptData$bwFile[i],
-                                 regions = geneStartGr,
-                                 signalName = exptData$sampleId[i],
-                                 extend = c(up, down),
-                                 targetName = "ATG",
-                                 storeLocal = TRUE,
-                                 localPath = exptData$matFile[i])
-}
+# genesGr <- rtracklayer::import(con = file_genes, format = "bed")
+# 
+# geneStartGr <- GenomicRanges::resize(x = genesGr, width = 1, fix = "start")
+# 
+# i <- 1
+# for(i in 1:nrow(exptData)){
+#   bwMat <- bigwig_profile_matrix(bwFile = exptData$bwFile[i],
+#                                  regions = geneStartGr,
+#                                  signalName = exptData$sampleId[i],
+#                                  extend = c(up, down),
+#                                  targetName = "ATG",
+#                                  storeLocal = TRUE,
+#                                  localPath = exptData$matFile[i])
+# }
 
 ## color list
 matList <- import_profiles(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
@@ -309,7 +309,11 @@ pdfWd <- 2 +
 
 
 ## gene length annotation
-anGl_geneset <- gene_length_heatmap_annotation(bedFile = file_genes, genes = geneSubset$geneId)
+anGl_geneset <- gene_length_heatmap_annotation(
+  bedFile = file_genes,
+  genes = geneSubset$geneId,
+  axis_param = list(at = c(2000, 4000), labels = c("2kb", "> 4kb")),
+  pointSize = unit(4, "mm"))
 
 
 geneset_htlist <- anGl_geneset$an +
@@ -321,7 +325,7 @@ geneset_htlist <- anGl_geneset$an +
 title_geneset= paste(comparisonName, ": genes of interest", collapse = "")
 
 # draw Heatmap and add the annotation name decoration
-pdf(file = paste(outPrefix_geneset, ".profiles.pdf", sep = ""), width = pdfWd, height = 13)
+pdf(file = paste(outPrefix_geneset, ".profiles.pdf", sep = ""), width = pdfWd, height = 6)
 
 draw(geneset_htlist,
      main_heatmap = exptData$profileName[1],
