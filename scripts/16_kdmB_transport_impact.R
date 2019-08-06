@@ -8,15 +8,14 @@ library(ggplot2)
 ## this script checks the transport BP gene's fold change in kdmB_del_20h / 20h_polII
 
 
-
 rm(list = ls())
 
-source(file = "E:/Chris_UM/Codes/GO_enrichment/topGO_functions.R")
+source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
 
 ##################################################################################
 
-comparisonName <- "polII"
-
+analysisName <- "kdmb_del_transport"
+outPrefix <- here::here("kdmB_analysis", "kdmB_del_20h", analysisName)
 
 polII1 <- "An_untagged_20h_polII_1"
 polII2 <- "An_untagged_48h_polII_1"
@@ -31,22 +30,22 @@ polIIDiffPairs <- list(
   p1 = list(
     name = "untagged_48h_vs_untagged_20h_polII",
     title = "polII log2(untagged_48h \n vs untagged_20h)",
-    samples = c(polII1, polII2)
+    samples = c(polII2, polII1)
   ),
   p2 = list(
     name = "kdmB_del_48h_vs_kdmB_del_20h_polII",
     title = "polII log2(kdmB_del_48h \n vs kdmB_del_20h)",
-    samples = otherPolII[c(1, 2)]
+    samples = otherPolII[c(2, 1)]
   ),
   p3 = list(
     name = "kdmB_del_20h_vs_untagged_20h_polII",
     title = "polII log2(kdmB_del_20h \n vs untagged_20h_polII)",
-    samples = c(polII1, otherPolII[1])
+    samples = c(otherPolII[1], polII1)
   ),
   p4 = list(
     name = "kdmB_del_48h_vs_untagged_48h_polII",
     title = "polII log2(kdmB_del_48h \n vs untagged_48h_polII)",
-    samples = c(polII2, otherPolII[2])
+    samples = c(otherPolII[2], polII2)
   )
 )
 
@@ -72,12 +71,12 @@ orgDb <- org.Anidulans.eg.db
 
 ## genes to read
 geneSet <- data.table::fread(file = file_genes, header = F,
-                             col.names = c("chr", "start", "end", "gene", "score", "strand")) %>% 
+                             col.names = c("chr", "start", "end", "geneId", "score", "strand")) %>% 
   dplyr::mutate(length = end - start)
 
-geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$geneId, columns = "DESCRIPTION", keytype = "GID")
 
-geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
+geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("geneId" = "GID"))
 
 ## gene information annotations: cluster and TF and polII expression values
 geneInfo <- add_gene_info(file = file_geneInfo, clusterDf = geneSet)
@@ -88,8 +87,7 @@ head(geneInfo)
 
 polIIData <- get_sample_information(exptInfoFile = file_exptInfo,
                                     samples = c(polII1, polII2, otherPolII),
-                                    dataPath = polII_dataPath,
-                                    matrixSource = matrixType)
+                                    dataPath = polII_dataPath)
 
 
 exptData <- dplyr::bind_rows(polIIData)
@@ -109,8 +107,8 @@ expressionData <- get_polII_expressions(exptInfo = exptData,
 ## add fold change columns
 for (i in names(polIIDiffPairs)) {
   expressionData <- get_fold_change(df = expressionData,
-                                    nmt = polIIDiffPairs[[i]]$samples[2],
-                                    dmt = polIIDiffPairs[[i]]$samples[1],
+                                    nmt = polIIDiffPairs[[i]]$samples[1],
+                                    dmt = polIIDiffPairs[[i]]$samples[2],
                                     newCol = polIIDiffPairs[[i]]$name,
                                     isExpressedCols = polIICols$is_expressed)
 }
@@ -126,6 +124,7 @@ kdmB20h_diff <- dplyr::mutate(
       true = "down",
       false = "noDEG"
     ))) %>% 
+  dplyr::select(geneId, !!polIIDiffPairs$p3$name, !!!polIIDiffPairs$p3$samples, group) %>% 
   dplyr::filter(abs(!! as.name(polIIDiffPairs$p3$name)) > 1)
 
 
@@ -135,22 +134,25 @@ kdmB20h_diff <- dplyr::mutate(
 
 ## topGO enrichment
 goEnrich <- dplyr::group_by(kdmB20h_diff, group) %>%
-  do(topGO_enrichment(goMapFile = file_topGoMap, genesOfInterest = .$gene, goNodeSize = 5))
+  do(topGO_enrichment(goMapFile = file_topGoMap, genes = .$geneId, goNodeSize = 5))
 
-gt <- c("GO:0046323", "GO:0006810")
+gt <- c("GO:0046323", "GO:0006810", "GO:0008645", "GO:0019740")
 
 
 gtMap <- dplyr::group_by(kdmB20h_diff, group) %>%
-  do(GO_map(genes = .$gene, goTerms = gt, org = orgDb))
+  do(GO_map(genes = .$geneId, goTerms = gt, org = orgDb)) %>% 
+  dplyr::ungroup()
+
+transportGenes <- gtMap %>% 
+  dplyr::mutate(geneId = strsplit(x = genes, split = ";", fixed = T)) %>% 
+  tidyr::unnest() %>% 
+  dplyr::select(geneId, GOID, TERM) %>% 
+  dplyr::left_join(y = geneDesc, by = c("geneId" = "GID")) %>% 
+  dplyr::left_join(y = kdmB20h_diff, by = "geneId")
+
+readr::write_tsv(x = transportGenes, path = paste(outPrefix, ".genes.tab", sep = ""))
 
 
-df <- AnnotationDbi::select(x = orgDb,
-                            keys = unlist(strsplit(x = gtMap$genes[2], split = ";", fixed = T)),
-                            columns = "DESCRIPTION", keytype = "GID")
-
-## pathway enrichment
-keggEnr <- dplyr::group_by(kdmB20h_diff, group) %>%
-  do(keggprofile_enrichment(genes = .$gene, orgdb = orgDb, keytype = "GID", keggOrg = "ani", pvalCut = 0.05))
 
 
 
