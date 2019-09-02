@@ -107,8 +107,13 @@ tfInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                  dataPath = TF_dataPath,
                                  profileMatrixSuffix = "normalizedmatrix")
 
+## exclude uORF transcripts from annotation
+txInfo <- AnnotationDbi::select(x = txDb, keys = keys(x = txDb, keytype = "TXID"),
+                                columns = c("TXNAME", "TXTYPE"), keytype = "TXID") %>% 
+  dplyr::filter(!grepl(pattern = "-uORF", x = TXNAME))
+
 i <- 1
-# An_cclA_kdmA_del_48h_HA_2
+
 
 for(i in 1:nrow(tfInfo)){
   
@@ -120,18 +125,21 @@ for(i in 1:nrow(tfInfo)){
   peakAn <- narrowPeak_annotate(
     peakFile = tfInfo$peakFile[i],
     txdb = txDb,
+    txIds = txInfo$TXID,
     fileFormat = peakType,
     includeFractionCut = 0.7,
     bindingInGene = FALSE,
     promoterLength = 500,
     insideSkewToEndCut = 0.7,
-    reportPseudo = FALSE,
+    removePseudo = TRUE,
     output = tfInfo$peakAnno[i])
   
   if( !is.null(peakAn) ){
     tfDf <- gene_level_peak_annotation(
       sampleId = tfInfo$sampleId[i],
       peakAnnotation = tfInfo$peakAnno[i],
+      preference = c("nearStart", "peakInFeature", "featureInPeak",
+                     "nearEnd", "upstreamTss", "intergenic"),
       genesDf = geneSet,
       peakFile = tfInfo$peakFile[i],
       bwFile = tfInfo$bwFile[i],
@@ -230,34 +238,41 @@ samplesWithBindingInGene <- c("An_cclA_20h_HA_1", "An_cclA_20h_HA_2", "An_cclA_4
 tfInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                  samples = samplesWithBindingInGene,
                                  dataPath = TF_dataPath,
-                                 matrixSource = "normalizedmatrix")
+                                 profileMatrixSuffix = "normalizedmatrix")
 
+i <- 1
 
 for (i in 1:nrow(tfInfo)) {
   
+  peakType <- dplyr::case_when(
+    tfInfo$peakType[i] == "narrow" ~ "narrowPeak",
+    tfInfo$peakType[i] == "broad" ~ "broadPeak"
+  )
   
-  ## annotate peaks based on TxDB
-  peakAn <- narrowPeak_annotate(peakFile = tfInfo$peakFile[i],
-                                txdb = txDb,
-                                includeFractionCut = 0.7,
-                                bindingInGene = TRUE, promoterLength = 500,
-                                insideSkewToEndCut = 0.7,
-                                output = tfInfo$peakAnno[i])
+  peakAn <- narrowPeak_annotate(
+    peakFile = tfInfo$peakFile[i],
+    txdb = txDb,
+    txIds = txInfo$TXID,
+    fileFormat = peakType,
+    includeFractionCut = 0.7,
+    bindingInGene = TRUE,
+    promoterLength = 500,
+    insideSkewToEndCut = 0.7,
+    removePseudo = FALSE,
+    output = tfInfo$peakAnno[i])
   
-
-  if(!is.null(peakAn)){
+  if( !is.null(peakAn) ){
     tfDf <- gene_level_peak_annotation(
       sampleId = tfInfo$sampleId[i],
       peakAnnotation = tfInfo$peakAnno[i],
-      cdsFile = geneCdsFile,
+      preference = c("nearStart", "peakInFeature", "featureInPeak",
+                     "nearEnd", "upstreamTss", "intergenic"),
+      genesDf = geneSet,
       peakFile = tfInfo$peakFile[i],
       bwFile = tfInfo$bwFile[i],
-      preference = c("nearStart", "peakInFeature", "featureInPeak", "nearEnd", "upstreamTss"),
-      outFile = tfInfo$peakTargetFile[i],
-      bindingInGene = FALSE)
+      outFile = tfInfo$peakTargetFile[i])
+    
   }
-  
-  print(tfInfo$sampleId[i])
   
 }
 
