@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 
 ## this script plots the polII signal heatmap and polII fold change heatmap
 ## for the kdmB complex members
@@ -23,11 +23,11 @@ polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_factors <- here::here("data", "referenceData/factor_names.list")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_factorSignal <- paste(polII_dataPath, "/factors_polII_signal.tab", sep = "")
 file_factorLfc <- paste(polII_dataPath, "/factors_polII_signal_LFC.tab", sep = "")

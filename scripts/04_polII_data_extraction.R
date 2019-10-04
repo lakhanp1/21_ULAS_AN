@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(GGally)
 
 ## this script performs following tasks
@@ -26,11 +26,11 @@ polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_factors <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/factor_names.list"
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
 file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")

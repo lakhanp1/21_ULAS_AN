@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(scales)
 library(ggplot2)
 library(summarytools)
@@ -92,7 +92,7 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 showExpressionHeatmap <- FALSE
 

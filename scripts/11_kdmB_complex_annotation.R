@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(here)
 library(summarytools)
 
@@ -10,16 +10,16 @@ library(summarytools)
 
 rm(list = ls())
 
-source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
+source(file = "E:/Chris_UM/GitHub/omics_util/04_GO_enrichment/topGO_functions.R")
 
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-analysisName <- "KERS_complex_48h"
+analysisName <- "KERS_complex_20h"
 workDir <- here::here("kdmB_analysis", "03_KERS_complex", analysisName)
 outPrefix <- paste(workDir, "/", analysisName, sep = "")
 
 file_plotSamples <- paste(workDir, "/", "samples.txt", sep = "")
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 matrixType <- "normalizedMatrix_5kb"
 up <- 5000

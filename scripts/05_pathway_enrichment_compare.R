@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(here)
 
 ## 1) compare the keggprofile KEGG enrichment result between pairs of samples
@@ -36,7 +36,7 @@ polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 ##################################################################################
 

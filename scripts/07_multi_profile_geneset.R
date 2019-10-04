@@ -1,6 +1,6 @@
 library(chipmine)
 library(here)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(TxDb.Anidulans.AspGD.GFF)
 
 
@@ -30,7 +30,7 @@ matrixDim = c(c(up, body, down)/binSize, binSize)
 
 showExpressionHeatmap <- FALSE
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 txDb <- TxDb.Anidulans.AspGD.GFF
 
 

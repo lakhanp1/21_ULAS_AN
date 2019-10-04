@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(here)
 require(XLConnect)
 options(java.parameters = "- Xmx4g")
@@ -28,7 +28,7 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 keggOrgCode <- "ani"
 
 ##################################################################################
@@ -67,7 +67,7 @@ tfInfo <- get_sample_information(exptInfoFile = file_exptInfo,
 
 i <- 66
 
-foreach(i = 1:nrow(tfInfo), .packages= c("chipmine", "XLConnect", "org.Anidulans.eg.db")) %do% {
+foreach(i = 1:nrow(tfInfo), .packages= c("chipmine", "XLConnect", "org.Anidulans.FGSCA4.eg.db")) %do% {
   
   tfFuncDir <- paste(TF_dataPath, "/", tfInfo$sampleId[i], "/", "functional_analysis", sep = "")
   if(! dir.exists(tfFuncDir)){

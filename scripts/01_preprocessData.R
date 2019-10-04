@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(TxDb.Anidulans.AspGD.GFF)
 library(foreach)
 library(doParallel)
@@ -15,7 +15,7 @@ rm(list = ls())
 file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
 geneCdsFile <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_version_s10-m04-r03_CDS_Unique.bed"
 file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 txDb <- TxDb.Anidulans.AspGD.GFF
 
 TF_dataPath <- here::here("data", "TF_data")
