@@ -35,6 +35,7 @@ orgDb <- org.Anidulans.FGSCA4.eg.db
 file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
 file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")
 file_polIITimeDiffPairs <- paste(polII_dataPath, "/polII_48h_vs_20h_diff_pairs.txt", sep = "")
+file_polIIMat <- paste(polII_dataPath, "/polII_signal_matrix.tab", sep = "")
 
 ##################################################################################
 ## extract polII signal matrix for all the genes
@@ -63,37 +64,7 @@ polIICols <- list(
 )
 
 
-
-polIIMat <- get_polII_expressions(genesDf = geneSet, exptInfo = polII_info) %>% 
-  # dplyr::select(-starts_with("is_expressed")) %>%
-  dplyr::select(chr, start, end, geneId, strand, length, DESCRIPTION, everything())
-
-
-fwrite(x = polIIMat, file = paste(polII_dataPath, "/polII_signal_matrix.tab", sep = ""),
-       sep = "\t", col.names = T, quote = F, row.names = F)
-
-##################################################################################
-## polII signal percentile matrix
-quantile(x = polIIMat$An_untagged_20h_polII_1,
-         c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
-
-
-polIIQuantiles <- lapply(
-  X = polIICols$exp,
-  FUN = function(x){
-    quantile(
-      x = polIIMat[[x]],
-      c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
-  }) %>% 
-  as.data.frame() %>% 
-  tibble::rownames_to_column(var = "quantile") %>% 
-  # dplyr::mutate(quantile = paste("quantile_", quantile, sep = "")) %>% 
-  tidyr::gather(key = sample, value = signal, -quantile) %>% 
-  tidyr::spread(key = quantile, value = signal)
-
-
-fwrite(x = polIIQuantiles, file = paste(polII_dataPath, "/polII_signal_quantiles.tab", sep = ""),
-       sep = "\t", col.names = T, quote = F, row.names = F)
+polIIMat <- suppressMessages(readr::read_tsv(file = file_polIIMat))
 
 
 ##################################################################################
