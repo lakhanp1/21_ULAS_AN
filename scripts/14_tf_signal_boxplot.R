@@ -195,7 +195,11 @@ longDf <- data.table::melt(
   value.name = c("hasPeak", "peakCoverage")
 )
 
-levels(longDf$sample) <- names(tfCols$hasPeak)
+longDf$sample <- forcats::fct_recode(
+  .f = longDf$sample,
+  structure(.Data = levels(longDf$sample), names = names(tfCols$hasPeak))
+)
+
 longDf$sample <- as.character(longDf$sample)
 
 ## add TF, time info columns
@@ -217,7 +221,12 @@ pltDf <- melt.data.table(
   variable.name = "timepoint",
   value.name = c("hasPeak", "peakCoverage"))
 
-levels(pltDf$timepoint) <- c("20h", "48h")
+pltDf$timepoint <- forcats::fct_recode(
+  .f = pltDf$timepoint,
+  structure(levels(pltDf$timepoint), names = c("20h", "48h"))
+)
+
+
 pltDf$TF <- factor(pltDf$TF, levels = c("kdmB", "sntB", "ecoA", "rpdA"))
 pltDf$group <- factor(pltDf$group, levels = sort(unique(pltDf$group)))
 # pltDf$timepoint <- as.character(pltDf$timepoint)

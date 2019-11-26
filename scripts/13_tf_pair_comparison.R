@@ -647,7 +647,10 @@ boxDt <- data.table::melt(
   value.name = c("hasPeak", "peakCoverage")
 )
 
-levels(boxDt$sample) <- names(tfCols$hasPeak)
+boxDt$sample <- forcats::fct_recode(
+  .f = boxDt$sample,
+  structure(.Data = levels(boxDt$sample), names = names(tfCols$hasPeak))
+)
 
 boxDt <- dplyr::left_join(boxDt, dplyr::select(tfData, sampleId, TF, timepoint), by = c("sample" = "sampleId")) %>% 
   dplyr::group_by(sample) %>% 

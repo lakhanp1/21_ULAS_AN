@@ -1,7 +1,7 @@
 library(chipmine)
 library(org.Anidulans.FGSCA4.eg.db)
+library(TxDb.Anidulans.FGSCA4.AspGD.GFF)
 library(here)
-library(summarytools)
 
 ## KERS 20h+48h samples target gene matrix 
 
@@ -17,6 +17,7 @@ outPrefix <- paste(workDir, "/", analysisName, sep = "")
 
 file_plotSamples <- paste(workDir, "/", "samples.txt", sep = "")
 orgDb <- org.Anidulans.FGSCA4.eg.db
+txDb <- TxDb.Anidulans.FGSCA4.AspGD.GFF
 
 matrixType <- "normalizedMatrix_5kb"
 up <- 5000
@@ -124,8 +125,7 @@ tfCols <- sapply(
 
 ##################################################################################
 
-# peakTargetMat <- peak_target_matrix(sampleInfo = tfData, position = "best")
-bindingMat = combinatorial_binding_matrix(sampleInfo = tfData, summitRegion = 100,
+bindingMat = combinatorial_binding_matrix(sampleInfo = tfData, summitRegion = 50,
                                           peakCols = c("peakId"))
 
 bindingMat$region <- paste(bindingMat$seqnames, ":", bindingMat$start, "-", bindingMat$end, sep = "")
@@ -171,8 +171,13 @@ targetMatrix <- dplyr::left_join(
   dplyr::add_count(name, name = "n") %>%
   dplyr::distinct()
 
-readr::write_tsv(x = targetMatrix, path = paste(outPrefix, ".tab", sep = ""))
+readr::write_tsv(x = targetMatrix, path = paste(outPrefix, ".summit_based.tab", sep = ""))
 
+##################################################################################
+
+peakTargetMat <- peak_target_matrix(sampleInfo = tfData, position = "both")
+
+readr::write_tsv(x = peakTargetMat, path = paste(outPrefix, ".summit_based.genes.tab", sep = ""))
 
 
 

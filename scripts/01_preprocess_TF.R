@@ -1,6 +1,6 @@
 library(chipmine)
 library(org.Anidulans.FGSCA4.eg.db)
-library(TxDb.Anidulans.AspGD.GFF)
+library(TxDb.Anidulans.FGSCA4.AspGD.GFF)
 library(foreach)
 library(doParallel)
 library(here)
@@ -19,7 +19,7 @@ file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
 
 file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
 orgDb <- org.Anidulans.FGSCA4.eg.db
-txDb <- TxDb.Anidulans.AspGD.GFF
+txDb <- TxDb.Anidulans.FGSCA4.AspGD.GFF
 
 TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
