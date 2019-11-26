@@ -33,7 +33,7 @@ showExpressionHeatmap = TRUE
 ## genes to read
 file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
 file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
-file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/annotation_resources/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
 
 TF_dataPath <- here::here("data", "TF_data")
@@ -50,7 +50,6 @@ sampleList <- suppressMessages(readr::read_tsv(file = file_plotSamples, col_name
 geneSet <- suppressMessages(
   readr::read_tsv(file = file_genes, col_names = c("chr", "start", "end", "geneId", "score", "strand"))
 ) %>% 
-  dplyr::mutate(length = end - start) %>% 
   dplyr::select(geneId)
 
 geneDesc <- suppressMessages(
@@ -138,14 +137,14 @@ expressionData <- get_polII_expressions(exptInfo = exptData,
 
 expressionData <- dplyr::left_join(x = expressionData, y = peakTargetMat, by = "geneId")
 
-dplyr::group_by_at(expressionData, .vars = vars(starts_with("hasPeak."))) %>% 
-  dplyr::summarise(n = n())
-
-
 hasPeakDf <- expressionData %>% 
   dplyr::filter_at(.vars = vars(starts_with("hasPeak")), .vars_predicate = any_vars(. == TRUE)) %>% 
   dplyr::mutate(group = group_indices(., !!! lapply(unname(tfCols$hasPeak), as.name))) %>% 
   dplyr::mutate(group = sprintf(fmt = "%02d", group))
+
+dplyr::group_by_at(hasPeakDf, .vars = vars(starts_with("hasPeak."))) %>% 
+  dplyr::summarise(n = n_distinct(geneId))
+
 
 readr::write_tsv(x = hasPeakDf, path = paste(outPrefix, ".peaks_data.tab", sep = ""))
 
@@ -158,7 +157,7 @@ groupLabels <- structure(groupLabelDf$groupLabels, names = groupLabelDf$group)
 
 ##################################################################################
 ## binding stats
-bindingMat = combinatorial_binding_matrix(sampleInfo = tfData)
+bindingMat = combinatorial_binding_matrix(sampleInfo = tfData, summitRegion = 100)
 
 readr::write_tsv(x = bindingMat, path = paste(outPrefix, ".binding_matrix.tab", sep = ""))
 
@@ -170,13 +169,6 @@ goEnrich <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPe
 readr::write_tsv(x = goEnrich, path = paste(outPrefix, ".peakGroups.topGO.tab", sep = ""))
 
 
-## clusterProfiler groupGO assignment
-grpGo <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  do(clusterProfiler_groupGO(genes = .$geneId, org = orgDb, goLevel = 3, type = "BP", keyType ="GID"))
-
-readr::write_tsv(x = grpGo, path = paste(outPrefix, ".peakGroups.GO_assignment.tab", sep = ""))
-
-
 ## pathway enrichment
 keggEnr <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
   do(keggprofile_enrichment(genes = .$geneId, orgdb = orgDb, keytype = "GID",
@@ -185,18 +177,25 @@ keggEnr <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPea
 readr::write_tsv(x = keggEnr, path = paste(outPrefix, ".peakGroups.KEGG_enrichment.tab", sep = ""))
 
 
-clusterProfile_ego <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  dplyr::do(
-    {
-      ego <- clusterProfiler::enrichGO(
-        gene = .$geneId, OrgDb = orgDb, keyType = "GID", ont = "BP"
-      )
-      as.data.frame(ego)
-    }
-  )
-
-readr::write_tsv(x = clusterProfile_ego,
-                 path = paste(outPrefix, ".peakGroups.clusterProfiler.tab", sep = ""))
+# ## clusterProfiler groupGO assignment
+# grpGo <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
+#   do(clusterProfiler_groupGO(genes = .$geneId, org = orgDb, goLevel = 3, type = "BP", keyType ="GID"))
+# 
+# readr::write_tsv(x = grpGo, path = paste(outPrefix, ".peakGroups.GO_assignment.tab", sep = ""))
+# 
+# 
+# clusterProfile_ego <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
+#   dplyr::do(
+#     {
+#       ego <- clusterProfiler::enrichGO(
+#         gene = .$geneId, OrgDb = orgDb, keyType = "GID", ont = "BP"
+#       )
+#       as.data.frame(ego)
+#     }
+#   )
+# 
+# readr::write_tsv(x = clusterProfile_ego,
+#                  path = paste(outPrefix, ".peakGroups.clusterProfiler.tab", sep = ""))
 
 ##################################################################################
 
@@ -474,6 +473,72 @@ p = ggplot(data = groupMeanProfiles) +
 pdf(file = paste(outPrefix, ".mean_profiles.pdf", sep = ""), width = 18, height = 10)
 p
 dev.off()
+
+
+##################################################################################
+
+statsDf <- dplyr::group_by_at(hasPeakDf, .vars = vars(starts_with("hasPeak."), "group")) %>% 
+  dplyr::summarise(count = n_distinct(geneId)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(position = cumsum(count)) %>% 
+  tidyr::pivot_longer(cols = starts_with("hasPeak."),
+                      names_to = "sampleId", values_to = "peak") %>% 
+  dplyr::mutate(
+    sampleId = stringr::str_replace(
+      string = sampleId, pattern = "hasPeak.", replacement = "")
+  )
+
+statsDf$sampleId <- factor(statsDf$sampleId, levels = unique(statsDf$sampleId))
+statsDf$id = as.numeric(statsDf$sampleId)
+
+
+
+pt_stats <- ggplot(data = statsDf) +
+  # geom_rect(
+  #   mapping = aes(ymin = id - 0.5, ymax = id + 0.5,
+  #                 xmin = position - count, xmax = position,
+  #                 fill = peak)) +
+  # scale_y_discrete(
+  #   limits = as.character(1:4),
+  #   labels = structure(levels(statsDf$sampleId), names = as.character(1:4)),
+  #   expand = expand_scale(add = c(0.05, 0))) +
+  # scale_fill_manual(values = c("TRUE" = "#3c4ca0ff", "FALSE" = "white")) +
+  geom_segment(
+    mapping = aes(x = position - count, xend = position,
+                  y = sampleId, yend = sampleId, color = peak),
+    size = 49
+  ) +
+  scale_color_manual(values = c("TRUE" = "#3c4ca0ff", "FALSE" = "white")) +
+  scale_y_discrete(
+    limits = rev(levels(statsDf$sampleId)),
+    expand = expand_scale(add = c(0.55, 0.5))
+  ) +
+  scale_x_continuous(
+    labels = seq(from = 0, to = 5000, by = 1000),
+    expand = expand_scale(add = c(0,100))) +
+  labs(title = "common and unique targets") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_text(size = 16),
+    axis.title = element_blank(),
+    legend.position = "none",
+    axis.line.x = element_line(size = 1.5),
+    axis.ticks = element_line(size = 1.5),
+    axis.ticks.length = unit(2, "mm"),
+    plot.title = element_text(size = 24)
+  )
+
+
+# pdf(file = paste(outPrefix, ".peak_stats.pdf", sep = ""), width = 18, height = 6)
+png(file = paste(outPrefix, ".peak_stats.png", sep = ""), width = 5000, height = 2000, res = 300)
+pt_stats
+dev.off()
+
+
+
+
+
 
 
 
