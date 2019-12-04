@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(GGally)
 
 ## this script performs following tasks
@@ -26,27 +26,28 @@ polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_factors <- "E:/Chris_UM/Analysis/21_CL2017_ChIPmix_ULAS_MIX/ULAS_AN/data/referenceData/factor_names.list"
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 file_polIIsamples <- paste(polII_dataPath, "/sample_polII.list", sep = "")
 file_polIICtrlPairs <- paste(polII_dataPath, "/polII_sample_control_pairs.txt", sep = "")
 file_polIITimeDiffPairs <- paste(polII_dataPath, "/polII_48h_vs_20h_diff_pairs.txt", sep = "")
+file_polIIMat <- paste(polII_dataPath, "/polII_signal_matrix.tab", sep = "")
 
 ##################################################################################
 ## extract polII signal matrix for all the genes
 geneSet <- data.table::fread(file = file_genes, header = F,
-                             col.names = c("chr", "start", "end", "gene", "score", "strand")) %>% 
+                             col.names = c("chr", "start", "end", "geneId", "score", "strand")) %>% 
   dplyr::select(-score) %>% 
   dplyr::mutate(length = end - start)
 
 
-geneDesc <- select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+geneDesc <- select(x = orgDb, keys = geneSet$geneId, columns = "DESCRIPTION", keytype = "GID")
 
-geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
+geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("geneId" = "GID"))
 
 
 polIISamples <- fread(file = file_polIIsamples, sep = "\t", header = F,
@@ -63,37 +64,7 @@ polIICols <- list(
 )
 
 
-
-polIIMat <- get_polII_expressions(genesDf = geneSet, exptInfo = polII_info) %>% 
-  # dplyr::select(-starts_with("is_expressed")) %>%
-  dplyr::select(chr, start, end, gene, strand, length, DESCRIPTION, everything())
-
-
-fwrite(x = polIIMat, file = paste(polII_dataPath, "/polII_signal_matrix.tab", sep = ""),
-       sep = "\t", col.names = T, quote = F, row.names = F)
-
-##################################################################################
-## polII signal percentile matrix
-quantile(x = polIIMat$An_untagged_20h_polII_1,
-         c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
-
-
-polIIQuantiles <- lapply(
-  X = polIICols$exp,
-  FUN = function(x){
-    quantile(
-      x = polIIMat[[x]],
-      c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
-  }) %>% 
-  as.data.frame() %>% 
-  tibble::rownames_to_column(var = "quantile") %>% 
-  # dplyr::mutate(quantile = paste("quantile_", quantile, sep = "")) %>% 
-  tidyr::gather(key = sample, value = signal, -quantile) %>% 
-  tidyr::spread(key = quantile, value = signal)
-
-
-fwrite(x = polIIQuantiles, file = paste(polII_dataPath, "/polII_signal_quantiles.tab", sep = ""),
-       sep = "\t", col.names = T, quote = F, row.names = F)
+polIIMat <- suppressMessages(readr::read_tsv(file = file_polIIMat))
 
 
 ##################################################################################
@@ -101,7 +72,7 @@ fwrite(x = polIIQuantiles, file = paste(polII_dataPath, "/polII_signal_quantiles
 
 goi <- read_tsv(file = file_factors, col_names = T)
 
-goiPolII <- dplyr::left_join(goi, polIIMat, by = c("id" = "gene")) 
+goiPolII <- dplyr::left_join(goi, polIIMat, by = c("id" = "geneId")) 
 
 
 exprDf <- dplyr::select(goiPolII, -id, -chr, -start, -end, -strand, -length, -DESCRIPTION,
@@ -119,7 +90,7 @@ fwrite(x = exprDf, file = paste(polII_dataPath, "/factors_polII_signal.tab", sep
 ## for log2 calculations, set the values to 1 if they are < 1
 exprDf <- dplyr::mutate_at(.tbl = exprDf,
                            .vars = vars(!!!goi$name),
-                           .funs = funs(if_else(condition = . < 1, true = 1, false = .)))
+                           .funs = list(~ if_else(condition = . < 1, true = 1, false = .)))
 
 
 exprMat <- log2(as.matrix(exprDf[, goi$name]))
@@ -184,7 +155,7 @@ for (i in 1:nrow(polIICtrlPairs)) {
 }
 
 
-lfcMat <- dplyr::select(lfcMat, gene, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
+lfcMat <- dplyr::select(lfcMat, geneId, chr, start, end, strand, length, DESCRIPTION, starts_with("lfc."))
 
 fwrite(x = lfcMat, file = paste(polII_dataPath, "/polII_LFC_mut_vs_wt.tab", sep = ""),
        sep = "\t", col.names = T, quote = F, row.names = F)
@@ -253,7 +224,7 @@ dev.off()
 ## fold change heatmap for genes of interest
 goi <- read_tsv(file = file_factors, col_names = T)
 
-goiLfc <- dplyr::left_join(goi, lfcMat, by = c("id" = "gene")) 
+goiLfc <- dplyr::left_join(goi, lfcMat, by = c("id" = "geneId")) 
 
 
 lfcDf <- dplyr::select(goiLfc, name, starts_with("lfc.")) %>% 
@@ -261,7 +232,7 @@ lfcDf <- dplyr::select(goiLfc, name, starts_with("lfc.")) %>%
   tidyr::spread(key = name, value = expression) %>% 
   dplyr::mutate_if(.predicate = is.factor, .funs = as.character) %>% 
   dplyr::left_join(y = polIICtrlPairs, by = c("lfcCol" = "lfcCol")) %>% 
-  dplyr::select(lfcCol, sampleId, control, goi$name) %>% 
+  dplyr::select(lfcCol, sampleId1, sampleId2, goi$name) %>% 
   as.data.frame()
 
 
@@ -269,7 +240,7 @@ fwrite(x = lfcDf, file = paste(polII_dataPath, "/factors_polII_signal_LFC.tab", 
        sep = "\t", col.names = T, quote = F, row.names = F)
 
 
-lfcMat <- dplyr::select(lfcDf, -sampleId, -control) %>% 
+lfcMat <- dplyr::select(lfcDf, -sampleId1, -sampleId2) %>% 
   tibble::column_to_rownames(var = "lfcCol") %>% 
   as.matrix()
 

@@ -1,7 +1,7 @@
 library(chipmine)
 library(here)
-library(org.Anidulans.eg.db)
-library(TxDb.Anidulans.AspGD.GFF)
+library(org.Anidulans.FGSCA4.eg.db)
+library(TxDb.Anidulans.FGSCA4.AspGD.GFF)
 
 
 ## This script plots the profile heatmaps for multiple samples. If the expression values are present, it
@@ -12,12 +12,12 @@ rm(list = ls())
 ##################################################################################
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "geneset1_48h"
-outPrefix <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, comparisonName)
+comparisonName <- "geneset2_sex_asex_20h"
+workDir <- here::here("kdmB_analysis", "03_KERS_complex", "KERS_complex_20h", comparisonName)
+outPrefix <- paste(workDir, "/", comparisonName, sep = "")
 
-
-file_plotSamples <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, "samples.txt")
-file_geneSubset <- here::here("kdmB_analysis", "kdmB_complex_48h", comparisonName, "geneList.txt")
+file_plotSamples <- paste(workDir, "/", "samples.txt", sep = "")
+file_geneSubset <- paste(workDir, "/", "geneList.txt", sep = "")
 
 
 matrixType <- "2kb_ATG_1kb"
@@ -30,8 +30,8 @@ matrixDim = c(c(up, body, down)/binSize, binSize)
 
 showExpressionHeatmap <- FALSE
 
-orgDb <- org.Anidulans.eg.db
-txDb <- TxDb.Anidulans.AspGD.GFF
+orgDb <- org.Anidulans.FGSCA4.eg.db
+txDb <- TxDb.Anidulans.FGSCA4.AspGD.GFF
 
 
 ## genes to read
@@ -113,18 +113,18 @@ tfCols <- sapply(
 ## genes to read
 geneSet <- data.table::fread(file = file_genes, header = F,
                              col.names = c("chr", "start", "end", "geneId", "score", "strand")) %>% 
-  dplyr::mutate(length = end - start)
+  dplyr::select(geneId)
 
 kmClust <- dplyr::left_join(x = readr::read_tsv(file = tfData$clusterFile[1], col_names = T),
                             y = geneSet,
                             by = c("geneId" = "geneId"))
 
-## gene information annotations: cluster and TF and polII expression values
-# geneInfo <- add_gene_info(file = file_geneInfo, clusterDf = kmClust)
+geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, keytype = "GID",
+                                  columns = c("GENE_NAME", "DESCRIPTION")) %>% 
+  dplyr::rename(geneId = GID)
 
-geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
-
-geneInfo <- dplyr::left_join(x = kmClust, y = geneDesc, by = c("geneId" = "GID"))
+# geneInfo <- dplyr::left_join(x = kmClust, y = geneDesc, by = c("geneId" = "GID"))
+geneInfo <- geneDesc
 
 head(geneInfo)
 
@@ -136,6 +136,8 @@ expressionData <- get_TF_binding_data(exptInfo = tfData,
 #                                         genesDf = expressionData)
 
 # view(dfSummary(expressionData))
+
+peakTargetMat <- peak_target_matrix(sampleInfo = tfData, position = "best")
 
 
 anLables <- list()
@@ -150,20 +152,20 @@ anLables[["gene_length"]] = "Gene Length"
 
 
 ## generate profile matrix for the first time
-genesGr <- rtracklayer::import(con = file_genes, format = "bed")
-
-geneStartGr <- GenomicRanges::resize(x = genesGr, width = 1, fix = "start")
-
-i <- 1
-for(i in 1:nrow(exptData)){
-  bwMat <- bigwig_profile_matrix(bwFile = exptData$bwFile[i],
-                                 regions = geneStartGr,
-                                 signalName = exptData$sampleId[i],
-                                 extend = c(up, down),
-                                 targetName = "ATG",
-                                 storeLocal = TRUE,
-                                 localPath = exptData$matFile[i])
-}
+# genesGr <- rtracklayer::import(con = file_genes, format = "bed")
+# 
+# geneStartGr <- GenomicRanges::resize(x = genesGr, width = 1, fix = "start")
+# 
+# i <- 1
+# for(i in 1:nrow(exptData)){
+#   bwMat <- bigwig_profile_matrix(bwFile = exptData$bwFile[i],
+#                                  regions = geneStartGr,
+#                                  signalName = exptData$sampleId[i],
+#                                  extend = c(up, down),
+#                                  targetName = "ATG",
+#                                  storeLocal = TRUE,
+#                                  localPath = exptData$matFile[i])
+# }
 
 ## color list
 matList <- import_profiles(exptInfo = dplyr::bind_rows(tfData, inputData, histData, polIIData),
@@ -288,6 +290,10 @@ geneSubset <- suppressMessages(
   readr::read_tsv(file = file_geneSubset)
 )
 
+geneSubset <- dplyr::left_join(x = geneSubset, y = peakTargetMat, by = "geneId") %>% 
+  dplyr::left_join(y = geneInfo, by = "geneId")
+
+
 multiProfiles_geneset <- multi_profile_plots(exptInfo = exptData,
                                              genesToPlot = geneSubset$geneId,
                                              targetType = "point",
@@ -296,10 +302,10 @@ multiProfiles_geneset <- multi_profile_plots(exptInfo = exptData,
                                              clusters = NULL,
                                              showAnnotation = FALSE,
                                              profileColors = colorList,
-                                             row_order = geneSubset$geneId,
                                              column_title_gp = gpar(fontsize = 12),
-                                             show_row_names = TRUE,
-                                             row_labels = geneSubset$geneName,
+                                             # row_order = geneSubset$geneId,
+                                             # show_row_names = TRUE,
+                                             # row_labels = geneSubset$geneName,
                                              ylimFraction = ylimList)
 
 
@@ -309,7 +315,11 @@ pdfWd <- 2 +
 
 
 ## gene length annotation
-anGl_geneset <- gene_length_heatmap_annotation(bedFile = file_genes, genes = geneSubset$geneId)
+anGl_geneset <- gene_length_heatmap_annotation(
+  bedFile = file_genes,
+  genes = geneSubset$geneId,
+  axis_param = list(at = c(2000, 4000), labels = c("2kb", "> 4kb")),
+  pointSize = unit(4, "mm"))
 
 
 geneset_htlist <- anGl_geneset$an +
@@ -318,14 +328,15 @@ geneset_htlist <- anGl_geneset$an +
 
 
 # wd <- 500 + (nrow(exptData) * 700) + (length(polII_ids) * 500 * showExpressionHeatmap)
-title_geneset= paste(comparisonName, ": genes of interest", collapse = "")
+title_geneset = paste(comparisonName, ": genes of interest", collapse = "")
 
 # draw Heatmap and add the annotation name decoration
-pdf(file = paste(outPrefix_geneset, ".profiles.pdf", sep = ""), width = pdfWd, height = 13)
+pdf(file = paste(outPrefix_geneset, ".profiles.pdf", sep = ""), width = pdfWd, height = 12)
 
-draw(geneset_htlist,
+geneset_htlist <- draw(geneset_htlist,
      main_heatmap = exptData$profileName[1],
      # annotation_legend_list = list(profile1$legend),
+     split = geneSubset$group,
      column_title = title_geneset,
      column_title_gp = gpar(fontsize = 14, fontface = "bold"),
      row_sub_title_side = "left",
@@ -336,6 +347,13 @@ draw(geneset_htlist,
 
 dev.off()
 
+
+rowOrderDf <- row_order(geneset_htlist) %>% 
+  purrr::map_dfr(.f = ~ tibble(rank = ., geneId = geneSubset$geneId[.]))
+
+ordered_data <- dplyr::left_join(x = rowOrderDf, y = geneSubset, by = "geneId")
+
+readr::write_tsv(x = ordered_data, path = paste(outPrefix_geneset, ".data.tab", sep = ""))
 
 ##################################################################################
 

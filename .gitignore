@@ -10,10 +10,11 @@
 *.pptx
 *.xlsx
 *.docx
+ULAS_An_analysis.txt
+sampleInfo.txt
+sampleAttributes.txt
 /data/*
 #/data/
 !/data/referenceData/
-/kdm[AB]_analysis/**/*.png
-/kdm[AB]_analysis/**/*.pdf
-/kdm[AB]_analysis/**/*.svg
 /kdmB_analysis
+/kdmA_analysis

@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(esquisse)
 library(summarytools)
 library(here)
@@ -55,7 +55,7 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 if(!dir.exists(outDir)){
   dir.create(outDir)
@@ -161,8 +161,10 @@ hasPeak <- as.data.table(mergedData) %>%
   as_tibble() %>% 
   dplyr::filter(hasPeak == TRUE)
 
-levels(hasPeak$sampleId) <- tfInfo$sampleId
-
+hasPeak$sampleId <- forcats::fct_recode(
+  .f = hasPeak$sampleId,
+  structure(levels(hasPeak$sampleId), names = tfInfo$sampleId)
+)
 
 tfPointPosition <- structure(seq(0, 1, length.out = length(tfInfo$sampleId)+2)[2:(1+length(tfInfo$sampleId))],
                              names = tfInfo$sampleId)
@@ -180,8 +182,10 @@ polIILfc <- as.data.table(mergedData) %>%
                    variable.name = "pair", value.name = "lfc") %>% 
   as_tibble()
 
-levels(polIILfc$pair) <- unname(purrr::map_chr(polIIDiffPairs, "name"))
-
+polIILfc$pair <- forcats::fct_recode(
+  .f = polIILfc$pair,
+  structure(levels(polIILfc$pair), names = unname(purrr::map_chr(polIIDiffPairs, "name")))
+)
 
 pt <- ggplot() +
   geom_tile(data = polIILfc, mapping = aes(x = 0.5, y = pair, fill = lfc)) +

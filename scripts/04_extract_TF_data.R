@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 
 
 
@@ -23,7 +23,7 @@ geneInfoFile <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.
 
 sampleList <- c("An_kdmB_20h_HA_1", "An_kdmB_20h_HA_2", "An_kdmB_48h_HA_1", "An_kdmB_48h_HA_2")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 ##################################################################################
 ## read the experiment sample details and select only those which are to be plotted

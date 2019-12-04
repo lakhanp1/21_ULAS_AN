@@ -1,7 +1,0 @@
-sampleId
-An_kdmB_20h_HA_1
-An_sntB_20h_HA_1
-An_ecoA_20h_HA_1
-An_rpdA_20h_HA_1
-An_untagged_20h_HA_1
-An_untagged_20h_polII_1

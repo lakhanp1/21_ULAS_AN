@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(here)
 library(summarytools)
 
@@ -10,31 +10,35 @@ library(summarytools)
 
 rm(list = ls())
 
-source(file = "E:/Chris_UM/GitHub/omics_util/GO_enrichment/topGO_functions.R")
+source(file = "E:/Chris_UM/GitHub/omics_util/04_GO_enrichment/topGO_functions.R")
 
 
 ## IMP: the first sampleID will be treated primary and clustering will be done/used for/of this sample
-comparisonName <- "kdmB_complex_48h"
-outPrefix <- here::here("kdmB_analysis", comparisonName, comparisonName)
+analysisName <- "KERS_complex_20h"
+workDir <- here::here("kdmB_analysis", "03_KERS_complex", analysisName)
+outPrefix <- paste(workDir, "/", analysisName, sep = "")
 
-file_plotSamples <- here::here("kdmB_analysis", comparisonName, "samples.txt")
+file_plotSamples <- paste(workDir, "/", "samples.txt", sep = "")
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
-# "deeptools", "miao", "normalizedmatrix", "normalizedmatrix_5kb"
-matrixType <- "normalizedmatrix_5kb"
-matrixDim = c(500, 200, 100, 10)
+matrixType <- "normalizedMatrix_5kb"
+up <- 5000
+body <- 2000
+down <- 1000
+binSize <- 10
+matrixDim = c(c(up, body, down)/binSize, binSize)
+
 showExpressionHeatmap = TRUE
 
 ## genes to read
 file_exptInfo <- here::here("data", "referenceData/sampleInfo.txt")
 file_genes <- here::here("data", "referenceData/AN_genesForPolII.bed")
-file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/ANidulans_OrgDb/geneid2go.ANidulans.topGO.map"
+file_topGoMap <- "E:/Chris_UM/Database/A_Nidulans/annotation_resources/geneid2go.ANidulans.topGO.map"
 file_geneInfo <- "E:/Chris_UM/Database/A_Nidulans/A_nidulans_FGSC_A4_geneClasses.txt"
 
 TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
-
-orgDb <- org.Anidulans.eg.db
 
 anLables <- list()
 
@@ -44,18 +48,28 @@ sampleList <- suppressMessages(readr::read_tsv(file = file_plotSamples, col_name
 
 ## genes to read
 geneSet <- suppressMessages(
-  readr::read_tsv(file = file_genes, col_names = c("chr", "start", "end", "gene", "score", "strand"))
+  readr::read_tsv(file = file_genes, col_names = c("chr", "start", "end", "geneId", "score", "strand"))
 ) %>% 
-  dplyr::mutate(length = end - start)
+  dplyr::select(geneId)
 
-geneDesc <- AnnotationDbi::select(x = orgDb, keys = geneSet$gene, columns = "DESCRIPTION", keytype = "GID")
+geneDesc <- suppressMessages(
+  AnnotationDbi::select(x = orgDb, keys = geneSet$geneId,
+                        columns = c("DESCRIPTION"), keytype = "GID"))
 
-geneSet <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("gene" = "GID"))
+smInfo <- suppressMessages(
+  AnnotationDbi::select(x = orgDb, keys = keys(orgDb, keytype = "SM_CLUSTER"),
+                        columns = c("GID", "SM_ID"), keytype = "SM_CLUSTER")) %>% 
+  dplyr::group_by(GID) %>% 
+  dplyr::mutate(SM_CLUSTER = paste(SM_CLUSTER, collapse = ";"),
+                SM_ID = paste(SM_ID, collapse = ";")) %>% 
+  dplyr::slice(1L) %>% 
+  dplyr::ungroup()
 
-## gene information annotations: cluster and TF and polII expression values
-geneInfo <- add_gene_info(file = file_geneInfo, clusterDf = geneSet)
+geneInfo <- dplyr::left_join(x = geneSet, y = geneDesc, by = c("geneId" = "GID")) %>% 
+  dplyr::left_join(y = smInfo, by = c("geneId" = "GID"))
 
 head(geneInfo)
+
 
 ##################################################################################
 
@@ -63,7 +77,7 @@ head(geneInfo)
 tempSInfo <- get_sample_information(exptInfoFile = file_exptInfo,
                                     samples = sampleList$sampleId,
                                     dataPath = TF_dataPath,
-                                    matrixSource = matrixType)
+                                    profileMatrixSuffix = matrixType)
 
 polII_ids <- tempSInfo$sampleId[which(tempSInfo$IP_tag == "polII")]
 tfIds <- tempSInfo$sampleId[which(tempSInfo$IP_tag %in% c("HA", "MYC", "TAP") & tempSInfo$TF != "untagged")]
@@ -75,23 +89,23 @@ histIds <- tempSInfo$sampleId[which(tempSInfo$IP_tag == "HIST")]
 tfData <- get_sample_information(exptInfoFile = file_exptInfo,
                                  samples = tfIds,
                                  dataPath = TF_dataPath,
-                                 matrixSource = matrixType)
+                                 profileMatrixSuffix = matrixType)
 
 
 inputData <- get_sample_information(exptInfoFile = file_exptInfo,
                                     samples = inputIds,
                                     dataPath = TF_dataPath,
-                                    matrixSource = matrixType)
+                                    profileMatrixSuffix = matrixType)
 
 polIIData <- get_sample_information(exptInfoFile = file_exptInfo,
                                     samples = polII_ids,
                                     dataPath = polII_dataPath,
-                                    matrixSource = matrixType)
+                                    profileMatrixSuffix = matrixType)
 
 histData <- get_sample_information(exptInfoFile = file_exptInfo,
                                    samples = histIds,
                                    dataPath = hist_dataPath,
-                                   matrixSource = matrixType)
+                                   profileMatrixSuffix = matrixType)
 
 exptData <- dplyr::bind_rows(tfData, inputData, histData, polIIData)
 
@@ -105,26 +119,32 @@ polIICols <- list(
 
 
 tfCols <- sapply(
-  c("peakDist", "featureCovFrac", "hasPeak", "peakCoverage", "peakPosition", "peakId", "peakType",
-    "peakPval", "peakEnrichment", "preference", "peakCategory"),
+  c("hasPeak", "peakId", "peakEnrichment", "peakPval", "peakQval", "peakSummit", "peakDist", "summitDist",
+    "peakType", "bidirectional", "featureCovFrac", "relativeSummitPos", "peakRegion", "peakPosition",
+    "peakCoverage", "pvalFiltered", "summitSeq"),
   FUN = function(x){ structure(paste(x, ".", tfIds, sep = ""), names = tfIds) },
   simplify = F, USE.NAMES = T)
 
 peakTargetMat <- peak_target_matrix(sampleInfo = tfData, position = "best")
 
+peakTargetMat <- dplyr::mutate_at(.tbl = peakTargetMat,
+                                  .vars = vars(starts_with("hasPeak.")),
+                                  .funs = ~ factor(., levels = c(TRUE, FALSE))
+)
+
 expressionData <- get_polII_expressions(exptInfo = exptData,
                                         genesDf = geneInfo)
 
-expressionData <- dplyr::left_join(x = expressionData, y = peakTargetMat, by = "gene")
-
-dplyr::group_by_at(expressionData, .vars = vars(starts_with("hasPeak."))) %>% 
-  dplyr::summarise(n = n())
-
+expressionData <- dplyr::left_join(x = expressionData, y = peakTargetMat, by = "geneId")
 
 hasPeakDf <- expressionData %>% 
   dplyr::filter_at(.vars = vars(starts_with("hasPeak")), .vars_predicate = any_vars(. == TRUE)) %>% 
   dplyr::mutate(group = group_indices(., !!! lapply(unname(tfCols$hasPeak), as.name))) %>% 
   dplyr::mutate(group = sprintf(fmt = "%02d", group))
+
+dplyr::group_by_at(hasPeakDf, .vars = vars(starts_with("hasPeak."))) %>% 
+  dplyr::summarise(n = n_distinct(geneId))
+
 
 readr::write_tsv(x = hasPeakDf, path = paste(outPrefix, ".peaks_data.tab", sep = ""))
 
@@ -137,43 +157,50 @@ groupLabels <- structure(groupLabelDf$groupLabels, names = groupLabelDf$group)
 
 ##################################################################################
 ## binding stats
-bindingMat = combinatorial_binding_matrix(sampleInfo = tfData)
+bindingMat = combinatorial_binding_matrix(sampleInfo = tfData, summitRegion = 100)
 
 readr::write_tsv(x = bindingMat, path = paste(outPrefix, ".binding_matrix.tab", sep = ""))
 
 ##################################################################################
 ## topGO enrichment
 goEnrich <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  do(topGO_enrichment(goMapFile = file_topGoMap, genes = .$gene, goNodeSize = 5))
+  do(topGO_enrichment(goMapFile = file_topGoMap, genes = .$geneId, goNodeSize = 5))
 
-
-fwrite(x = goEnrich,
-       file = paste(outPrefix, ".peakGroups.GO_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
-
-
-
-## clusterProfiler groupGO assignment
-grpGo <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  do(clusterProfiler_groupGO(genes = .$gene, org = orgDb, goLevel = 3, type = "BP", keyType ="GID"))
-
-fwrite(x = grpGo,
-       file = paste(outPrefix, ".peakGroups.GO_assignment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
-
+readr::write_tsv(x = goEnrich, path = paste(outPrefix, ".peakGroups.topGO.tab", sep = ""))
 
 
 ## pathway enrichment
 keggEnr <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
-  do(keggprofile_enrichment(genes = .$gene, orgdb = orgDb, keytype = "GID", keggOrg = "ani", pvalCut = 0.05))
+  do(keggprofile_enrichment(genes = .$geneId, orgdb = orgDb, keytype = "GID",
+                            keggIdCol = "KEGG_ID", keggOrg = "ani", pvalCut = 0.05))
+
+readr::write_tsv(x = keggEnr, path = paste(outPrefix, ".peakGroups.KEGG_enrichment.tab", sep = ""))
 
 
-fwrite(x = keggEnr,
-       file = paste(outPrefix, ".peakGroups.KEGG_enrichment.tab", sep = ""), sep = "\t", col.names = T, quote = F)
-
+# ## clusterProfiler groupGO assignment
+# grpGo <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
+#   do(clusterProfiler_groupGO(genes = .$geneId, org = orgDb, goLevel = 3, type = "BP", keyType ="GID"))
+# 
+# readr::write_tsv(x = grpGo, path = paste(outPrefix, ".peakGroups.GO_assignment.tab", sep = ""))
+# 
+# 
+# clusterProfile_ego <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_with("hasPeak."), group)) %>%
+#   dplyr::do(
+#     {
+#       ego <- clusterProfiler::enrichGO(
+#         gene = .$geneId, OrgDb = orgDb, keyType = "GID", ont = "BP"
+#       )
+#       as.data.frame(ego)
+#     }
+#   )
+# 
+# readr::write_tsv(x = clusterProfile_ego,
+#                  path = paste(outPrefix, ".peakGroups.clusterProfiler.tab", sep = ""))
 
 ##################################################################################
 
 ## profile matrix of the genes which show binding
-matList <- import_profiles(exptInfo = exptData, geneList = geneInfo$gene, source = matrixType,
+matList <- import_profiles(exptInfo = exptData, geneList = unique(geneInfo$geneId), source = matrixType,
                            up = matrixDim[1], target = matrixDim[2], down = matrixDim[3])
 
 ## get average signal over all factors to select color
@@ -196,7 +223,7 @@ colorList <- tfColorList
 ##################################################################################
 ## polII signal matrix
 polIIMat <- data.matrix(log2(expressionData[, polII_ids] + 1))
-rownames(polIIMat) <- expressionData$gene
+rownames(polIIMat) <- expressionData$geneId
 
 quantile(polIIMat, c(seq(0, 0.9, by = 0.1), 0.95, 0.99, 0.992, 0.995, 0.997, 0.999, 0.9999, 1), na.rm = T)
 
@@ -210,7 +237,7 @@ ylimList <- sapply(exptData$sampleId, function(x){return(c(0,25))}, simplify = F
 
 profiles_peaks <- multi_profile_plots(
   exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
-  genesToPlot = hasPeakDf$gene,
+  genesToPlot = hasPeakDf$geneId,
   clusters = NULL,
   profileColors = colorList,
   matSource = matrixType,
@@ -219,7 +246,10 @@ profiles_peaks <- multi_profile_plots(
   column_title_gp = gpar(fontsize = 14)
 )
 
-anGl_peaks <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
+anGl_peaks <- gene_length_heatmap_annotation(
+  bedFile = file_genes, genes = hasPeakDf$geneId,
+  axis_param = list(at = c(0, 2000, 4000), labels = c("0kb", "2kb", ">4kb"))
+)
 
 peaks_htlist <- profiles_peaks$heatmapList + anGl_peaks$an
 
@@ -242,12 +272,6 @@ draw(peaks_htlist,
      padding = unit(rep(0.3, times = 4), "cm")
 )
 
-
-row_annotation_axis(an = "gene_length",
-                    at = c(0, 2000, 4000),
-                    labels = c("0kb", "2kb", ">4kb"),
-                    slice = 1)
-
 dev.off()
 
 
@@ -255,14 +279,14 @@ dev.off()
 ##################################################################################
 
 ## profile matrix with selected genes only
-newClusters <- dplyr::select(hasPeakDf, gene, group) %>% 
+newClusters <- dplyr::select(hasPeakDf, geneId, group) %>% 
   dplyr::rename(cluster = group)
 
 newClusters$cluster <- factor(x = newClusters$cluster, levels = sort(unique(newClusters$cluster)))
 
 profiles_peakGroups <- multi_profile_plots(
   exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
-  genesToPlot = hasPeakDf$gene,
+  genesToPlot = hasPeakDf$geneId,
   clusters = newClusters,
   profileColors = colorList,
   matSource = matrixType,
@@ -271,7 +295,7 @@ profiles_peakGroups <- multi_profile_plots(
 )
 
 ## polII signal heatmap
-polIIMat_peakGroups <- polIIMat[hasPeakDf$gene, , drop=FALSE]
+polIIMat_peakGroups <- polIIMat[hasPeakDf$geneId, , drop=FALSE]
 
 polIIht_peakExp <- signal_heatmap(
   log2_matrix = polIIMat_peakGroups,
@@ -284,9 +308,9 @@ polIIht_peakExp <- signal_heatmap(
 
 
 ## heatmap of binary assignment of samples to different group
-htMat <- dplyr::select(hasPeakDf, gene, starts_with("hasPeak")) %>% 
+htMat <- dplyr::select(hasPeakDf, geneId, starts_with("hasPeak")) %>% 
   dplyr::mutate_if(.predicate = is.logical, .funs = as.character) %>% 
-  tibble::column_to_rownames("gene")
+  tibble::column_to_rownames("geneId")
 
 ## column name as annotation for Heatmap
 colNameAnn <- HeatmapAnnotation(
@@ -310,7 +334,10 @@ grp_ht <- Heatmap(as.matrix(htMat),
 )
 
 ## gene length annotation
-anGl_peakGroups <- gene_length_heatmap_annotation(bedFile = file_genes, genes = hasPeakDf$gene)
+anGl_peakGroups <- gene_length_heatmap_annotation(
+  bedFile = file_genes, genes = hasPeakDf$geneId,
+  axis_param = list(at = c(0, 2000, 4000), labels = c("0kb", "2kb", ">4kb"))
+)
 
 
 peakGroups_htlist <- profiles_peakGroups$heatmapList + polIIht_peakExp + grp_ht + anGl_peakGroups$an
@@ -336,11 +363,6 @@ draw(peakGroups_htlist,
 )
 
 
-row_annotation_axis(an = "gene_length",
-                    at = c(0, 2000, 4000),
-                    labels = c("0kb", "2kb", ">4kb"),
-                    slice = length(unique(newClusters$cluster)))
-
 dev.off()
 
 
@@ -357,14 +379,14 @@ lineShape = structure(.Data = c(1, 1, 1, 1, 6),
 
 draw_avg_profile_plot(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                       profileMats = matList,
-                      genes = testDf$gene,
+                      genes = testDf$geneId,
                       lineColors = lineColors,
                       lineShape = lineShape)
 
 
 ap <- geneset_average_profile(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                               profileMats = matList,
-                              genes = testDf$gene,
+                              genes = testDf$geneId,
                               cluster = "group_1")
 
 
@@ -373,7 +395,7 @@ groupMeanProfiles <- dplyr::group_by_at(.tbl = hasPeakDf, .vars = vars(starts_wi
   dplyr::do(
     geneset_average_profile(exptInfo = exptData[exptData$sampleId %in% c(tfIds, inputIds), ],
                             profileMats = matList,
-                            genes = .$gene,
+                            genes = .$geneId,
                             cluster = unique(.$group))
   ) %>% 
   dplyr::ungroup() %>% 
@@ -425,7 +447,7 @@ p = ggplot(data = groupMeanProfiles) +
   scale_color_manual(values = lineColors) +
   scale_linetype_manual(values = lineShape) +
   scale_x_continuous(breaks = axisBrk, labels = axisLab) +
-  ggtitle(paste("Average profile for different binding patterns of kdmB complex members: ", comparisonName)) +
+  ggtitle(paste("Average profile for different binding patterns of kdmB complex members: ", analysisName)) +
   ylab("Read coverage") +
   facet_wrap(group ~ ., ncol = 5, scales = "free_y", labeller = labeller(group = groupLabels)) +
   theme_bw() +
@@ -451,6 +473,72 @@ p = ggplot(data = groupMeanProfiles) +
 pdf(file = paste(outPrefix, ".mean_profiles.pdf", sep = ""), width = 18, height = 10)
 p
 dev.off()
+
+
+##################################################################################
+
+statsDf <- dplyr::group_by_at(hasPeakDf, .vars = vars(starts_with("hasPeak."), "group")) %>% 
+  dplyr::summarise(count = n_distinct(geneId)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(position = cumsum(count)) %>% 
+  tidyr::pivot_longer(cols = starts_with("hasPeak."),
+                      names_to = "sampleId", values_to = "peak") %>% 
+  dplyr::mutate(
+    sampleId = stringr::str_replace(
+      string = sampleId, pattern = "hasPeak.", replacement = "")
+  )
+
+statsDf$sampleId <- factor(statsDf$sampleId, levels = unique(statsDf$sampleId))
+statsDf$id = as.numeric(statsDf$sampleId)
+
+
+
+pt_stats <- ggplot(data = statsDf) +
+  # geom_rect(
+  #   mapping = aes(ymin = id - 0.5, ymax = id + 0.5,
+  #                 xmin = position - count, xmax = position,
+  #                 fill = peak)) +
+  # scale_y_discrete(
+  #   limits = as.character(1:4),
+  #   labels = structure(levels(statsDf$sampleId), names = as.character(1:4)),
+  #   expand = expand_scale(add = c(0.05, 0))) +
+  # scale_fill_manual(values = c("TRUE" = "#3c4ca0ff", "FALSE" = "white")) +
+  geom_segment(
+    mapping = aes(x = position - count, xend = position,
+                  y = sampleId, yend = sampleId, color = peak),
+    size = 49
+  ) +
+  scale_color_manual(values = c("TRUE" = "#3c4ca0ff", "FALSE" = "white")) +
+  scale_y_discrete(
+    limits = rev(levels(statsDf$sampleId)),
+    expand = expand_scale(add = c(0.55, 0.5))
+  ) +
+  scale_x_continuous(
+    labels = seq(from = 0, to = 5000, by = 1000),
+    expand = expand_scale(add = c(0,100))) +
+  labs(title = "common and unique targets") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_text(size = 16),
+    axis.title = element_blank(),
+    legend.position = "none",
+    axis.line.x = element_line(size = 1.5),
+    axis.ticks = element_line(size = 1.5),
+    axis.ticks.length = unit(2, "mm"),
+    plot.title = element_text(size = 24)
+  )
+
+
+# pdf(file = paste(outPrefix, ".peak_stats.pdf", sep = ""), width = 18, height = 6)
+png(file = paste(outPrefix, ".peak_stats.png", sep = ""), width = 5000, height = 2000, res = 300)
+pt_stats
+dev.off()
+
+
+
+
+
 
 
 

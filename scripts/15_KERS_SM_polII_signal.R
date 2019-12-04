@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(esquisse)
 library(summarytools)
 library(here)
@@ -26,7 +26,7 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 if(!dir.exists(outDir)){
   dir.create(outDir)
@@ -130,8 +130,10 @@ hasPeak <- as.data.table(mergedData) %>%
   as_tibble() %>% 
   dplyr::filter(hasPeak == TRUE)
 
-levels(hasPeak$sampleId) <- tfInfo$sampleId
-
+hasPeak$sampleId <- forcats::fct_recode(
+  .f = hasPeak$sampleId,
+  structure(levels(hasPeak$sampleId), names = tfInfo$sampleId)
+)
 
 tfPointPosition <- structure(seq(0, 1, length.out = length(tfInfo$sampleId)+2)[2:(1+length(tfInfo$sampleId))],
                              names = tfInfo$sampleId)
@@ -148,7 +150,10 @@ polIISignal <- as.data.table(mergedData) %>%
   as_tibble() %>% 
   dplyr::mutate(polII = if_else(is_expressed == FALSE, 0, polII))
 
-levels(polIISignal$sampleId) <- polII_info$sampleId
+polIISignal$sampleId <- forcats::fct_recode(
+  .f = polIISignal$sampleId,
+  structure(levels(polIISignal$sampleId), names = polII_info$sampleId)
+)
 
 tfColor <- purrr::map_chr(.x = exptDataList[tfInfo$sampleId],
                .f = function(x) unlist(strsplit(x = x$color, split = ","))[2])

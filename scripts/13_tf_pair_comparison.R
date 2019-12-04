@@ -1,5 +1,5 @@
 library(chipmine)
-library(org.Anidulans.eg.db)
+library(org.Anidulans.FGSCA4.eg.db)
 library(scales)
 library(ggplot2)
 library(summarytools)
@@ -92,7 +92,7 @@ TF_dataPath <- here::here("data", "TF_data")
 polII_dataPath <- here::here("data", "polII_data")
 hist_dataPath <- here::here("data", "histone_data")
 
-orgDb <- org.Anidulans.eg.db
+orgDb <- org.Anidulans.FGSCA4.eg.db
 
 showExpressionHeatmap <- FALSE
 
@@ -647,7 +647,10 @@ boxDt <- data.table::melt(
   value.name = c("hasPeak", "peakCoverage")
 )
 
-levels(boxDt$sample) <- names(tfCols$hasPeak)
+boxDt$sample <- forcats::fct_recode(
+  .f = boxDt$sample,
+  structure(.Data = levels(boxDt$sample), names = names(tfCols$hasPeak))
+)
 
 boxDt <- dplyr::left_join(boxDt, dplyr::select(tfData, sampleId, TF, timepoint), by = c("sample" = "sampleId")) %>% 
   dplyr::group_by(sample) %>% 
